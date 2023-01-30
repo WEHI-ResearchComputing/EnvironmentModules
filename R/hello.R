@@ -1,98 +1,103 @@
+MIN_SUPPORTED_VERSION = numeric_version("4.0.0")
 
-
-get_quarantine_old = function(){
-  mlre <- ''
-  if (!is.na(Sys.getenv('MODULES_RUN_QUARANTINE', unset=NA))) {
-    for (mlv in strsplit(Sys.getenv('MODULES_RUN_QUARANTINE'), ' ')[[1]]) {
-      if (grepl('^[A-Za-z_][A-Za-z0-9_]*$', mlv)) {
-        if (!is.na(Sys.getenv(mlv, unset=NA))) {
-          mlre <- paste0(mlre, "__MODULES_QUAR_", mlv, "='", Sys.getenv(mlv), "' ")
-        }
-        mlrv <- paste0('MODULES_RUNENV_', mlv)
-        mlre <- paste0(mlre, mlv, "='", Sys.getenv(mlrv), "' ")
-      }
+#' Returns the current Environment Modules version which can be used for
+#' feature testing
+#' @return The current Environment Modules version as a [base::numeric_version]
+#' object, or NULL if no version can be detected.
+#' @export
+#' @examples
+#' version = check_version()
+#' version < numeric_version("5.0.0")
+get_version = function(){
+    output = system2(
+      get_modulescmd_binary(),
+      c("sh", "--version"),
+      stderr=TRUE,
+      stdout=TRUE
+    )[[1]] |>
+      suppressWarnings()
+    match = regexec("\\d+\\.\\d+\\.\\d+", output)[[1]]
+    if (match == -1){
+      NULL
     }
-    if (mlre != '') {
-      mlre <- paste0('env ', mlre, '__MODULES_QUARANTINE_SET=1 ')
+    else {
+      end = attr(match, "match.length")
+      substr(output, match, match + end - 1) |>
+        numeric_version()
     }
-  }
-  mlre
 }
 
-get_quarantine = function(){
-  # setup quarantine if defined
-  quarantine_var = Sys.getenv('MODULES_RUN_QUARANTINE', unset=NA)
-  if (is.na(quarantine_var)){
-    stop("Quarantine is not yet implemented")
-    quarantine_var |>
-      strsplit(' ') |>
-      head(1) |>
-      purrr::keep(~ grepl('^[A-Za-z_][A-Za-z0-9_]*$', .)) |>
-      lapply(\(mlv){
-        mlv_env = Sys.getenv(mlv, unset=NA)
-        mlrv = glue::glue("MODULES_RUNENV_{mlv}")
+#' Asserts that the current EnvironmentModules version is above the minimum
+#' supported version of this package. Raises an error if it is not.
+#' @return Invisible
+#' @export
+#' @examples
+#' check_version()
+check_version = function(){
+  version = get_version()
+  if (version < MIN_SUPPORTED_VERSION){
+    version |>
+      paste0("Your Environment Modules version is ", version = _, ", which is lower than ", MIN_SUPPORTED_VERSION, ", the minimum supported version.") |>
+      cli::cli_abort()
+  }
+  invisible()
+}
 
-        prefix = mlv_env |>
-          is.na() |>
-          {`if`}(
-            "",
-            glue::glue("__MODULES_QUAR_{module}={mlv_env} ")
-          )
+#' Gets the file path to the `modulescmd` executable
+#' @return A character scalar containing the full file path to the `modulescmd`
+#'  executable
+get_modulescmd_binary = function(){
+  env_src = Sys.getenv("MODULES_CMD")
+  which_src = Sys.which("modulecmd")
 
-        glue::glue("{prefix}{mlv}={Sys.getenv(mlrv)}")
-      })
+  if (file.exists(env_src)){
+    env_src
+  }
+  else if (file.exists(which_src)) {
+    which_src |> unname()
   }
   else {
-    NULL
+    cli::cli_abort("Could not detect an Environment Modules installation. Are you sure it is installed on this machine?")
   }
 }
 
-get_modulescmd_binary = function(){
-  Sys.getenv("MODULES_CMD")
+#' Runs `modulecmd` with some arguments. The shell is harcoded as "r" because
+#' (surprise!) that's the language you are using right now.
+#' @details This is a low-level unexported function because users are
+#'  encouraged to use the higher level functions such as [module_load()]
+#' @param args A character vector defining the module command. You do not need
+#'  to include the word "module". For example `module load zeromq` in bash
+#'  could be converted to `run_modulecmd(c("load", "zeromq"))`
+#' @param ... Arguments to forward to [base::system2()]
+#' @return A character scalar containing the command's output
+run_modulecmd = function(args, ...){
+  c("r", args) |> system2(command = get_modulescmd_binary(), args=_, ...)
 }
 
 #' Returns the R code that would execute a given module command
-#' @param args A character vector defining the module command
+#' @inheritParams run_modulecmd
+#' @param env A character vector containing `KEY=VALUE` entries
+#'  **not as a named vector** defining additional environment variables to set
 #' @return An expression object containing the R code produced by this command
 #' @export
 #' @examples
 #' get_module_code("purge") |> eval()
-get_module_code = function(args){
-  c(
-    "r",
-    args
-  ) |>
-    system2(
-      get_modulescmd_binary(),
-      args=_,
-      stdout=TRUE,
-      stderr=FALSE,
-    ) |>
-    parse(text = _)
+get_module_code = function(args, env = character()){
+  run_modulecmd(args = args, env = env, stdout = TRUE) |> parse(text = _)
 }
 
 #' Evaluates a module command, and returns the text output.
-#' @param args A character vector containing the module subcommand to run,
-#'  followed by any arguments for that command
+#' @inheritParams get_module_code
 #' @return A character vector with class "cli_ansi_string". If you have the
-#'  cli package installed an loaded, it will enable enhanced
+#'  [`cli`](https://cli.r-lib.org/) package installed and loaded, it will enable enhanced
 #'  printing of this result. If you don't want to install cli, you should print
-#'  this result out using [base::cat] and *not* [base::print] to ensure the
+#'  this result out using [base::cat()] and *not* [base::print()] to ensure the
 #'  ANSI control characters are correctly displayed.
 #' @export
 #' @examples
 #' get_module_command("list") |> cat()
-get_module_output = function(args){
-  c(
-    "r",
-    args
-  ) |>
-    system2(
-      get_modulescmd_binary(),
-      args=_,
-      stdout=TRUE,
-      stderr=TRUE,
-    ) |>
+get_module_output = function(args, env = character()){
+  run_modulecmd(args = args, env = env, stderr = TRUE, stdout = TRUE) |>
     `class<-`(c("cli_ansi_string", "ansi_string", "character"))
 }
 
@@ -100,24 +105,32 @@ get_module_output = function(args){
 #' @param modules A character vector of environment modules to load
 #' @param link_libs A logical scalar. If TRUE, link R to all the shared
 #'  libraries contained within that module. This is not the default behaviour.
+#' @param dyn_load_args An optional list of arguments to pass to [base::dyn.load()]
+#'  if `link_libs` is also `TRUE`
+#' @inheritParams get_module_code
 #' @return A list of `DLLInfo` objects, containing the libraries (if any)
 #'  that were linked. See [base::getLoadedDLLs] for an explanation of this
 #'  class.
 #' @export
 #' @examples
 #' module_load("python")
-module_load = function(modules, link_libs = FALSE){
+module_load = function(modules, link_libs = FALSE, dyn_load_args = list(), env = character(0)){
   initial_ld = Sys.getenv("LD_LIBRARY_PATH")
 
-  c("load", modules) |>
-    get_module_command() |>
-    eval()
+  code = c("load", modules) |> get_module_code(env = env)
+
+  if (length(code) == 0){
+    cli::cli_alert_info("Nothing to do. This module was probably already loaded. Use module_list() to verify.")
+  }
+  else {
+    eval(code)
+  }
 
   if (link_libs){
     initial_ld = strsplit(initial_ld, ":")
     final_ld = Sys.getenv("LD_LIBRARY_PATH") |> strsplit(":")
     setdiff(initial_ld, final_ld) |>
-      link_module_libs()
+      do.call(link_module_libs, dyn_load_args)
   } else {
     list()
   }
@@ -125,20 +138,24 @@ module_load = function(modules, link_libs = FALSE){
 
 #' Lists all modules that are currently loaded
 #' @return The same format as [get_module_output()]
+#' @param starts_with An optional character scalar. If provided, only modules
+#' whose name starts with this character string will be returned.
+#' @inheritDotParams get_module_output
 #' @export
 #' @examples
 #' module_list() |> cat()
-module_list = function(){
-  get_module_output("list")
+module_list = function(starts_with = NULL, ...){
+  c("list", starts_with) |> get_module_output(...)
 }
 
 #' Unloads all modules that are currently loaded
 #' @return Invisible
+#' @inheritDotParams get_module_output
 #' @export
 #' @examples
 #' module_purge()
-module_purge = function(){
-  get_module_code("purge") |> eval()
+module_purge = function(...){
+  get_module_code("purge", ...) |> eval()
   invisible(TRUE)
 }
 
@@ -154,18 +171,20 @@ module_swap = function(from, to){
 
 #' Lists all modules available to be loaded
 #' @return The same format as [get_module_output()]
+#' @inheritDotParams get_module_output
+#' @inheritParams module_list
 #' @export
 #' @examples
 #' module_avail() |> cat()
-module_avail = function(){
-  get_module_output("avail")
+module_avail = function(starts_with = NULL, ...){
+  c("avail", starts_with) |> get_module_output(...)
 }
 
 #' Links R to the shared libraries in a number of directories
 #'
 #' @param ld_library_paths A character vector indicating directories to search
 #'  in.
-#' @inheritDotParams dyn.load
+#' @param ... Arguments forwarded to [base::dyn.load()]
 #' @return A list of `DLLInfo` objects describing the newly linked shared
 #'  libraries
 #' @export
@@ -174,7 +193,6 @@ module_avail = function(){
 #' link_module_libs(lib_dir)
 link_module_libs = function(ld_library_paths, ...){
   ld_library_paths |>
-
     list.files(pattern = ".*\\.so", full.names = TRUE) |>
     normalizePath() |>
     unique() |>
