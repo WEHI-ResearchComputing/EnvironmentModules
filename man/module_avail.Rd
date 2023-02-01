@@ -4,11 +4,15 @@
 \alias{module_avail}
 \title{Lists all modules available to be loaded}
 \usage{
-module_avail(starts_with = NULL, ...)
+module_avail(starts_with = NULL, contains = NULL, ...)
 }
 \arguments{
 \item{starts_with}{An optional character scalar. If provided, only modules
 whose name starts with this character string will be returned.}
+
+\item{contains}{An optional character scalar. This parameter is only
+supported in Environment Modules 4.3+. If provided, it will filter modules
+to only those containing this substring.}
 
 \item{...}{
   Arguments passed on to \code{\link[=get_module_output]{get_module_output}}
