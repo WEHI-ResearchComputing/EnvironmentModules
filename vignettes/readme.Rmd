@@ -109,7 +109,7 @@ Although `module_load()` will add a module's libraries to your `LD_LIBRARY_PATH`
 For example, let's say we want to use the `hdf5r` package, which depends on the `hdf5` library package. We don't have `hdf5` loaded, so it will fail:
 
 ```{r}
-#install.packages("hdf5r", quiet = TRUE)
+install.packages("hdf5r", quiet = TRUE)
 ```
 
 We can resolve this by loading the appropriate module. Firstly, we need to find out what the module is called:
@@ -126,7 +126,7 @@ module_load("hdf5/1.12.2")
 Now let's try again:
 
 ```{r}
-#install.packages("hdf5r", quiet = TRUE)
+install.packages("hdf5r", quiet = TRUE)
 ```
 
 Finally, we can load the package itself... or can we?
@@ -195,5 +195,5 @@ This is true, and actually this package is just a wrapper around that core funct
 > I'm getting the error "Could not detect an Environment Modules installation", but I know that Environment Modules is installed on my system. What do I do?
 
 First, in a bash terminal where the `module` command works correctly, run `which modulecmd`.
-Then in R, run `Sys.setenv(MODULES_CMD="</path/to/modulecmd>"), putting the output from the previous step as the argument value.
+Then in R, run `Sys.setenv(MODULES_CMD="</path/to/modulecmd>")`, putting the output from the previous step as the argument value.
 Then everything should work!

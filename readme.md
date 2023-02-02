@@ -112,7 +112,9 @@ on the `hdf5` library package. We don’t have `hdf5` loaded, so it will
 fail:
 
 ``` r
-#install.packages("hdf5r", quiet = TRUE)
+install.packages("hdf5r", quiet = TRUE)
+#> Warning in install.packages("hdf5r", quiet = TRUE): installation of package
+#> 'hdf5r' had non-zero exit status
 ```
 
 We can resolve this by loading the appropriate module. Firstly, we need
@@ -143,7 +145,7 @@ module_load("hdf5/1.12.2")
 Now let’s try again:
 
 ``` r
-#install.packages("hdf5r", quiet = TRUE)
+install.packages("hdf5r", quiet = TRUE)
 ```
 
 Finally, we can load the package itself… or can we?
@@ -250,6 +252,6 @@ loaded libraries.
 
 First, in a bash terminal where the `module` command works correctly,
 run `which modulecmd`. Then in R, run
-\`Sys.setenv(MODULES_CMD=“</path/to/modulecmd>”), putting the output
+`Sys.setenv(MODULES_CMD="</path/to/modulecmd>")`, putting the output
 from the previous step as the argument value. Then everything should
 work!
