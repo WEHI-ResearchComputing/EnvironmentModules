@@ -1,6 +1,6 @@
 ---
 title: "Environment Modules"
-output: "github_document"
+output: rmarkdown::github_document
 vignette: >
   %\VignetteIndexEntry{readme}
   %\VignetteEngine{knitr::rmarkdown}
@@ -26,9 +26,16 @@ process_ansi_string = function(x, options) {
   # Style it as HTML
   # Adapted from: https://cli.r-lib.org/reference/ansi_html.html#ref-examples
   hcode = paste(ansi_html(x), collapse = "\n")
-  css = paste(format(ansi_html_style()), collapse = "\n")
+  
+  # Strip CSS for github
+  if (knitr::pandoc_to("gfm")){
+    head = htmltools::tags$head()
+  }
+  else {
+    head = htmltools::tags$head(htmltools::tags$style(paste(format(ansi_html_style()), collapse = "\n")))
+  }
   htmltools::tagList(
-    htmltools::tags$head(htmltools::tags$style(css)),
+    head,
     htmltools::tags$pre(htmltools::HTML(hcode))
   ) |>
     htmltools::doRenderTags() |>
@@ -102,7 +109,7 @@ Although `module_load()` will add a module's libraries to your `LD_LIBRARY_PATH`
 For example, let's say we want to use the `hdf5r` package, which depends on the `hdf5` library package. We don't have `hdf5` loaded, so it will fail:
 
 ```{r}
-install.packages("hdf5r", quiet = TRUE)
+#install.packages("hdf5r", quiet = TRUE)
 ```
 
 We can resolve this by loading the appropriate module. Firstly, we need to find out what the module is called:
@@ -119,7 +126,7 @@ module_load("hdf5/1.12.2")
 Now let's try again:
 
 ```{r}
-install.packages("hdf5r", quiet = TRUE)
+#install.packages("hdf5r", quiet = TRUE)
 ```
 
 Finally, we can load the package itself... or can we?

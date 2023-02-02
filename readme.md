@@ -8,7 +8,6 @@ shared HPC (High Performance Computing) environments.
 
 ``` r
 library(EnvironmentModules)
-#> Loading required package: cli
 ```
 
 ## Listing Modules
@@ -17,6 +16,7 @@ You can list the available modules:
 
 ``` r
 module_avail()
+#> [1] "gfm+tex_math_dollars-yaml_metadata_block"
 ```
 
 <head>
@@ -567,6 +567,7 @@ You can filter to only modules starting with some prefix:
 
 ``` r
 module_avail("python")
+#> [1] "gfm+tex_math_dollars-yaml_metadata_block"
 ```
 
 <head>
@@ -1128,6 +1129,7 @@ You can list modules that have been already loaded with `module_list()`:
 module_load("python/3")
 #> ✔ Successfully loaded python/3
 module_list()
+#> [1] "gfm+tex_math_dollars-yaml_metadata_block"
 ```
 
 <head>
@@ -1670,8 +1672,7 @@ fail:
 
 ``` r
 install.packages("hdf5r", quiet = TRUE)
-#> Warning in install.packages :
-#>   installation of package 'hdf5r' had non-zero exit status
+#> Error in install.packages : Updating loaded packages
 ```
 
 We can resolve this by loading the appropriate module. Firstly, we need
@@ -1679,6 +1680,7 @@ to find out what the module is called:
 
 ``` r
 module_avail("hdf5")
+#> [1] "gfm+tex_math_dollars-yaml_metadata_block"
 ```
 
 <head>
@@ -2222,15 +2224,13 @@ Now let’s try again:
 
 ``` r
 install.packages("hdf5r", quiet = TRUE)
+#> Error in install.packages : Updating loaded packages
 ```
 
 Finally, we can load the package itself… or can we?
 
 ``` r
 library(hdf5r)
-#> Error: package or namespace load failed for 'hdf5r' in dyn.load(file, DLLpath = DLLpath, ...):
-#>  unable to load shared object '/stornext/Home/data/allstaff/m/milton.m/R/x86_64-pc-linux-gnu-library/4.2/hdf5r/libs/hdf5r.so':
-#>   libhdf5_hl.so.200: cannot open shared object file: No such file or directory
 ```
 
 As alluded to above, R doesn’t actually load every new library that
@@ -2286,6 +2286,7 @@ shows output, run `get_module_output`
 
 ``` r
 get_module_output(c("show", "hdf5"))
+#> [1] "gfm+tex_math_dollars-yaml_metadata_block"
 ```
 
 <head>
