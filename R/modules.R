@@ -208,13 +208,15 @@ module_purge = function(...){
   invisible(TRUE)
 }
 
-#' Unloads one module, and loads a second module
+#' Unloads one module, and loads a second module.
+#' @details Note that this doesn't have all the functionality of [module_load()]
+#'  and [module_unload()], so you may want to use those for more control.
 #' @return Invisible
 #' @export
 #' @examples
 #' module_swap("python/2", "python/3")
 module_swap = function(from, to){
-  get_module_code(c("purge", from, to)) |> eval()
+  get_module_code(c("swap", from, to)) |> eval()
   invisible(TRUE)
 }
 

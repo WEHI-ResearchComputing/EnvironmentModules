@@ -110,3 +110,21 @@ test_that("module_list() produces output", {
   module_list() |> nzchar() |> any() |> expect_true()
 })
 
+test_that("module_swap() works", {
+  check_wehi()
+  initial_env = Sys.getenv()
+  suppressMessages(
+    module_swap("proj/4.9.3", "proj/6.3.2")
+  )
+  expect_gt(
+    diff_libs(initial_env, Sys.getenv()) |> length(),
+    0
+  )
+  suppressMessages(
+    module_swap("proj/6.3.2", "proj/4.9.3")
+  )
+  expect_equal(
+    diff_libs(initial_env, Sys.getenv()) |> length(),
+    0
+  )
+})
