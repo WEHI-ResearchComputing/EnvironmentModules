@@ -14,6 +14,7 @@ Roxygen: list(markdown = TRUE)
 Depends: 
     cli
 Suggests: 
+    htmltools,
     knitr,
     rmarkdown,
     testthat (>= 3.0.0)

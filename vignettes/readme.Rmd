@@ -1,6 +1,6 @@
 ---
-title: "readme"
-output: rmarkdown::html_vignette
+title: "Environment Modules"
+output: "github_document"
 vignette: >
   %\VignetteIndexEntry{readme}
   %\VignetteEngine{knitr::rmarkdown}
@@ -11,26 +11,37 @@ vignette: >
 # Note: knit this to the repo readme file using:
 # rmarkdown::render("vignettes/readme.Rmd", output_format = "github_document", output_dir = getwd())
 
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
-
-# save the built-in output hook
-hook_output <- knitr::knit_hooks$get("output")
-
-# set a new output hook to truncate text output
-knitr::knit_hooks$set(output = function(x, options) {
+process_ansi_string = function(x, options) {
+  # Truncate the output if it's too long.
+  # Adapted from: https://bookdown.org/yihui/rmarkdown-cookbook/hook-truncate.html
   if (!is.null(n <- options$out.lines)) {
-    x <- xfun::split_lines(x)
+    attribs = attributes(x)
     if (length(x) > n) {
-      # truncate the output
-      x <- c(head(x, n), "....\n")
+      x = c(head(x, n), "....\n")
     }
-    x <- paste(x, collapse = "\n")
+    x = paste(x, collapse = "\n")
+    attributes(x) = attribs
   }
-  hook_output(x, options)
-})
+  
+  # Style it as HTML
+  # Adapted from: https://cli.r-lib.org/reference/ansi_html.html#ref-examples
+  hcode = paste(ansi_html(x), collapse = "\n")
+  css = paste(format(ansi_html_style()), collapse = "\n")
+  htmltools::tagList(
+    htmltools::tags$head(htmltools::tags$style(css)),
+    htmltools::tags$pre(htmltools::HTML(hcode))
+  ) |>
+    htmltools::doRenderTags() |>
+    knitr::asis_output()
+}
+
+knit_print.cliMessage = process_ansi_string
+
+knit_print.ansi_string = process_ansi_string
+
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+
+#knitr::opts_chunk$set(message = process_ansi_string)
 ```
 
 The EnvironmentModules package is an R front-end for the [Environment Modules](https://modules.readthedocs.io/en/latest/index.html) project, which offers a way to load and unload packages, and is commonly used on shared HPC (High Performance Computing) environments.
@@ -113,7 +124,7 @@ install.packages("hdf5r", quiet = TRUE)
 
 Finally, we can load the package itself... or can we?
 
-```{r}
+```{r, error=TRUE}
 library(hdf5r)
 ```
 As alluded to above, R doesn't actually load every new library that becomes available in the environment.
