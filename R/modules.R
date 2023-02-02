@@ -258,24 +258,3 @@ link_module_libs = function(ld_library_paths, unlink = FALSE){
       }
     })
 }
-
-load_topologically = function(libs){
-  deps = ldd(libs) |> suppressWarnings()
-  deps = deps |>
-    lapply(\(subdeps){
-      names(deps) |>
-        intersect(subdeps)
-    })
-
-  dep_df = data.frame(paths = libs, deps = I(deps), symbols = names(deps))
-
-  while(TRUE){
-    to_remove = lengths(dep_df$deps) == 0
-    dep_df[to_remove, "paths"] |> lapply(dyn.load)
-    dep_df = def_df[-to_remove, ]
-  }
-
-  lapply(libs, \(dll){
-    dyn.load(dll, ..., now = FALSE, local = FALSE) |> try()
-  })
-}
