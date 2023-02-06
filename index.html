@@ -40,28 +40,211 @@
 <li class="nav-item">
   <a class="nav-link" href="reference/index.html">Reference</a>
 </li>
-<li class="nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
-  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="articles/readme.html">Environment Modules</a>
-  </div>
-</li>
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="search.json" id="search-input" placeholder="Search for" autocomplete="off">
 </form>
 
-      <ul class="navbar-nav"></ul>
+      <ul class="navbar-nav">
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://github.com/WEHI-ResearchComputing/EnvironmentModules/" aria-label="github">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 
     
   </div>
 </nav><div class="container template-home">
 <div class="row">
-  <main id="main" class="col-md-9">
-Offers a way to load and unload system packages on shared HPC 
-    (High Performance Computing) environments, through R.
-  </main><aside class="col-md-3"><div class="license">
+  <main id="main" class="col-md-9"><div class="section level1">
+<div class="page-header"><h1 id="environment-modules">Environment Modules<a class="anchor" aria-label="anchor" href="#environment-modules"></a>
+</h1></div>
+<p>The EnvironmentModules package is an R front-end for the <a href="https://modules.readthedocs.io/en/latest/index.html" class="external-link">Environment Modules</a> project, which offers a way to load and unload packages, and is commonly used on shared HPC (High Performance Computing) environments.</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">EnvironmentModules</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Loading required package: cli</span></span></code></pre></div>
+<div class="section level2">
+<h2 id="listing-modules">Listing Modules<a class="anchor" aria-label="anchor" href="#listing-modules"></a>
+</h2>
+<p>You can list the available modules:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/module_avail.html">module_avail</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+
+
+<pre>------------------- <span class="ansi ansi-bold ansi-color-4">/stornext/System/data/modulefiles/tools</span> --------------------
+<span class="ansi ansi-underline">apptainer/1.0.0</span>              <span class="ansi ansi-underline">mpich-slurm/3.3.2</span>                   <span class="ansi ansi-underline">wine/6.9</span>      
+apptainer/1.1.0              mpich-slurm/3.4.1                   wine/7.17     
+aspera/3.5.4                 mpich-slurm/3.4.2                   <span class="ansi ansi-underline">zeromq/4.3.4</span>  
+aspera/3.9.1                 <span class="ansi ansi-underline">mpich/3.3</span>                           <span class="ansi ansi-underline">zstd/1.5.0</span>    
+<span class="ansi ansi-underline">aspera/3.9.6</span>                 mpich/3.3.2                         
+awscli/1.16py2.7             <span class="ansi ansi-underline">ncftp/3.2.6</span>                         
+awscli/1.16py3.7             nextflow/22.04.5                    
+awscli/1.22.89               <span class="ansi ansi-underline">nextflow/22.10.4</span>                    
+awscli/2.1.25                <span class="ansi ansi-underline">ninja/1.10.0</span>                        
+<span class="ansi ansi-underline">awscli/2.5.2</span>                 <span class="ansi ansi-underline">nmap-ncat/7.91</span>                      
+<span class="ansi ansi-underline">axel/2.17.10</span>                 nodejs/10.24.1                      
+bazel/0.26.1                 nodejs/16.19.0                      
+<span class="ansi ansi-underline">bazel/1.2.1</span>                  <span class="ansi ansi-underline">nodejs/17.9.1</span>                       
+binutils/2.35.2-gcc-4.8.5    <span class="ansi ansi-underline">ocl-icd/2.3.1</span>                       
+binutils/2.35.2-gcc-9.1.0    <span class="ansi ansi-underline">octave/6.4.0-gcc11.1.0</span>              
+<span class="ansi ansi-underline">cluster-utils/18.08.1</span>        <span class="ansi ansi-underline">oneMKL/2022.1.0.223</span>                 
+<span class="ansi ansi-underline">cmake/3.25.1</span>                 <span class="ansi ansi-underline">openBLAS/0.3.6-gcc-9.1.0</span>            
+<span class="ansi ansi-underline">CUnit/2.1-3</span>                  openBLAS/0.3.21-gcc-11.1.0          
+<span class="ansi ansi-underline">curl/7.65.0</span>                  openBLAS/0.3.21-gcc-11.1.0-skylake  
+....
+</pre>
+<p>You can filter to only modules starting with some prefix:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/module_avail.html">module_avail</a></span><span class="op">(</span><span class="st">"python"</span><span class="op">)</span></span></code></pre></div>
+
+
+<pre>----------------- <span class="ansi ansi-bold ansi-color-4">/stornext/System/data/modulefiles/bioinf/its</span> -----------------
+<span class="ansi ansi-bold">python</span>/2.7.18  <span class="ansi ansi-bold">python</span>/3.5.3        <span class="ansi ansi-bold">python</span>/3.7.0   <span class="ansi ansi-bold">python</span>/3.8.3  <span class="ansi ansi-bold">python</span>/3.9.5   
+<span class="ansi ansi-bold">python</span>/3.5.1   <span class="ansi ansi-bold">python</span>/3.6.5-intel  <span class="ansi ansi-bold">python</span>/3.7.13  <span class="ansi ansi-bold ansi-underline">python</span>/3.8.8  <span class="ansi ansi-bold">python</span>/3.10.4  
+
+Key:
+<span class="ansi ansi-bold ansi-color-4">modulepath</span>  <span class="ansi ansi-underline">default-version</span>  </pre>
+</div>
+<div class="section level2">
+<h2 id="loading-and-unloading-modules">Loading and Unloading Modules<a class="anchor" aria-label="anchor" href="#loading-and-unloading-modules"></a>
+</h2>
+<p>Load modules using <code><a href="reference/module_load.html">module_load()</a></code>!</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/module_load.html">module_load</a></span><span class="op">(</span><span class="st">"python/3"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; ✔ Successfully loaded python/3</span></span></code></pre></div>
+<p>If you’ve already loaded a module, you will be notified:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/module_load.html">module_load</a></span><span class="op">(</span><span class="st">"python/3"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; ℹ Nothing to do. This module was probably already loaded. Use module_list() to verify.</span></span></code></pre></div>
+<p>You can unload a module using the corresponding <code><a href="reference/module_unload.html">module_unload()</a></code>:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/module_unload.html">module_unload</a></span><span class="op">(</span><span class="st">"python/3"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; ✔ Successfully unloaded python/3</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="listing-loaded-modules">Listing Loaded Modules<a class="anchor" aria-label="anchor" href="#listing-loaded-modules"></a>
+</h2>
+<p>You can list modules that have been already loaded with <code><a href="reference/module_list.html">module_list()</a></code>:</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/module_load.html">module_load</a></span><span class="op">(</span><span class="st">"python/3"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; ✔ Successfully loaded python/3</span></span>
+<span><span class="fu"><a href="reference/module_list.html">module_list</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+
+
+<pre>Currently Loaded Modulefiles:
+ 1) <span class="ansi ansi-underline">python/3.8.8</span>  
+
+Key:
+<span class="ansi ansi-underline">default-version</span>  </pre>
+</div>
+<div class="section level2">
+<h2 id="linking-shared-libraries">Linking Shared Libraries<a class="anchor" aria-label="anchor" href="#linking-shared-libraries"></a>
+</h2>
+<p>Although <code><a href="reference/module_load.html">module_load()</a></code> will add a module’s libraries to your <code>LD_LIBRARY_PATH</code>, which will allow you to compile packages against them, R will not necessarily be able to actually run packages that use these libraries.</p>
+<p>For example, let’s say we want to use the <code>hdf5r</code> package, which depends on the <code>hdf5</code> library package. We don’t have <code>hdf5</code> loaded, so it will fail:</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"hdf5r"</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning in install.packages("hdf5r", quiet = TRUE): installation of package</span></span>
+<span><span class="co">#&gt; 'hdf5r' had non-zero exit status</span></span></code></pre></div>
+<p>We can resolve this by loading the appropriate module. Firstly, we need to find out what the module is called:</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/module_avail.html">module_avail</a></span><span class="op">(</span><span class="st">"hdf5"</span><span class="op">)</span></span></code></pre></div>
+
+
+<pre>------------------- <span class="ansi ansi-bold ansi-color-4">/stornext/System/data/modulefiles/tools</span> --------------------
+<span class="ansi ansi-bold ansi-underline">hdf5</span>-mpich/1.10.5_3.3  
+
+----------------- <span class="ansi ansi-bold ansi-color-4">/stornext/System/data/modulefiles/bioinf/its</span> -----------------
+<span class="ansi ansi-bold">hdf5</span>/1.8.16  <span class="ansi ansi-bold">hdf5</span>/1.8.20  <span class="ansi ansi-bold">hdf5</span>/1.8.21  <span class="ansi ansi-bold">hdf5</span>/1.10.5  <span class="ansi ansi-bold ansi-underline">hdf5</span>/1.12.1  <span class="ansi ansi-bold">hdf5</span>/1.12.2  
+
+Key:
+<span class="ansi ansi-bold ansi-color-4">modulepath</span>  <span class="ansi ansi-underline">default-version</span>  </pre>
+<p>Then loading the module:</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/module_load.html">module_load</a></span><span class="op">(</span><span class="st">"hdf5/1.12.2"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; ✔ Successfully loaded hdf5/1.12.2</span></span></code></pre></div>
+<p>Now let’s try again:</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"hdf5r"</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<p>Finally, we can load the package itself… or can we?</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://hhoeflin.github.io/hdf5r/" class="external-link">hdf5r</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error: package or namespace load failed for 'hdf5r' in dyn.load(file, DLLpath = DLLpath, ...):</span></span>
+<span><span class="co">#&gt;  unable to load shared object '/stornext/Home/data/allstaff/m/milton.m/R/x86_64-pc-linux-gnu-library/4.2/hdf5r/libs/hdf5r.so':</span></span>
+<span><span class="co">#&gt;   libhdf5_hl.so.200: cannot open shared object file: No such file or directory</span></span></code></pre></div>
+<p>As alluded to above, R doesn’t actually load every new library that becomes available in the environment. Rather it uses “load-time linking”, which is where the libraries it links to are fixed at the time you start R. Now, you can resolve the above error by closing R, loading the module, and then restarting R, but this can be quite annoying.</p>
+<p>Fortunately, R also supports “run-time linking”, which you can enable by loading a module with the <code>link_libs=TRUE</code> argument:</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/module_unload.html">module_unload</a></span><span class="op">(</span><span class="st">"hdf5/1.12.2"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; ✔ Successfully unloaded hdf5/1.12.2</span></span>
+<span><span class="fu"><a href="reference/module_load.html">module_load</a></span><span class="op">(</span><span class="st">"hdf5/1.12.2"</span>, link_libs<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; ✔ Successfully loaded hdf5/1.12.2</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://hhoeflin.github.io/hdf5r/" class="external-link">hdf5r</a></span><span class="op">)</span></span></code></pre></div>
+<p>It worked!</p>
+<p>If you are interested in the theory underlying what is happening here, you might find this explanation of linking on Linux helpful: <a href="https://techblog.rosedu.org/library-management.html" class="external-link uri">https://techblog.rosedu.org/library-management.html</a>.</p>
+</div>
+<div class="section level2">
+<h2 id="other-commands">Other Commands<a class="anchor" aria-label="anchor" href="#other-commands"></a>
+</h2>
+<p>This package also supports the following.</p>
+<p><code><a href="reference/module_swap.html">module_swap()</a></code> unloads the first module and loads the second:</p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/module_swap.html">module_swap</a></span><span class="op">(</span><span class="st">"hdf5/1.12.2"</span>, <span class="st">"hdf5/1.10.5"</span><span class="op">)</span></span></code></pre></div>
+<p><code><a href="reference/module_purge.html">module_purge()</a></code> unloads all modules:</p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/module_purge.html">module_purge</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="advanced-commands">Advanced Commands<a class="anchor" aria-label="anchor" href="#advanced-commands"></a>
+</h2>
+<p>If you want to use a feature of Environment Modules that does not (yet) have a dedicated function, you can use the advanced functions <code>get_module_code</code> or <code>get_module_output</code>.</p>
+<p>If you want to run a command that doesn’t edit the modules, but only shows output, run <code>get_module_output</code></p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/get_module_output.html">get_module_output</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"show"</span>, <span class="st">"hdf5"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+
+
+<pre>-------------------------------------------------------------------
+<span class="ansi ansi-bold">/stornext/System/data/modulefiles/bioinf/its/hdf5/1.12.1</span>:
+
+<span class="ansi ansi-color-2">module-whatis</span>    {HDF5 is a unique technology suite that makes possible the management of extremely large and complex data collections. (v1.12.1)}
+<span class="ansi ansi-color-2">conflict</span> hdf5
+<span class="ansi ansi-color-2">prepend-path</span> PATH /stornext/System/data/apps/hdf5/hdf5-1.12.1/bin
+<span class="ansi ansi-color-2">prepend-path</span> CPATH /stornext/System/data/apps/hdf5/hdf5-1.12.1/include
+<span class="ansi ansi-color-2">prepend-path</span> LD_LIBRARY_PATH /stornext/System/data/apps/hdf5/hdf5-1.12.1/lib
+<span class="ansi ansi-color-2">prepend-path</span> LIBRARY_PATH /stornext/System/data/apps/hdf5/hdf5-1.12.1/lib
+<span class="ansi ansi-color-2">prepend-path</span> MANPATH :/stornext/System/data/apps/hdf5/hdf5-1.12.1/share/man
+-------------------------------------------------------------------</pre>
+<p>If the module does edit the modules, use <code><a href="reference/get_module_code.html">get_module_code()</a></code>, and evaluate the result:</p>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/get_module_code.html">get_module_code</a></span><span class="op">(</span><span class="st">"reload"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/eval.html" class="external-link">eval</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; NULL</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="faq">FAQ<a class="anchor" aria-label="anchor" href="#faq"></a>
+</h2>
+<blockquote>
+<p>Environment Modules <a href="https://modules.readthedocs.io/en/latest/index.html" class="external-link">supports loading modules in R since version 4.0.0!</a> What is the point of this package?</p>
+</blockquote>
+<p>This is true, and actually this package is just a wrapper around that core functionality. You <em>need</em> Modules version 4.0.0 or above to run this package. The main advantages of using this wrapper are the nicer function interfaces, and the ability to automatically link R to newly loaded libraries.</p>
+<blockquote>
+<p>I’m getting the error “Could not detect an Environment Modules installation”, but I know that Environment Modules is installed on my system. What do I do?</p>
+</blockquote>
+<p>First, in a bash terminal where the <code>module</code> command works correctly, run <code>which modulecmd</code>. Then in R, run <code>Sys.setenv(MODULES_CMD="&lt;/path/to/modulecmd&gt;")</code>, putting the output from the previous step as the argument value. Then everything should work!</p>
+</div>
+</div>
+  </main><aside class="col-md-3"><div class="links">
+<h2 data-toc-skip>Links</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/WEHI-ResearchComputing/EnvironmentModules/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/WEHI-ResearchComputing/EnvironmentModules/issues" class="external-link">Report a bug</a></li>
+</ul>
+</div>
+
+<div class="license">
 <h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li>GPLv3</li>
@@ -79,7 +262,7 @@ Offers a way to load and unload system packages on shared HPC
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Michael Milton <michael.r.milton></michael.r.milton><small class="roles"> Maintainer </small>  </li>
+<li>Michael Milton <br><small class="roles"> Maintainer </small>  </li>
 </ul>
 </div>
 
@@ -91,7 +274,7 @@ Offers a way to load and unload system packages on shared HPC
 
     <footer><div class="pkgdown-footer-left">
   <p></p>
-<p>Developed by Michael Milton &lt;<a href="mailto:michael.r.milton@gmail.com" class="email">michael.r.milton@gmail.com</a>.</p>
+<p>Developed by Michael Milton.</p>
 </div>
 
 <div class="pkgdown-footer-right">

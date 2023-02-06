@@ -16,9 +16,6 @@
     <loc>/index.html</loc>
   </url>
   <url>
-    <loc>/readme.html</loc>
-  </url>
-  <url>
     <loc>/reference/check_version.html</loc>
   </url>
   <url>
@@ -32,9 +29,6 @@
   </url>
   <url>
     <loc>/reference/get_version.html</loc>
-  </url>
-  <url>
-    <loc>/reference/hello.html</loc>
   </url>
   <url>
     <loc>/reference/index.html</loc>
