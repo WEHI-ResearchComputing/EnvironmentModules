@@ -97,14 +97,10 @@ get_module_code = function(args, env = character()){
 
 #' Evaluates a module command, and returns the text output.
 #' @inheritParams get_module_code
-#' @return A character vector with class "cli_ansi_string". If you have the
-#'  [`cli`](https://cli.r-lib.org/) package installed and loaded, it will enable enhanced
-#'  printing of this result. If you don't want to install cli, you should print
-#'  this result out using [base::cat()] and *not* [base::print()] to ensure the
-#'  ANSI control characters are correctly displayed.
+#' @return A character vector with class "cli_ansi_string".
 #' @export
 #' @examples
-#' get_module_command("list") |> cat()
+#' get_module_output("list")
 get_module_output = function(args, env = character()){
   run_modulecmd(args = args, env = env, stderr = TRUE, stdout = TRUE) |>
     `class<-`(c("cli_ansi_string", "ansi_string", "character"))
@@ -123,7 +119,7 @@ get_module_output = function(args, env = character()){
 #' @export
 #' @examples
 #' module_load("python")
-module_load = function(modules, link_libs = FALSE, dyn_load_args = list(), env = character(0)){
+module_load = function(modules, link_libs = FALSE, dyn_load_args = list(), env = character()){
   initial_ld = Sys.getenv("LD_LIBRARY_PATH")
 
   code = c("load", modules) |> get_module_code(env = env)
@@ -156,7 +152,7 @@ module_load = function(modules, link_libs = FALSE, dyn_load_args = list(), env =
 #' @export
 #' @examples
 #' module_unload("python")
-module_unload = function(modules, unlink_libs = FALSE, env = character(0)){
+module_unload = function(modules, unlink_libs = FALSE, env = character()){
   initial_ld = Sys.getenv("LD_LIBRARY_PATH")
 
   code = c("unload", modules) |> get_module_code(env = env)
@@ -185,54 +181,56 @@ module_unload = function(modules, unlink_libs = FALSE, env = character(0)){
 #' @param contains An optional character scalar. This parameter is only
 #' supported in Environment Modules 4.3+. If provided, it will filter modules
 #' to only those containing this substring.
-#' @inheritDotParams get_module_output
+#' @inheritParams get_module_output
 #' @export
 #' @examples
-#' module_list() |> cat()
-module_list = function(starts_with = NULL, contains = NULL, ...){
+#' module_list()
+module_list = function(starts_with = NULL, contains = NULL, env = character()){
   args = c("list", starts_with)
   if (!is.null(contains)){
     args = c(args, "--contains", contains)
   }
-  get_module_output(args, ...)
+  get_module_output(args, env = env)
 }
 
 #' Unloads all modules that are currently loaded
 #' @return Invisible
-#' @inheritDotParams get_module_output
+#' @inheritParams get_module_output
 #' @export
 #' @examples
 #' module_purge()
-module_purge = function(...){
-  get_module_code("purge", ...) |> eval()
+module_purge = function(env = character(0)){
+  get_module_code("purge", env = env) |> eval()
   invisible(TRUE)
 }
 
 #' Unloads one module, and loads a second module.
 #' @details Note that this doesn't have all the functionality of [module_load()]
 #'  and [module_unload()], so you may want to use those for more control.
+#' @param from A character scalar: the module to unload
+#' @param to A character scalar: the module to load
+#' @inheritParams get_module_code
 #' @return Invisible
 #' @export
 #' @examples
 #' module_swap("python/2", "python/3")
-module_swap = function(from, to){
-  get_module_code(c("swap", from, to)) |> eval()
+module_swap = function(from, to, env = character()){
+  get_module_code(c("swap", from, to), env = env) |> eval()
   invisible(TRUE)
 }
 
 #' Lists all modules available to be loaded
 #' @return The same format as [get_module_output()]
-#' @inheritDotParams get_module_output
 #' @inheritParams module_list
 #' @export
 #' @examples
-#' module_avail() |> cat()
-module_avail = function(starts_with = NULL, contains = NULL, ...){
+#' module_avail()
+module_avail = function(starts_with = NULL, contains = NULL, env = character()){
   args = c("avail", starts_with)
   if (!is.null(contains)){
     args = c(args, "--contains", contains)
   }
-  get_module_output(args = args, ...)
+  get_module_output(args = args, env = env)
 }
 
 #' Links R to the shared libraries in a number of directories

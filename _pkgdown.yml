@@ -1,0 +1,18 @@
+url: ~
+template:
+  bootstrap: 5
+reference:
+- title: "Common Functions"
+  desc: >
+    High-level functions for interacting with modules that you will use
+    most of the time
+  contents:
+  - starts_with("module_")
+- title: "Advanced Functions"
+  desc: "Powerful, but more complex functions you are less likely to need"
+  contents:
+  - -starts_with("module_")
+navbar:
+  structure:
+    left:  [intro, reference]
+    right: [search, github]

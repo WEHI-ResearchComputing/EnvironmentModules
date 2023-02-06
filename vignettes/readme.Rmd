@@ -53,6 +53,14 @@ knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 
 The EnvironmentModules package is an R front-end for the [Environment Modules](https://modules.readthedocs.io/en/latest/index.html) project, which offers a way to load and unload packages, and is commonly used on shared HPC (High Performance Computing) environments.
 
+## Setup
+
+Currently `EnvironmentModules` is not on CRAN, so you will have to install it as follows:
+```{r}
+remotes::install_github("WEHI-ResearchComputing/EnvironmentModules")
+```
+
+
 ```{r setup}
 library(EnvironmentModules)
 ```

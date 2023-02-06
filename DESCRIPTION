@@ -1,17 +1,19 @@
 Package: EnvironmentModules
 Type: Package
-Title: A user friendly R front-end for the Environment Modules system.
+Title: A user friendly R front-end for the Environment Modules system
 Version: 0.1.0
-Author: Michael Milton <michael.r.milton@gmail.com
-Maintainer: Michael Milton <michael.r.milton@gmail.com
+Authors@R: c(
+    person("Michael", "Milton", email = "michael.r.milton@gmail.com", role = "cre")
+    )
 Description: Offers a way to load and unload system packages on shared HPC 
     (High Performance Computing) environments, through R.
-License: GPLv3
+URL: https://wehi-researchcomputing.github.io/EnvironmentModules/, https://github.com/WEHI-ResearchComputing/EnvironmentModules
+BugReports: https://github.com/WEHI-ResearchComputing/EnvironmentModules/issues
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.2.3
 Roxygen: list(markdown = TRUE)
-Depends: 
+Imports: 
     cli
 Suggests: 
     htmltools,
@@ -20,3 +22,4 @@ Suggests:
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 VignetteBuilder: knitr
+License: GPL (>= 3)
