@@ -4,12 +4,7 @@
 \alias{module_load}
 \title{Loads one or more environment modules}
 \usage{
-module_load(
-  modules,
-  link_libs = FALSE,
-  dyn_load_args = list(),
-  env = character()
-)
+module_load(modules, link_libs = FALSE, env = character(), ...)
 }
 \arguments{
 \item{modules}{A character vector of environment modules to load}
@@ -17,11 +12,17 @@ module_load(
 \item{link_libs}{A logical scalar. If TRUE, link R to all the shared
 libraries contained within that module. This is not the default behaviour.}
 
-\item{dyn_load_args}{An optional list of arguments to pass to \code{\link[base:dynload]{base::dyn.load()}}
-if \code{link_libs} is also \code{TRUE}}
-
 \item{env}{A character vector containing \code{KEY=VALUE} entries
 \strong{not as a named vector} defining additional environment variables to set}
+
+\item{...}{
+  Arguments passed on to \code{\link[=link_module_libs]{link_module_libs}}
+  \describe{
+    \item{\code{ld_library_paths}}{A character vector indicating directories to search
+in.}
+    \item{\code{unlink}}{If TRUE, then unlink the libraries rather than linking them}
+    \item{\code{verbose}}{If TRUE, print out each library that is loaded or unloaded}
+  }}
 }
 \value{
 A list of \code{DLLInfo} objects, containing the libraries (if any)

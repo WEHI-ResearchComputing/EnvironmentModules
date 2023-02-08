@@ -6,9 +6,19 @@ Modules](https://modules.readthedocs.io/en/latest/index.html) project,
 which offers a way to load and unload packages, and is commonly used on
 shared HPC (High Performance Computing) environments.
 
+## Setup
+
+Currently `EnvironmentModules` is not on CRAN, so you will have to
+install it as follows:
+
+``` r
+remotes::install_github("WEHI-ResearchComputing/EnvironmentModules")
+#> Skipping install of 'EnvironmentModules' from a github remote, the SHA1 (e40fc347) has not changed since last install.
+#>   Use `force = TRUE` to force installation
+```
+
 ``` r
 library(EnvironmentModules)
-#> Loading required package: cli
 ```
 
 ## Listing Modules

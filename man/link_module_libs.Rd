@@ -4,13 +4,15 @@
 \alias{link_module_libs}
 \title{Links R to the shared libraries in a number of directories}
 \usage{
-link_module_libs(ld_library_paths, unlink = FALSE)
+link_module_libs(ld_library_paths, unlink = FALSE, verbose = FALSE)
 }
 \arguments{
 \item{ld_library_paths}{A character vector indicating directories to search
 in.}
 
 \item{unlink}{If TRUE, then unlink the libraries rather than linking them}
+
+\item{verbose}{If TRUE, print out each library that is loaded or unloaded}
 }
 \value{
 A list of \code{DLLInfo} objects describing the newly linked shared
