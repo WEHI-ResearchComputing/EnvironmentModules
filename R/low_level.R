@@ -1,4 +1,4 @@
-# Low level, user-friendly functions
+# Low level, user-unfriendly functions
 
 MIN_SUPPORTED_VERSION = numeric_version("4.0.0")
 
