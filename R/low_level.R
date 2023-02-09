@@ -107,3 +107,7 @@ get_module_output = function(args, env = character()){
   run_modulecmd(args = args, env = env, stderr = TRUE, stdout = TRUE) |>
     `class<-`(c("cli_ansi_string", "ansi_string", "character"))
 }
+
+get_loaded_modules = function(){
+  Sys.getenv("LOADEDMODULES") |> strsplit(":") |> unlist()
+}

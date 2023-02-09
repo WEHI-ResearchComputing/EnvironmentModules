@@ -20,5 +20,5 @@ Runs some R code with no modules loaded except for those that you provide,
 without affecting your current modules.
 }
 \examples{
-system2("python3", "--version") |> with_only_modules("python")
+system2("python3", "--version") |> with_only_modules("python", code=_)
 }

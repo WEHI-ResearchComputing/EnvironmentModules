@@ -20,5 +20,5 @@ Runs some R code with additional modules loaded (in addition to the
 currently loaded modules), without affecting your current modules.
 }
 \examples{
-system2("python3", "--version") |> with_extra_modules("python")
+system2("python3", "--version") |> with_extra_modules("python", code=_)
 }

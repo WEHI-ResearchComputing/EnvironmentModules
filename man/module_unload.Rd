@@ -4,25 +4,11 @@
 \alias{module_unload}
 \title{Unloads one or more environment modules}
 \usage{
-module_unload(modules, unlink_libs = FALSE, env = character(), ...)
+module_unload(...)
 }
 \arguments{
-\item{modules}{A character vector of environment modules to unload}
-
-\item{unlink_libs}{A logical scalar. If TRUE, unlink R from all the shared
-libraries contained within that module. This is not the default behaviour.}
-
-\item{env}{A character vector containing \code{KEY=VALUE} entries
-\strong{not as a named vector} defining additional environment variables to set}
-
-\item{...}{
-  Arguments passed on to \code{\link[=link_module_libs]{link_module_libs}}
-  \describe{
-    \item{\code{ld_library_paths}}{A character vector indicating directories to search
-in.}
-    \item{\code{unlink}}{If TRUE, then unlink the libraries rather than linking them}
-    \item{\code{verbose}}{If TRUE, print out each library that is loaded or unloaded}
-  }}
+\item{...}{Any number of modules to unload as character vectors, which will
+all be concatenated together.}
 }
 \value{
 A list of \code{DLLInfo} objects, containing the libraries (if any)

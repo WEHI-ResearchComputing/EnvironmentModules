@@ -4,15 +4,12 @@
 \alias{module_swap}
 \title{Unloads one module, and loads a second module.}
 \usage{
-module_swap(from, to, env = character())
+module_swap(from, to)
 }
 \arguments{
 \item{from}{A character scalar: the module to unload}
 
 \item{to}{A character scalar: the module to load}
-
-\item{env}{A character vector containing \code{KEY=VALUE} entries
-\strong{not as a named vector} defining additional environment variables to set}
 }
 \value{
 Invisible

@@ -4,11 +4,7 @@
 \alias{module_purge}
 \title{Unloads all modules that are currently loaded}
 \usage{
-module_purge(env = character(0))
-}
-\arguments{
-\item{env}{A character vector containing \code{KEY=VALUE} entries
-\strong{not as a named vector} defining additional environment variables to set}
+module_purge()
 }
 \value{
 Invisible

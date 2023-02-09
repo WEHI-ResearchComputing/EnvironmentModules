@@ -4,7 +4,7 @@
 \alias{module_list}
 \title{Lists all modules that are currently loaded}
 \usage{
-module_list(starts_with = NULL, contains = NULL, env = character())
+module_list(starts_with = NULL, contains = NULL)
 }
 \arguments{
 \item{starts_with}{An optional character scalar. If provided, only modules
@@ -13,9 +13,6 @@ whose name starts with this character string will be returned.}
 \item{contains}{An optional character scalar. This parameter is only
 supported in Environment Modules 4.3+. If provided, it will filter modules
 to only those containing this substring.}
-
-\item{env}{A character vector containing \code{KEY=VALUE} entries
-\strong{not as a named vector} defining additional environment variables to set}
 }
 \value{
 The same format as \code{\link[=get_module_output]{get_module_output()}}
