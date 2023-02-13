@@ -9,7 +9,7 @@ vignette: >
 
 ```{r, include = FALSE}
 # Note: knit this to the repo readme file using:
-# rmarkdown::render("vignettes/readme.Rmd", output_format = "github_document", output_dir = getwd())
+# rmarkdown::render("vignettes/README.Rmd", output_format = "github_document", output_dir = getwd())
 
 process_ansi_string = function(x, options) {
   # Truncate the output if it's too long.
@@ -25,7 +25,7 @@ process_ansi_string = function(x, options) {
   
   # Style it as HTML
   # Adapted from: https://cli.r-lib.org/reference/ansi_html.html#ref-examples
-  hcode = paste(ansi_html(x), collapse = "\n")
+  hcode = paste(cli::ansi_html(x), collapse = "\n")
   
   # Strip CSS for github
   if (knitr::pandoc_to("gfm")){
@@ -43,12 +43,12 @@ process_ansi_string = function(x, options) {
 }
 
 knit_print.cliMessage = process_ansi_string
-
 knit_print.ansi_string = process_ansi_string
 
-knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
-
-#knitr::opts_chunk$set(message = process_ansi_string)
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>", eval = requireNamespace("pkgdown") && !pkgdown::in_pkgdown())
+options(
+    repos=c(CRAN="https://cloud.r-project.org/")
+)
 ```
 
 The EnvironmentModules package is an R front-end for the [Environment Modules](https://modules.readthedocs.io/en/latest/index.html) project, which offers a way to load and unload packages, and is commonly used on shared HPC (High Performance Computing) environments.
@@ -56,7 +56,7 @@ The EnvironmentModules package is an R front-end for the [Environment Modules](h
 ## Setup
 
 Currently `EnvironmentModules` is not on CRAN, so you will have to install it as follows:
-```{r}
+```{r, eval=FALSE}
 remotes::install_github("WEHI-ResearchComputing/EnvironmentModules")
 ```
 
@@ -110,6 +110,7 @@ You can list modules that have been already loaded with `module_list()`:
 module_load("python/3")
 module_list()
 ```
+
 ## Linking Shared Libraries
 
 Although `module_load()` will add a module's libraries to your `LD_LIBRARY_PATH`, which will allow you to compile packages against them, R will not necessarily be able to actually run packages that use these libraries.
@@ -117,15 +118,16 @@ Although `module_load()` will add a module's libraries to your `LD_LIBRARY_PATH`
 For example, let's say we want to use the `hdf5r` package, which depends on the `hdf5` library package. We don't have `hdf5` loaded, so it will fail:
 
 ```{r}
-install.packages("hdf5r", quiet = TRUE)
+install.packages("hdf5r", quiet=TRUE)
 ```
 
-We can resolve this by loading the appropriate module. Firstly, we need to find out what the module is called:
+Let's see what happens if we load the appropriate module. Firstly, we need to find out what the module is called:
 
 ```{r}
 module_avail("hdf5")
 ```
-Then loading the module:
+
+We can now load the module:
 
 ```{r}
 module_load("hdf5/1.12.2")
@@ -134,7 +136,7 @@ module_load("hdf5/1.12.2")
 Now let's try again:
 
 ```{r}
-install.packages("hdf5r", quiet = TRUE)
+install.packages("hdf5r", quiet=TRUE)
 ```
 
 Finally, we can load the package itself... or can we?
@@ -146,11 +148,12 @@ As alluded to above, R doesn't actually load every new library that becomes avai
 Rather it uses "load-time linking", which is where the libraries it links to are fixed at the time you start R.
 Now, you can resolve the above error by closing R, loading the module, and then restarting R, but this can be quite annoying.
 
-Fortunately, R also supports "run-time linking", which you can enable by loading a module with the `link_libs=TRUE` argument:
+Fortunately this package supports installing packages in a special way that hints to the package where to find the modules it needs.
+This means that you won't have to restart R, or even load the modules the next time you want to use the package:
+
 
 ```{r}
-module_unload("hdf5/1.12.2")
-module_load("hdf5/1.12.2", link_libs=TRUE)
+install.packages("hdf5r", quiet=TRUE) |> with_module_install()
 ```
 
 ```{r}
@@ -159,8 +162,11 @@ library(hdf5r)
 
 It worked!
 
-If you are interested in the theory underlying what is happening here, you might find this explanation of linking on Linux helpful: https://techblog.rosedu.org/library-management.html.
+If you are interested in the theory underlying what is happening here, 
+you might find Linux's `ld.so` manual page interesting. Either run `man ld.so`
+on Linux, or visit this page: https://man7.org/linux/man-pages/man8/ld.so.8.html.
 
+Specifically, this package uses the `DT_RPATH` approach to dependency resolution.
 
 ## Other Commands
 
@@ -198,7 +204,7 @@ get_module_code("reload") |> eval()
 
 > Environment Modules [supports loading modules in R since version 4.0.0!](https://modules.readthedocs.io/en/latest/index.html) What is the point of this package?
 
-This is true, and actually this package is just a wrapper around that core functionality. You *need* Modules version 4.0.0 or above to run this package. The main advantages of using this wrapper are the nicer function interfaces, and the ability to automatically link R to newly loaded libraries.
+This is true, and actually this package is just a wrapper around that core functionality. You *need* Modules version 4.0.0 or above to run this package. The main advantages of using this wrapper are the nicer function interfaces, nice documentation, and the ability to automatically "bake in" the modules to packages you install.
 
 > I'm getting the error "Could not detect an Environment Modules installation", but I know that Environment Modules is installed on my system. What do I do?
 

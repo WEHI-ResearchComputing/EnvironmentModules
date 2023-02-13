@@ -7,11 +7,15 @@ reference:
     High-level functions for interacting with modules that you will use
     most of the time
   contents:
-  - starts_with("module_")
+  - has_keyword("high_level")
+- title: "With Functions"
+  desc: "withr-style functions that run R code in a certain module environment"
+  contents:
+  - has_keyword("with")
 - title: "Advanced Functions"
   desc: "Powerful, but more complex functions you are less likely to need"
   contents:
-  - -starts_with("module_")
+  - has_keyword("low_level")
 navbar:
   structure:
     left:  [intro, reference]

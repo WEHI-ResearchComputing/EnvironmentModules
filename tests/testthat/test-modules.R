@@ -73,34 +73,6 @@ test_that("module_load() adjusts the environment and module_unload() resets it",
   )
 })
 
-test_that("module_load(link_libs=TRUE) links new libaries and module_unload() unlinks them", {
-  check_wehi()
-
-  initial_libs = getLoadedDLLs()
-
-  expect_no_error(
-    suppressMessages(
-      module_load("pgsql", link_libs = TRUE)
-    )
-  )
-  expect_false(
-    setequal(
-      names(initial_libs),
-      names(getLoadedDLLs())
-    )
-  )
-
-  expect_no_error(
-    suppressMessages(
-      module_unload("pgsql", unlink_libs = TRUE)
-    )
-  )
-  expect_setequal(
-    names(initial_libs),
-    names(getLoadedDLLs())
-  )
-})
-
 test_that("module_avail() produces output", {
   module_avail() |> nzchar() |> any() |> expect_true()
 })
@@ -112,19 +84,29 @@ test_that("module_list() produces output", {
 
 test_that("module_swap() works", {
   check_wehi()
-  initial_env = Sys.getenv()
+  initial_env = Sys.getenv("LD_LIBRARY_PATH")
   suppressMessages(
     module_swap("proj/4.9.3", "proj/6.3.2")
   )
   expect_gt(
-    diff_libs(initial_env, Sys.getenv()) |> length(),
+    diff_libs(initial_env, Sys.getenv("LD_LIBRARY_PATH")) |> length(),
     0
   )
   suppressMessages(
     module_swap("proj/6.3.2", "proj/4.9.3")
   )
   expect_equal(
-    diff_libs(initial_env, Sys.getenv()) |> length(),
-    0
+    diff_libs(initial_env, Sys.getenv("LD_LIBRARY_PATH")),
+    character()
   )
+})
+
+test_that("get_loaded_modules() works", {
+  module_purge()
+  module_load("python", "bcftools")
+  loaded = get_loaded_modules()
+  expect_length(loaded, 2)
+  grepl("python", loaded) |> any() |> expect_true()
+  grepl("bcftools", loaded) |> any() |> expect_true()
+  module_unload("python", "bcftools")
 })
