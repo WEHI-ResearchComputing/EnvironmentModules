@@ -13,8 +13,6 @@ install it as follows:
 
 ``` r
 remotes::install_github("WEHI-ResearchComputing/EnvironmentModules")
-#> Skipping install of 'EnvironmentModules' from a github remote, the SHA1 (e40fc347) has not changed since last install.
-#>   Use `force = TRUE` to force installation
 ```
 
 ``` r
@@ -122,13 +120,13 @@ on the `hdf5` library package. We don’t have `hdf5` loaded, so it will
 fail:
 
 ``` r
-install.packages("hdf5r", quiet = TRUE)
-#> Warning in install.packages("hdf5r", quiet = TRUE): installation of package
-#> 'hdf5r' had non-zero exit status
+install.packages("hdf5r", quiet=TRUE)
+#> Warning in install.packages :
+#>   installation of package 'hdf5r' had non-zero exit status
 ```
 
-We can resolve this by loading the appropriate module. Firstly, we need
-to find out what the module is called:
+Let’s see what happens if we load the appropriate module. Firstly, we
+need to find out what the module is called:
 
 ``` r
 module_avail("hdf5")
@@ -145,7 +143,7 @@ module_avail("hdf5")
 Key:
 <span class="ansi ansi-bold ansi-color-4">modulepath</span>  <span class="ansi ansi-underline">default-version</span>  </pre>
 
-Then loading the module:
+We can now load the module:
 
 ``` r
 module_load("hdf5/1.12.2")
@@ -155,7 +153,7 @@ module_load("hdf5/1.12.2")
 Now let’s try again:
 
 ``` r
-install.packages("hdf5r", quiet = TRUE)
+install.packages("hdf5r", quiet=TRUE)
 ```
 
 Finally, we can load the package itself… or can we?
@@ -173,14 +171,13 @@ linking”, which is where the libraries it links to are fixed at the time
 you start R. Now, you can resolve the above error by closing R, loading
 the module, and then restarting R, but this can be quite annoying.
 
-Fortunately, R also supports “run-time linking”, which you can enable by
-loading a module with the `link_libs=TRUE` argument:
+Fortunately this package supports installing packages in a special way
+that hints to the package where to find the modules it needs. This means
+that you won’t have to restart R, or even load the modules the next time
+you want to use the package:
 
 ``` r
-module_unload("hdf5/1.12.2")
-#> ✔ Successfully unloaded hdf5/1.12.2
-module_load("hdf5/1.12.2", link_libs=TRUE)
-#> ✔ Successfully loaded hdf5/1.12.2
+install.packages("hdf5r", quiet=TRUE) |> with_module_install()
 ```
 
 ``` r
@@ -190,8 +187,12 @@ library(hdf5r)
 It worked!
 
 If you are interested in the theory underlying what is happening here,
-you might find this explanation of linking on Linux helpful:
-<https://techblog.rosedu.org/library-management.html>.
+you might find Linux’s `ld.so` manual page interesting. Either run
+`man ld.so` on Linux, or visit this page:
+<https://man7.org/linux/man-pages/man8/ld.so.8.html>.
+
+Specifically, this package uses the `DT_RPATH` approach to dependency
+resolution.
 
 ## Other Commands
 
@@ -253,8 +254,8 @@ get_module_code("reload") |> eval()
 This is true, and actually this package is just a wrapper around that
 core functionality. You *need* Modules version 4.0.0 or above to run
 this package. The main advantages of using this wrapper are the nicer
-function interfaces, and the ability to automatically link R to newly
-loaded libraries.
+function interfaces, nice documentation, and the ability to
+automatically “bake in” the modules to packages you install.
 
 > I’m getting the error “Could not detect an Environment Modules
 > installation”, but I know that Environment Modules is installed on my

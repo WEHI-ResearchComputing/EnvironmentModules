@@ -61,7 +61,7 @@ check_version = function(against=MIN_SUPPORTED_VERSION, action="for the function
 #' @keywords low_level
 #' @export
 #' @return A character scalar containing the full file path to the `modulescmd`
-#' executable
+#'  executable
 get_modulescmd_binary = function(){
   env_src = Sys.getenv("MODULES_CMD")
   which_src = Sys.which("modulecmd")

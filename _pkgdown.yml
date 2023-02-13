@@ -9,13 +9,13 @@ reference:
   contents:
   - has_keyword("high_level")
 - title: "With Functions"
-  desc: "Powerful, but more complex functions you are less likely to need"
+  desc: "withr-style functions that run R code in a certain module environment"
   contents:
-  - has_keyword("low_level")
+  - has_keyword("with")
 - title: "Advanced Functions"
   desc: "Powerful, but more complex functions you are less likely to need"
   contents:
-  - has_keyword("with")
+  - has_keyword("low_level")
 navbar:
   structure:
     left:  [intro, reference]
