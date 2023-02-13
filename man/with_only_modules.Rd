@@ -22,3 +22,4 @@ without affecting your current modules.
 \examples{
 system2("python3", "--version") |> with_only_modules("python", code=_)
 }
+\keyword{with}

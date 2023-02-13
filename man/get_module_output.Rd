@@ -23,3 +23,4 @@ Evaluates a module command, and returns the text output.
 \examples{
 get_module_output("list")
 }
+\keyword{low_level}

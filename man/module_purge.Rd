@@ -15,3 +15,4 @@ Unloads all modules that are currently loaded
 \examples{
 module_purge()
 }
+\keyword{high_level}

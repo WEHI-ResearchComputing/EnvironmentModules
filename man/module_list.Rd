@@ -15,7 +15,7 @@ supported in Environment Modules 4.3+. If provided, it will filter modules
 to only those containing this substring.}
 }
 \value{
-The same format as \code{\link[=get_module_output]{get_module_output()}}
+A character vector with class "cli_ansi_string".
 }
 \description{
 Lists all modules that are currently loaded
@@ -23,3 +23,4 @@ Lists all modules that are currently loaded
 \examples{
 module_list()
 }
+\keyword{high_level}

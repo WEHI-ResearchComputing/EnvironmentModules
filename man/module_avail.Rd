@@ -23,3 +23,4 @@ Lists all modules available to be loaded
 \examples{
 module_avail()
 }
+\keyword{high_level}

@@ -13,6 +13,7 @@ diff_libs = function(previous, current){
 #' feature testing
 #' @return The current Environment Modules version as a [base::numeric_version]
 #' object, or NULL if no version can be detected.
+#' @keywords low_level
 #' @export
 #' @examples
 #' version = check_version()
@@ -43,6 +44,7 @@ get_version = function(){
 #' @param action A character scalar describing the action that is being
 #' attempted, in the infinitive conjugation (e.g. "to run X" or "for running Y")
 #' @return An invisible value whose value may be changed in the future.
+#' @keywords low_level
 #' @export
 #' @examples
 #' check_version()
@@ -56,6 +58,8 @@ check_version = function(against=MIN_SUPPORTED_VERSION, action="for the function
 }
 
 #' Gets the file path to the `modulescmd` executable
+#' @keywords low_level
+#' @export
 #' @return A character scalar containing the full file path to the `modulescmd`
 #' executable
 get_modulescmd_binary = function(){
@@ -79,6 +83,7 @@ get_modulescmd_binary = function(){
 
 #' Runs `modulecmd` with some arguments. The shell is harcoded as "r" because
 #' (surprise!) that's the language you are using right now.
+#' @keywords low_level
 #' @details This is a low-level unexported function because users are
 #'  encouraged to use the higher level functions such as [module_load()]
 #' @param args A character vector defining the module command. You do not need
@@ -96,6 +101,7 @@ run_modulecmd = function(args, ...){
 #' @param env A character vector containing `KEY=VALUE` entries
 #'  **not as a named vector** defining additional environment variables to set
 #' @return An expression object containing the R code produced by this command
+#' @keywords low_level
 #' @export
 #' @examples
 #' get_module_code("purge") |> eval()
@@ -106,6 +112,7 @@ get_module_code = function(args, env = character()){
 #' Evaluates a module command, and returns the text output.
 #' @inheritParams get_module_code
 #' @return A character vector with class "cli_ansi_string".
+#' @keywords low_level
 #' @export
 #' @examples
 #' get_module_output("list")
@@ -114,6 +121,12 @@ get_module_output = function(args, env = character()){
     `class<-`(c("cli_ansi_string", "ansi_string", "character"))
 }
 
+#' Returns a vector of currently loaded environment modules
+#' @return A character vector, with one entry per module
+#' @export
+#' @keywords low_level
+#' @examples
+#' get_loaded_modules()
 get_loaded_modules = function(){
   Sys.getenv("LOADEDMODULES") |> strsplit(":") |> unlist()
 }

@@ -5,14 +5,20 @@
 \title{Asserts that the current EnvironmentModules version is above a specified
 version. Raises an error if it is not.}
 \usage{
-check_version(against = MIN_SUPPORTED_VERSION)
+check_version(
+  against = MIN_SUPPORTED_VERSION,
+  action = "for the function you just ran"
+)
 }
 \arguments{
 \item{against}{The version to check against. By default this is the minimum
 version supported by this package.}
+
+\item{action}{A character scalar describing the action that is being
+attempted, in the infinitive conjugation (e.g. "to run X" or "for running Y")}
 }
 \value{
-Invisible
+An invisible value whose value may be changed in the future.
 }
 \description{
 Asserts that the current EnvironmentModules version is above a specified
@@ -21,3 +27,4 @@ version. Raises an error if it is not.
 \examples{
 check_version()
 }
+\keyword{low_level}

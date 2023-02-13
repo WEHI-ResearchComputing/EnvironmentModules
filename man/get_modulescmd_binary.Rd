@@ -13,3 +13,4 @@ executable
 \description{
 Gets the file path to the \code{modulescmd} executable
 }
+\keyword{low_level}

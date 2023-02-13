@@ -14,6 +14,7 @@
 #' @param expr Any R code you want to run that installs packages. Most of the
 #' time this will just be a call to [install.packages]()
 #' @return The result of evaluating `expr`
+#' @keywords with
 #' @export
 #' @examples
 #' options(repos=c(CRAN="https://cloud.r-project.org/"))
@@ -32,6 +33,7 @@ with_module_install = function(expr){
 #' @param new A character vector of modules to load when executing `code`
 #' @param code Any R code to execute
 #' @return The result of evaluating `code`
+#' @keywords with
 #' @export
 #' @examples
 #' system2("python3", "--version") |> with_extra_modules("python", code=_)
@@ -47,6 +49,7 @@ with_extra_modules = withr::with_(set = function(modules){
 #' @param new A character vector of modules to load when executing `code`
 #' @param code Any R code to execute
 #' @return The result of evaluating `code`
+#' @keywords with
 #' @export
 #' @examples
 #' system2("python3", "--version") |> with_only_modules("python", code=_)

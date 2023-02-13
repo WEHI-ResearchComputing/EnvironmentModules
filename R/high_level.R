@@ -4,6 +4,7 @@
 #' @param ... Any number of modules to load as character vectors, which will
 #' all be concatenated together.
 #' @return An invisible value whose value may be changed in the future.
+#' @keywords high_level
 #' @export
 #' @examples
 #' module_load("python")
@@ -25,6 +26,7 @@ module_load = function(...){
 #' @param ... Any number of modules to unload as character vectors, which will
 #' all be concatenated together.
 #' @return An invisible value whose value may be changed in the future.
+#' @keywords high_level
 #' @export
 #' @examples
 #' module_unload("python")
@@ -49,6 +51,7 @@ module_unload = function(...){
 #' @param contains An optional character scalar. This parameter is only
 #' supported in Environment Modules 4.3+. If provided, it will filter modules
 #' to only those containing this substring.
+#' @keywords high_level
 #' @export
 #' @examples
 #' module_list()
@@ -64,6 +67,7 @@ module_list = function(starts_with = NULL, contains = NULL){
 #' Lists all modules available to be loaded
 #' @inheritParams module_list
 #' @inherit get_module_output return
+#' @keywords high_level
 #' @export
 #' @examples
 #' module_avail()
@@ -78,6 +82,7 @@ module_avail = function(starts_with = NULL, contains = NULL){
 
 #' Unloads all modules that are currently loaded
 #' @return An invisible value whose value may be changed in the future.
+#' @keywords high_level
 #' @export
 #' @examples
 #' module_purge()
@@ -90,6 +95,7 @@ module_purge = function(){
 #' @param from A character scalar: the module to unload
 #' @param to A character scalar: the module to load
 #' @return An invisible value whose value may be changed in the future.
+#' @keywords high_level
 #' @export
 #' @examples
 #' module_swap("python/2", "python/3")

@@ -37,3 +37,4 @@ options(repos=c(CRAN="https://cloud.r-project.org/"))
 module_load("hdf5")
 install.packages("hdf5r") |> with_module_install()
 }
+\keyword{with}

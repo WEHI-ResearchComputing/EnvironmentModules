@@ -23,3 +23,4 @@ Returns the R code that would execute a given module command
 \examples{
 get_module_code("purge") |> eval()
 }
+\keyword{low_level}

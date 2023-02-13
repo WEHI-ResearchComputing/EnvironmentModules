@@ -20,3 +20,4 @@ Unloads one module, and loads a second module.
 \examples{
 module_swap("python/2", "python/3")
 }
+\keyword{high_level}

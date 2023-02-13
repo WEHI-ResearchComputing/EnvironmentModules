@@ -7,11 +7,15 @@ reference:
     High-level functions for interacting with modules that you will use
     most of the time
   contents:
-  - starts_with("module_")
+  - has_keyword("high_level")
+- title: "With Functions"
+  desc: "Powerful, but more complex functions you are less likely to need"
+  contents:
+  - has_keyword("low_level")
 - title: "Advanced Functions"
   desc: "Powerful, but more complex functions you are less likely to need"
   contents:
-  - -starts_with("module_")
+  - has_keyword("with")
 navbar:
   structure:
     left:  [intro, reference]

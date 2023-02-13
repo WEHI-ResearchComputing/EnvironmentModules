@@ -19,3 +19,4 @@ Unloads one or more environment modules
 \examples{
 module_unload("python")
 }
+\keyword{high_level}

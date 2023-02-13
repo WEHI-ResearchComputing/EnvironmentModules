@@ -22,3 +22,4 @@ currently loaded modules), without affecting your current modules.
 \examples{
 system2("python3", "--version") |> with_extra_modules("python", code=_)
 }
+\keyword{with}

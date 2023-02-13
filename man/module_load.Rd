@@ -19,3 +19,4 @@ Loads one or more environment modules
 \examples{
 module_load("python")
 }
+\keyword{high_level}

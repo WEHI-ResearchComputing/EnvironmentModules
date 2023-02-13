@@ -25,3 +25,4 @@ Runs \code{modulecmd} with some arguments. The shell is harcoded as "r" because
 This is a low-level unexported function because users are
 encouraged to use the higher level functions such as \code{\link[=module_load]{module_load()}}
 }
+\keyword{low_level}
