@@ -38,7 +38,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Lists all modules that are currently loaded</h1>
-      <small class="dont-index">Source: <a href="https://github.com/WEHI-ResearchComputing/EnvironmentModules/blob/HEAD/R/hello.R" class="external-link"><code>R/hello.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/WEHI-ResearchComputing/EnvironmentModules/blob/HEAD/R/high_level.R" class="external-link"><code>R/high_level.R</code></a></small>
       <div class="d-none name"><code>module_list.Rd</code></div>
     </div>
 
@@ -48,7 +48,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">module_list</span><span class="op">(</span>starts_with <span class="op">=</span> <span class="cn">NULL</span>, contains <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">module_list</span><span class="op">(</span>starts_with <span class="op">=</span> <span class="cn">NULL</span>, contains <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -63,34 +63,19 @@ whose name starts with this character string will be returned.</p></dd>
 supported in Environment Modules 4.3+. If provided, it will filter modules
 to only those containing this substring.</p></dd>
 
-
-<dt>...</dt>
-<dd><p>Arguments passed on to <code><a href="get_module_output.html">get_module_output</a></code></p><dl><dt><code>env</code></dt>
-<dd><p>A character vector containing <code>KEY=VALUE</code> entries
-<strong>not as a named vector</strong> defining additional environment variables to set</p></dd>
-
-    <dt><code>args</code></dt>
-<dd><p>A character vector defining the module command. You do not need
-to include the word "module". For example <code>module load zeromq</code> in bash
-could be converted to <code>run_modulecmd(c("load", "zeromq"))</code></p></dd>
-
-  
-</dl></dd>
-
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>The same format as <code><a href="get_module_output.html">get_module_output()</a></code></p>
-
-
+<p>A character vector with class "cli_ansi_string".</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">module_list</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> No Modulefiles Currently Loaded.</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">module_list</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;cli_ansi_string&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] No Modulefiles Currently Loaded.</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

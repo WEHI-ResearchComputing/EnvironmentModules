@@ -38,7 +38,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Evaluates a module command, and returns the text output.</h1>
-      <small class="dont-index">Source: <a href="https://github.com/WEHI-ResearchComputing/EnvironmentModules/blob/HEAD/R/hello.R" class="external-link"><code>R/hello.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/WEHI-ResearchComputing/EnvironmentModules/blob/HEAD/R/low_level.R" class="external-link"><code>R/low_level.R</code></a></small>
       <div class="d-none name"><code>get_module_output.Rd</code></div>
     </div>
 
@@ -68,19 +68,14 @@ could be converted to <code>run_modulecmd(c("load", "zeromq"))</code></p></dd>
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>A character vector with class "cli_ansi_string". If you have the
-<a href="https://cli.r-lib.org/" class="external-link"><code>cli</code></a> package installed and loaded, it will enable enhanced
-printing of this result. If you don't want to install cli, you should print
-this result out using <code><a href="https://rdrr.io/r/base/cat.html" class="external-link">base::cat()</a></code> and <em>not</em></p>
-<p></p>
-<p><code><a href="https://rdrr.io/r/base/print.html" class="external-link">base::print()</a></code> to ensure the
-ANSI control characters are correctly displayed.</p>
+<p>A character vector with class "cli_ansi_string".</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">get_module_command</span><span class="op">(</span><span class="st">"list"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in get_module_command("list"):</span> could not find function "get_module_command"</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">get_module_output</span><span class="op">(</span><span class="st">"list"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;cli_ansi_string&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] No Modulefiles Currently Loaded.</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

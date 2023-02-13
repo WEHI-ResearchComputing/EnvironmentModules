@@ -38,7 +38,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Unloads one or more environment modules</h1>
-      <small class="dont-index">Source: <a href="https://github.com/WEHI-ResearchComputing/EnvironmentModules/blob/HEAD/R/hello.R" class="external-link"><code>R/hello.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/WEHI-ResearchComputing/EnvironmentModules/blob/HEAD/R/high_level.R" class="external-link"><code>R/high_level.R</code></a></small>
       <div class="d-none name"><code>module_unload.Rd</code></div>
     </div>
 
@@ -48,32 +48,21 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">module_unload</span><span class="op">(</span><span class="va">modules</span>, unlink_libs <span class="op">=</span> <span class="cn">FALSE</span>, env <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">module_unload</span><span class="op">(</span><span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <dl><dt>modules</dt>
-<dd><p>A character vector of environment modules to unload</p></dd>
-
-
-<dt>unlink_libs</dt>
-<dd><p>A logical scalar. If TRUE, unlink R from all the shared
-libraries contained within that module. This is not the default behaviour.</p></dd>
-
-
-<dt>env</dt>
-<dd><p>A character vector containing <code>KEY=VALUE</code> entries
-<strong>not as a named vector</strong> defining additional environment variables to set</p></dd>
+    <dl><dt>...</dt>
+<dd><p>Any number of modules to unload as character vectors, which will
+all be concatenated together.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>A list of <code>DLLInfo</code> objects, containing the libraries (if any)
-that were linked. See <a href="https://rdrr.io/r/base/getLoadedDLLs.html" class="external-link">base::getLoadedDLLs</a> for an explanation of this
-class.</p>
+<p>An invisible value whose value may be changed in the future.</p>
     </div>
 
     <div class="section level2">

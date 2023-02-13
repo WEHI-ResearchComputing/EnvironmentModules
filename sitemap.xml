@@ -4,19 +4,28 @@
     <loc>/404.html</loc>
   </url>
   <url>
+    <loc>/LICENSE.html</loc>
+  </url>
+  <url>
+    <loc>/articles/README.html</loc>
+  </url>
+  <url>
     <loc>/articles/index.html</loc>
   </url>
   <url>
-    <loc>/articles/readme.html</loc>
+    <loc>/authors.html</loc>
   </url>
   <url>
-    <loc>/authors.html</loc>
+    <loc>/design.html</loc>
   </url>
   <url>
     <loc>/index.html</loc>
   </url>
   <url>
     <loc>/reference/check_version.html</loc>
+  </url>
+  <url>
+    <loc>/reference/get_loaded_modules.html</loc>
   </url>
   <url>
     <loc>/reference/get_module_code.html</loc>
@@ -32,9 +41,6 @@
   </url>
   <url>
     <loc>/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/link_module_libs.html</loc>
   </url>
   <url>
     <loc>/reference/module_avail.html</loc>
@@ -56,5 +62,14 @@
   </url>
   <url>
     <loc>/reference/run_modulecmd.html</loc>
+  </url>
+  <url>
+    <loc>/reference/with_extra_modules.html</loc>
+  </url>
+  <url>
+    <loc>/reference/with_module_install.html</loc>
+  </url>
+  <url>
+    <loc>/reference/with_only_modules.html</loc>
   </url>
 </urlset>
