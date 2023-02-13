@@ -96,23 +96,17 @@
           
           <code><a href="with_extra_modules.html">with_extra_modules()</a></code> 
         </dt>
-        <dd>Runs some R code with additional modules loaded (in addition to the
-currently loaded modules), without affecting your current modules.</dd>
+        <dd>Run some R code using an additional set of modules</dd>
       </dl><dl><dt>
           
           <code><a href="with_module_install.html">with_module_install()</a></code> 
         </dt>
-        <dd>Executes a package installation command so that the installed package
-will be aware of the modules you currently have loaded.
-This means you can load the package without needing to load that module
-later, and also that you can load that package now, without restarting your
-R session.</dd>
+        <dd>Bake environment modules into an R package</dd>
       </dl><dl><dt>
           
           <code><a href="with_only_modules.html">with_only_modules()</a></code> 
         </dt>
-        <dd>Runs some R code with no modules loaded except for those that you provide,
-without affecting your current modules.</dd>
+        <dd>Run some R code using a minimal set of modules</dd>
       </dl></div><div class="section level2">
       <h2 id="advanced-functions">Advanced Functions<a class="anchor" aria-label="anchor" href="#advanced-functions"></a></h2>
       
@@ -128,8 +122,7 @@ without affecting your current modules.</dd>
           
           <code><a href="check_version.html">check_version()</a></code> 
         </dt>
-        <dd>Asserts that the current EnvironmentModules version is above a specified
-version. Raises an error if it is not.</dd>
+        <dd>Ensures Environment Modules is above a certain version</dd>
       </dl><dl><dt>
           
           <code><a href="get_loaded_modules.html">get_loaded_modules()</a></code> 
@@ -154,14 +147,12 @@ version. Raises an error if it is not.</dd>
           
           <code><a href="get_version.html">get_version()</a></code> 
         </dt>
-        <dd>Returns the current Environment Modules version which can be used for
-feature testing</dd>
+        <dd>Get the current Environment Modules version</dd>
       </dl><dl><dt>
           
           <code><a href="run_modulecmd.html">run_modulecmd()</a></code> 
         </dt>
-        <dd>Runs <code>modulecmd</code> with some arguments. The shell is harcoded as "r" because
-(surprise!) that's the language you are using right now.</dd>
+        <dd>Runs <code>modulecmd</code> with some arguments</dd>
       </dl></div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
