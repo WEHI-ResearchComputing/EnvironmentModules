@@ -39,6 +39,7 @@ module_unload = function(...){
     eval(code)
     cli::cli_alert_success("Successfully unloaded {modules}")
   }
+  invisible(TRUE)
 }
 
 #' Lists all modules that are currently loaded
@@ -82,8 +83,8 @@ module_swap = function(from, to){
 }
 
 #' Lists all modules available to be loaded
-#' @return The same format as [get_module_output()]
 #' @inheritParams module_list
+#' @inherit get_module_output return
 #' @export
 #' @examples
 #' module_avail()
