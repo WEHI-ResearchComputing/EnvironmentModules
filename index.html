@@ -188,7 +188,8 @@ Key:
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://hhoeflin.github.io/hdf5r/" class="external-link">hdf5r</a></span><span class="op">)</span></span></code></pre></div>
 <p>It worked!</p>
-<p>If you are interested in the theory underlying what is happening here, you might find this explanation of linking on Linux helpful: <a href="https://techblog.rosedu.org/library-management.html" class="external-link uri">https://techblog.rosedu.org/library-management.html</a>.</p>
+<p>If you are interested in the theory underlying what is happening here, you might find Linux’s <code>ld.so</code> manual page interesting. Either run <code>man ld.so</code> on Linux, or visit this page: <a href="https://man7.org/linux/man-pages/man8/ld.so.8.html" class="external-link uri">https://man7.org/linux/man-pages/man8/ld.so.8.html</a>.</p>
+<p>Specifically, this package uses the <code>DT_RPATH</code> approach to dependency resolution.</p>
 </div>
 <div class="section level2">
 <h2 id="other-commands">Other Commands<a class="anchor" aria-label="anchor" href="#other-commands"></a>
@@ -232,7 +233,7 @@ Key:
 <blockquote>
 <p>Environment Modules <a href="https://modules.readthedocs.io/en/latest/index.html" class="external-link">supports loading modules in R since version 4.0.0!</a> What is the point of this package?</p>
 </blockquote>
-<p>This is true, and actually this package is just a wrapper around that core functionality. You <em>need</em> Modules version 4.0.0 or above to run this package. The main advantages of using this wrapper are the nicer function interfaces, and the ability to automatically link R to newly loaded libraries.</p>
+<p>This is true, and actually this package is just a wrapper around that core functionality. You <em>need</em> Modules version 4.0.0 or above to run this package. The main advantages of using this wrapper are the nicer function interfaces, nice documentation, and the ability to automatically “bake in” the modules to packages you install.</p>
 <blockquote>
 <p>I’m getting the error “Could not detect an Environment Modules installation”, but I know that Environment Modules is installed on my system. What do I do?</p>
 </blockquote>
