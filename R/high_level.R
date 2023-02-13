@@ -43,7 +43,7 @@ module_unload = function(...){
 }
 
 #' Lists all modules that are currently loaded
-#' @return The same format as [get_module_output()]
+#' @inherit get_module_output return
 #' @param starts_with An optional character scalar. If provided, only modules
 #' whose name starts with this character string will be returned.
 #' @param contains An optional character scalar. This parameter is only
@@ -55,9 +55,25 @@ module_unload = function(...){
 module_list = function(starts_with = NULL, contains = NULL){
   args = c("list", starts_with)
   if (!is.null(contains)){
+    check_version("4.3.0", "to use the contains argument")
     args = c(args, "--contains", contains)
   }
   get_module_output(args)
+}
+
+#' Lists all modules available to be loaded
+#' @inheritParams module_list
+#' @inherit get_module_output return
+#' @export
+#' @examples
+#' module_avail()
+module_avail = function(starts_with = NULL, contains = NULL){
+  args = c("avail", starts_with)
+  if (!is.null(contains)){
+    check_version("4.3.0", "to use the contains argument")
+    args = c(args, "--contains", contains)
+  }
+  get_module_output(args = args)
 }
 
 #' Unloads all modules that are currently loaded
@@ -80,18 +96,4 @@ module_purge = function(){
 module_swap = function(from, to){
   get_module_code(c("swap", from, to)) |> eval()
   invisible(TRUE)
-}
-
-#' Lists all modules available to be loaded
-#' @inheritParams module_list
-#' @inherit get_module_output return
-#' @export
-#' @examples
-#' module_avail()
-module_avail = function(starts_with = NULL, contains = NULL){
-  args = c("avail", starts_with)
-  if (!is.null(contains)){
-    args = c(args, "--contains", contains)
-  }
-  get_module_output(args = args)
 }

@@ -39,23 +39,25 @@ get_version = function(){
 #' Asserts that the current EnvironmentModules version is above a specified
 #' version. Raises an error if it is not.
 #' @param against The version to check against. By default this is the minimum
-#'  version supported by this package.
-#' @return Invisible
+#' version supported by this package.
+#' @param action A character scalar describing the action that is being
+#' attempted, in the infinitive conjugation (e.g. "to run X" or "for running Y")
+#' @return An invisible value whose value may be changed in the future.
 #' @export
 #' @examples
 #' check_version()
-check_version = function(against = MIN_SUPPORTED_VERSION){
+check_version = function(against=MIN_SUPPORTED_VERSION, action="for the function you just ran"){
   minimum = numeric_version(against)
   version = get_version()
   if (version < minimum || is.null(version)){
-    cli::cli_abort("Your Environment Modules version is {version}, which is lower than {minimum}, which is required for the function you just ran.")
+    cli::cli_abort("Your Environment Modules version is {version}, which is lower than {minimum}, which is required {action}.")
   }
   invisible()
 }
 
 #' Gets the file path to the `modulescmd` executable
 #' @return A character scalar containing the full file path to the `modulescmd`
-#'  executable
+#' executable
 get_modulescmd_binary = function(){
   env_src = Sys.getenv("MODULES_CMD")
   which_src = Sys.which("modulecmd")
@@ -67,7 +69,11 @@ get_modulescmd_binary = function(){
     which_src |> unname()
   }
   else {
-    cli::cli_abort("Could not detect an Environment Modules installation. Are you sure it is installed on this machine?")
+    cli::cli_abort(
+    "Could not detect an Environment Modules installation.
+    Are you sure it is installed on this machine?
+    If yes, try setting the MODULES_CMD environment variable to a valid path."
+    )
   }
 }
 
