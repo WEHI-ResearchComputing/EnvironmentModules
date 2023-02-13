@@ -88,7 +88,6 @@ test_that("module_swap() works", {
   suppressMessages(
     module_swap("proj/4.9.3", "proj/6.3.2")
   )
-  browser()
   expect_gt(
     diff_libs(initial_env, Sys.getenv("LD_LIBRARY_PATH")) |> length(),
     0
