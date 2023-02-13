@@ -45,7 +45,10 @@ process_ansi_string = function(x, options) {
 knit_print.cliMessage = process_ansi_string
 knit_print.ansi_string = process_ansi_string
 
-knitr::opts_chunk$set(collapse = TRUE, comment = "#>", eval = !pkgdown::in_pkgdown())
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>", eval = requireNamespace("pkgdown") && !pkgdown::in_pkgdown())
+options(
+    repos=c(CRAN="https://cloud.r-project.org/")
+)
 ```
 
 The EnvironmentModules package is an R front-end for the [Environment Modules](https://modules.readthedocs.io/en/latest/index.html) project, which offers a way to load and unload packages, and is commonly used on shared HPC (High Performance Computing) environments.

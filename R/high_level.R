@@ -3,9 +3,7 @@
 #' Loads one or more environment modules
 #' @param ... Any number of modules to load as character vectors, which will
 #' all be concatenated together.
-#' @return A list of `DLLInfo` objects, containing the libraries (if any)
-#'  that were linked. See [base::getLoadedDLLs] for an explanation of this
-#'  class.
+#' @return An invisible value whose value may be changed in the future.
 #' @export
 #' @examples
 #' module_load("python")
@@ -20,14 +18,13 @@ module_load = function(...){
     eval(code)
     cli::cli_alert_success("Successfully loaded {modules}")
   }
+  invisible(TRUE)
 }
 
 #' Unloads one or more environment modules
 #' @param ... Any number of modules to unload as character vectors, which will
 #' all be concatenated together.
-#' @return A list of `DLLInfo` objects, containing the libraries (if any)
-#'  that were linked. See [base::getLoadedDLLs] for an explanation of this
-#'  class.
+#' @return An invisible value whose value may be changed in the future.
 #' @export
 #' @examples
 #' module_unload("python")
@@ -63,7 +60,7 @@ module_list = function(starts_with = NULL, contains = NULL){
 }
 
 #' Unloads all modules that are currently loaded
-#' @return Invisible
+#' @return An invisible value whose value may be changed in the future.
 #' @export
 #' @examples
 #' module_purge()
@@ -73,11 +70,9 @@ module_purge = function(){
 }
 
 #' Unloads one module, and loads a second module.
-#' @details Note that this doesn't have all the functionality of [module_load()]
-#'  and [module_unload()], so you may want to use those for more control.
 #' @param from A character scalar: the module to unload
 #' @param to A character scalar: the module to load
-#' @return Invisible
+#' @return An invisible value whose value may be changed in the future.
 #' @export
 #' @examples
 #' module_swap("python/2", "python/3")

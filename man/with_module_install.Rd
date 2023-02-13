@@ -33,6 +33,7 @@ Also, it is recommended that you have only the minimal number of modules
 needed to install this package loaded when you run this.
 }
 \examples{
+options(repos=c(CRAN="https://cloud.r-project.org/"))
 module_load("hdf5")
 install.packages("hdf5r") |> with_module_install()
 }

@@ -7,7 +7,7 @@
 module_purge()
 }
 \value{
-Invisible
+An invisible value whose value may be changed in the future.
 }
 \description{
 Unloads all modules that are currently loaded

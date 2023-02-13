@@ -11,9 +11,7 @@ module_load(...)
 all be concatenated together.}
 }
 \value{
-A list of \code{DLLInfo} objects, containing the libraries (if any)
-that were linked. See \link[base:getLoadedDLLs]{base::getLoadedDLLs} for an explanation of this
-class.
+An invisible value whose value may be changed in the future.
 }
 \description{
 Loads one or more environment modules

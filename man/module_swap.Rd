@@ -12,14 +12,10 @@ module_swap(from, to)
 \item{to}{A character scalar: the module to load}
 }
 \value{
-Invisible
+An invisible value whose value may be changed in the future.
 }
 \description{
 Unloads one module, and loads a second module.
-}
-\details{
-Note that this doesn't have all the functionality of \code{\link[=module_load]{module_load()}}
-and \code{\link[=module_unload]{module_unload()}}, so you may want to use those for more control.
 }
 \examples{
 module_swap("python/2", "python/3")

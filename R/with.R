@@ -16,6 +16,7 @@
 #' @return The result of evaluating `expr`
 #' @export
 #' @examples
+#' options(repos=c(CRAN="https://cloud.r-project.org/"))
 #' module_load("hdf5")
 #' install.packages("hdf5r") |> with_module_install()
 with_module_install = function(expr){
