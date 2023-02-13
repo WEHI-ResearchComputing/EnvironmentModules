@@ -84,6 +84,38 @@
       </dl></div><div class="section level2">
       <h2 id="with-functions">With Functions<a class="anchor" aria-label="anchor" href="#with-functions"></a></h2>
       
+      <p class="section-desc"></p><p>withr-style functions that run R code in a certain module environment</p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="with_extra_modules.html">with_extra_modules()</a></code> 
+        </dt>
+        <dd>Runs some R code with additional modules loaded (in addition to the
+currently loaded modules), without affecting your current modules.</dd>
+      </dl><dl><dt>
+          
+          <code><a href="with_module_install.html">with_module_install()</a></code> 
+        </dt>
+        <dd>Executes a package installation command so that the installed package
+will be aware of the modules you currently have loaded.
+This means you can load the package without needing to load that module
+later, and also that you can load that package now, without restarting your
+R session.</dd>
+      </dl><dl><dt>
+          
+          <code><a href="with_only_modules.html">with_only_modules()</a></code> 
+        </dt>
+        <dd>Runs some R code with no modules loaded except for those that you provide,
+without affecting your current modules.</dd>
+      </dl></div><div class="section level2">
+      <h2 id="advanced-functions">Advanced Functions<a class="anchor" aria-label="anchor" href="#advanced-functions"></a></h2>
+      
       <p class="section-desc"></p><p>Powerful, but more complex functions you are less likely to need</p>
 
       
@@ -130,38 +162,6 @@ feature testing</dd>
         </dt>
         <dd>Runs <code>modulecmd</code> with some arguments. The shell is harcoded as "r" because
 (surprise!) that's the language you are using right now.</dd>
-      </dl></div><div class="section level2">
-      <h2 id="advanced-functions">Advanced Functions<a class="anchor" aria-label="anchor" href="#advanced-functions"></a></h2>
-      
-      <p class="section-desc"></p><p>Powerful, but more complex functions you are less likely to need</p>
-
-      
-    </div><div id="" class="section level2">
-      
-      
-      
-
-      <dl><dt>
-          
-          <code><a href="with_extra_modules.html">with_extra_modules()</a></code> 
-        </dt>
-        <dd>Runs some R code with additional modules loaded (in addition to the
-currently loaded modules), without affecting your current modules.</dd>
-      </dl><dl><dt>
-          
-          <code><a href="with_module_install.html">with_module_install()</a></code> 
-        </dt>
-        <dd>Executes a package installation command so that the installed package
-will be aware of the modules you currently have loaded.
-This means you can load the package without needing to load that module
-later, and also that you can load that package now, without restarting your
-R session.</dd>
-      </dl><dl><dt>
-          
-          <code><a href="with_only_modules.html">with_only_modules()</a></code> 
-        </dt>
-        <dd>Runs some R code with no modules loaded except for those that you provide,
-without affecting your current modules.</dd>
       </dl></div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
