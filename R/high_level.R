@@ -8,19 +8,22 @@
 #' @export
 #' @examples
 #' module_load("python")
-module_load = function(...){
-  modules = c(...)
-  code = c("load", modules) |> get_module_code()
+module_load = structure(
+  function(...){
+    modules = c(...)
+    code = c("load", modules) |> get_module_code()
 
-  if (length(code) == 0){
-    cli::cli_alert_info("Nothing to do. This module was probably already loaded. Use module_list() to verify.")
-  }
-  else {
-    eval(code)
-    cli::cli_alert_success("Successfully loaded {modules}")
-  }
-  invisible(TRUE)
-}
+    if (length(code) == 0){
+      cli::cli_alert_info("Nothing to do. This module was probably already loaded. Use module_list() to verify.")
+    }
+    else {
+      eval(code)
+      cli::cli_alert_success("Successfully loaded {modules}")
+    }
+    invisible(TRUE)
+  },
+  class = c("module_load", "dollar_function", "function")
+)
 
 #' Unloads one or more environment modules
 #' @param ... Any number of modules to unload as character vectors, which will
@@ -30,19 +33,22 @@ module_load = function(...){
 #' @export
 #' @examples
 #' module_unload("python")
-module_unload = function(...){
-  modules = c(...)
-  code = c("unload", modules) |> get_module_code()
+module_unload = structure(
+  function(...){
+    modules = c(...)
+    code = c("unload", modules) |> get_module_code()
 
-  if (length(code) == 0){
-    cli::cli_alert_info("Nothing to do. This module was probably not loaded. Use module_list() to verify.")
-  }
-  else {
-    eval(code)
-    cli::cli_alert_success("Successfully unloaded {modules}")
-  }
-  invisible(TRUE)
-}
+    if (length(code) == 0){
+      cli::cli_alert_info("Nothing to do. This module was probably not loaded. Use module_list() to verify.")
+    }
+    else {
+      eval(code)
+      cli::cli_alert_success("Successfully unloaded {modules}")
+    }
+    invisible(TRUE)
+  },
+  class = c("module_unload", "dollar_function", "function")
+)
 
 #' Lists all modules that are currently loaded
 #' @inherit get_module_output return

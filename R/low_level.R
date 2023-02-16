@@ -9,10 +9,11 @@ diff_libs = function(previous, current){
   )
 }
 
-#' Returns the current Environment Modules version which can be used for
-#' feature testing
+#' Get the current Environment Modules version
+#' @description This can e.g. be used to enable/disable functionality based
+#'  on whether the current version supports his.
 #' @return The current Environment Modules version as a [base::numeric_version]
-#' object, or NULL if no version can be detected.
+#'   object, or NULL if no version can be detected.
 #' @keywords low_level
 #' @export
 #' @examples
@@ -37,12 +38,14 @@ get_version = function(){
   }
 }
 
-#' Asserts that the current EnvironmentModules version is above a specified
-#' version. Raises an error if it is not.
+#' Ensures Environment Modules is above a certain version
+#' @description Asserts that the current Environment Modules version is above a
+#'   specified version. Raises an error if it is not.
 #' @param against The version to check against. By default this is the minimum
-#' version supported by this package.
+#'   version supported by this package.
 #' @param action A character scalar describing the action that is being
-#' attempted, in the infinitive conjugation (e.g. "to run X" or "for running Y")
+#'   attempted, in the infinitive conjugation (e.g. "to run X" or "for running
+#'   Y")
 #' @return An invisible value whose value may be changed in the future.
 #' @keywords low_level
 #' @export
@@ -81,14 +84,15 @@ get_modulescmd_binary = function(){
   }
 }
 
-#' Runs `modulecmd` with some arguments. The shell is harcoded as "r" because
-#' (surprise!) that's the language you are using right now.
+#' Runs `modulecmd` with some arguments
 #' @keywords low_level
-#' @details This is a low-level unexported function because users are
-#'  encouraged to use the higher level functions such as [module_load()]
+#' @details This is a low-level unexported function because users are encouraged
+#'   to use the higher level functions such as [module_load()]
+#' The shell is harcoded as "r" because (surprise!) that's the
+#'   language you are using right now
 #' @param args A character vector defining the module command. You do not need
-#'  to include the word "module". For example `module load zeromq` in bash
-#'  could be converted to `run_modulecmd(c("load", "zeromq"))`
+#'   to include the word "module". For example `module load zeromq` in bash
+#'   could be converted to `run_modulecmd(c("load", "zeromq"))`
 #' @param ... Arguments to forward to [base::system2()]
 #' @return A character scalar containing the command's output
 run_modulecmd = function(args, ...){
@@ -129,4 +133,11 @@ get_module_output = function(args, env = character()){
 #' get_loaded_modules()
 get_loaded_modules = function(){
   Sys.getenv("LOADEDMODULES") |> strsplit(":") |> unlist()
+}
+
+get_available_modules = function(){
+  Sys.getenv("MODULEPATH") |>
+    strsplit(":") |>
+    unlist() |>
+    list.files(recursive=TRUE, include.dirs=FALSE)
 }

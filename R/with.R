@@ -1,6 +1,7 @@
 # withr-style functions for running R code with modules temporarily loaded
 
-#' Executes a package installation command so that the installed package
+#' Bake environment modules into an R package
+#' @description Executes a package installation command so that the installed package
 #' will be aware of the modules you currently have loaded.
 #' This means you can load the package without needing to load that module
 #' later, and also that you can load that package now, without restarting your
@@ -28,8 +29,9 @@ with_module_install = function(expr){
   )
 }
 
-#' Runs some R code with additional modules loaded (in addition to the
-#' currently loaded modules), without affecting your current modules.
+#' Run some R code using an additional set of modules
+#' @description Runs some R code with additional modules loaded, in addition to
+#'   the currently loaded modules, without affecting your current modules.
 #' @param new A character vector of modules to load when executing `code`
 #' @param code Any R code to execute
 #' @return The result of evaluating `code`
@@ -44,8 +46,9 @@ with_extra_modules = withr::with_(set = function(modules){
   module_unload(modules)
 })
 
-#' Runs some R code with no modules loaded except for those that you provide,
-#' without affecting your current modules.
+#' Run some R code using a minimal set of modules
+#' @description Runs some R code with no modules loaded except for those that
+#'   you provide, without affecting your current modules.
 #' @param new A character vector of modules to load when executing `code`
 #' @param code Any R code to execute
 #' @return The result of evaluating `code`

@@ -2,11 +2,7 @@
 % Please edit documentation in R/with.R
 \name{with_module_install}
 \alias{with_module_install}
-\title{Executes a package installation command so that the installed package
-will be aware of the modules you currently have loaded.
-This means you can load the package without needing to load that module
-later, and also that you can load that package now, without restarting your
-R session.}
+\title{Bake environment modules into an R package}
 \usage{
 with_module_install(expr)
 }
