@@ -1,5 +1,8 @@
 # Implementation of autocompletions
 
+#' @importFrom utils .DollarNames
+NULL
+
 #' Get autocompletions for [module_load()]
 #' @param x The `module_load` function
 #' @param pattern Ignored
