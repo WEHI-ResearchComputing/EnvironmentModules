@@ -77,7 +77,7 @@ You can list the available modules:
 module_avail()
 ```
 
-You can filter to only modules starting with some prefix:
+You can also easily filter to only modules containing a substring:
 
 ```{r}
 module_avail("python")
@@ -111,6 +111,21 @@ module_load("python/3")
 module_list()
 ```
 
+## Autocomplete
+
+Both `module_load` and `module_unload` support a "magic" autocomplete that activates if you put a dollar sign after the function name.
+
+For example, you can type `module_load$` and the following will appear in RStudio:
+
+```{r}
+knitr::include_graphics("rstudio_autocomplete.png")
+```
+
+This autocomplete will adjust as to type, to let you quickly filter down all the available modules:
+
+```{r}
+knitr::include_graphics("rstudio_autocomplete_2.png")
+```
 ## Linking Shared Libraries
 
 Although `module_load()` will add a module's libraries to your `LD_LIBRARY_PATH`, which will allow you to compile packages against them, R will not necessarily be able to actually run packages that use these libraries.

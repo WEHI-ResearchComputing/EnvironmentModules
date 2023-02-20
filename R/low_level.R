@@ -124,20 +124,3 @@ get_module_output = function(args, env = character()){
   run_modulecmd(args = args, env = env, stderr = TRUE, stdout = TRUE) |>
     `class<-`(c("cli_ansi_string", "ansi_string", "character"))
 }
-
-#' Returns a vector of currently loaded environment modules
-#' @return A character vector, with one entry per module
-#' @export
-#' @keywords low_level
-#' @examples
-#' get_loaded_modules()
-get_loaded_modules = function(){
-  Sys.getenv("LOADEDMODULES") |> strsplit(":") |> unlist()
-}
-
-get_available_modules = function(){
-  Sys.getenv("MODULEPATH") |>
-    strsplit(":") |>
-    unlist() |>
-    list.files(recursive=TRUE, include.dirs=FALSE)
-}

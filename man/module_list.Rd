@@ -4,18 +4,15 @@
 \alias{module_list}
 \title{Lists all modules that are currently loaded}
 \usage{
-module_list(starts_with = NULL, contains = NULL)
+module_list(filter = "")
 }
 \arguments{
-\item{starts_with}{An optional character scalar. If provided, only modules
-whose name starts with this character string will be returned.}
-
-\item{contains}{An optional character scalar. This parameter is only
-supported in Environment Modules 4.3+. If provided, it will filter modules
-to only those containing this substring.}
+\item{filter}{If provided, a character scalar will be used to filter the
+results. Only modules containing \code{filter} as a substring will be returned.}
 }
 \value{
-A character vector with class "cli_ansi_string".
+A character vector whose entries correspond to modules that are
+currently loaded
 }
 \description{
 Lists all modules that are currently loaded

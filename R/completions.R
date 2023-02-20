@@ -9,7 +9,7 @@ NULL
 #' @return A character vector of available modules
 #' @export
 .DollarNames.module_load = function(x, pattern){
-  get_available_modules()
+  module_avail()
 }
 
 #' Calls a function using the name used after the dollar sign
@@ -27,5 +27,5 @@ NULL
 #' @return A character vector of currently-loaded modules
 #' @export
 .DollarNames.module_unload = function(x, pattern){
-  get_loaded_modules()
+  module_list()
 }
