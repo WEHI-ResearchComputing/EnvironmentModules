@@ -4,7 +4,11 @@
 \alias{module_avail}
 \title{Lists all modules available to be loaded}
 \usage{
-module_avail(starts_with = NULL, contains = NULL)
+module_avail(filter = "")
+}
+\arguments{
+\item{filter}{If provided, a character scalar will be used to filter the
+results. Only modules containing \code{filter} as a substring will be returned.}
 }
 \value{
 A character vector whose entries correspond to available to be
