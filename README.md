@@ -25,47 +25,35 @@ You can list the available modules:
 
 ``` r
 module_avail()
+#>   [1] "7zip/15.14.1"                            "adxv/1.9.12"                             "alphafold/2.0.0"                         "alphafold/2.0.1"                         "alphafold/2.0.2"                        
+#>   [6] "alphafold/2.1.1.0"                       "alphafold/2.1.2.0"                       "alphafold/2.2.0.0"                       "anaconda3/2019.03"                       "anaconda3/2020.07"                      
+#>  [11] "anaconda3/4.0.0"                         "anaconda3/4.3.1"                         "anaconda3/latest"                        "annovar/2015-12-14"                      "apache-ant/1.9.7"                       
+#>  [16] "apptainer/1.0.0"                         "apptainer/1.1.0"                         "aspera/3.5.4"                            "aspera/3.9.1"                            "aspera/3.9.6"                           
+#>  [21] "autoPROC/20211020"                       "autoPROC/20220608"                       "autoPROC/20230217"                       "autoSHARP/2.8"                           "awscli/1.16py2.7"                       
+#>  [26] "awscli/1.16py3.7"                        "awscli/1.22.89"                          "awscli/2.1.25"                           "awscli/2.5.2"                            "axel/2.17.10"                           
+#>  [31] "bamtools/2.4.1"                          "bamUtil/1.0.14"                          "bazel/0.26.1"                            "bazel/1.2.1"                             "bcftools/1.12"                          
+#>  [36] "bcftools/1.13"                           "bcftools/1.14"                           "bcftools/1.15"                           "bcftools/1.16"                           "bcftools/1.3.1"                         
+#>  [41] "bcftools/1.6"                            "bcftools/1.7"                            "bcftools/1.9"                            "bcl-convert/3.10.5"                      "bcl-convert/3.9.3"                      
+#>  [46] "bcl2fastq/2.19.1"                        "bcl2fastq/2.20.0"                        "beast/1.8.3"                             "beast2/2.4.0"                            "bedops/2.4.26"                          
+#>  [51] "bedtools/2.25.0"                         "bedtools/2.26.0"                         "binutils/2.35.2-gcc-4.8.5"               "binutils/2.35.2-gcc-9.1.0"               "biobambam2/2.0.182-gcc9.1.0"            
+#>  [56] "bismark/0.16.1"                          "bismark/0.19.0"                          "bismark/0.19.1"                          "bismark/0.20.0"                          "boost/1.55.0"                           
+#>  [61] "boost/1.58.0"                            "boost/1.60.0"                            "boost/1.66.0"                            "bowtie/1.1.2"                            "bowtie2/2.2.9"                          
+#>  [66] "bowtie2/2.3.2"                           "bowtie2/2.3.4.1"                         "bowtie2/2.4.4"                           "bpipe/0.9.9.2"                           "breakdancer/1.1.2"                      
+#>  [71] "breakdancer/1.4.5"                       "bsoft/2.1.0"                             "buster/20211020"                         "buster/20220608"                         "bwa/0.7.13"                             
+#>  [76] "bwa/0.7.15"                              "bwa/0.7.17"                              "bwtool/1.0"                              "bzip2/1.0.6"                             "caffe2/0.8.1"                           
+#>  [81] "canu/1.3"                                "canu/1.5"                                "ccp4/7.1"                                "ccp4/8.0"                                "ccpem/1.5.0"                            
+#>  [86] "cellprofiler/4.2.1"                      "cellprofiler/4.2.4"                      "cellranger-arc/1.0.1"                    "cellranger-arc/2.0.2"                    "cellranger-atac/1.0.0"                  
+#>  [91] "cellranger-atac/1.2.0"                   "cellranger-atac/2.1.0"                   "cellranger/2.2.0"                        "cellranger/3.0.1"                        "cellranger/3.0.2"                       
+#>  [96] "cellranger/3.1.0"                        "cellranger/4.0.0"                        "cellranger/5.0.0"                        "cellranger/6.0.0"                        "cellranger/6.1.2"                       
+....
 ```
 
-<head>
-</head>
-<pre>------------------- <span class="ansi ansi-bold ansi-color-4">/stornext/System/data/modulefiles/tools</span> --------------------
-<span class="ansi ansi-underline">apptainer/1.0.0</span>              <span class="ansi ansi-underline">mpich-slurm/3.3.2</span>                   <span class="ansi ansi-underline">wine/6.9</span>      
-apptainer/1.1.0              mpich-slurm/3.4.1                   wine/7.17     
-aspera/3.5.4                 mpich-slurm/3.4.2                   <span class="ansi ansi-underline">zeromq/4.3.4</span>  
-aspera/3.9.1                 <span class="ansi ansi-underline">mpich/3.3</span>                           <span class="ansi ansi-underline">zstd/1.5.0</span>    
-<span class="ansi ansi-underline">aspera/3.9.6</span>                 mpich/3.3.2                         
-awscli/1.16py2.7             <span class="ansi ansi-underline">ncftp/3.2.6</span>                         
-awscli/1.16py3.7             nextflow/22.04.5                    
-awscli/1.22.89               <span class="ansi ansi-underline">nextflow/22.10.4</span>                    
-awscli/2.1.25                <span class="ansi ansi-underline">ninja/1.10.0</span>                        
-<span class="ansi ansi-underline">awscli/2.5.2</span>                 <span class="ansi ansi-underline">nmap-ncat/7.91</span>                      
-<span class="ansi ansi-underline">axel/2.17.10</span>                 nodejs/10.24.1                      
-bazel/0.26.1                 nodejs/16.19.0                      
-<span class="ansi ansi-underline">bazel/1.2.1</span>                  <span class="ansi ansi-underline">nodejs/17.9.1</span>                       
-binutils/2.35.2-gcc-4.8.5    <span class="ansi ansi-underline">ocl-icd/2.3.1</span>                       
-binutils/2.35.2-gcc-9.1.0    <span class="ansi ansi-underline">octave/6.4.0-gcc11.1.0</span>              
-<span class="ansi ansi-underline">cluster-utils/18.08.1</span>        <span class="ansi ansi-underline">oneMKL/2022.1.0.223</span>                 
-<span class="ansi ansi-underline">cmake/3.25.1</span>                 <span class="ansi ansi-underline">openBLAS/0.3.6-gcc-9.1.0</span>            
-<span class="ansi ansi-underline">CUnit/2.1-3</span>                  openBLAS/0.3.21-gcc-11.1.0          
-<span class="ansi ansi-underline">curl/7.65.0</span>                  openBLAS/0.3.21-gcc-11.1.0-skylake  
-....
-</pre>
-
-You can filter to only modules starting with some prefix:
+You can also easily filter to only modules containing a substring:
 
 ``` r
 module_avail("python")
+#>  [1] "python/2.7.18"      "python/3.10.4"      "python/3.5.1"       "python/3.5.3"       "python/3.6.5-intel" "python/3.7.0"       "python/3.7.13"      "python/3.8.3"       "python/3.8.8"       "python/3.9.5"
 ```
-
-<head>
-</head>
-<pre>----------------- <span class="ansi ansi-bold ansi-color-4">/stornext/System/data/modulefiles/bioinf/its</span> -----------------
-<span class="ansi ansi-bold">python</span>/2.7.18  <span class="ansi ansi-bold">python</span>/3.5.3        <span class="ansi ansi-bold">python</span>/3.7.0   <span class="ansi ansi-bold">python</span>/3.8.3  <span class="ansi ansi-bold">python</span>/3.9.5   
-<span class="ansi ansi-bold">python</span>/3.5.1   <span class="ansi ansi-bold">python</span>/3.6.5-intel  <span class="ansi ansi-bold">python</span>/3.7.13  <span class="ansi ansi-bold ansi-underline">python</span>/3.8.8  <span class="ansi ansi-bold">python</span>/3.10.4  
-
-Key:
-<span class="ansi ansi-bold ansi-color-4">modulepath</span>  <span class="ansi ansi-underline">default-version</span>  </pre>
 
 ## Loading and Unloading Modules
 
@@ -98,15 +86,30 @@ You can list modules that have been already loaded with `module_list()`:
 module_load("python/3")
 #> ✔ Successfully loaded python/3
 module_list()
+#> [1] "python/3.8.8"
 ```
 
-<head>
-</head>
-<pre>Currently Loaded Modulefiles:
- 1) <span class="ansi ansi-underline">python/3.8.8</span>  
+## Autocomplete
 
-Key:
-<span class="ansi ansi-underline">default-version</span>  </pre>
+Both `module_load` and `module_unload` support a “magic” autocomplete
+that activates if you put a dollar sign after the function name.
+
+For example, you can type `module_load$` and the following will appear
+in RStudio:
+
+![](vignettes/rstudio_autocomplete.png)
+
+This autocomplete will adjust as to type, to let you quickly filter down
+all the available modules:
+
+![](vignettes/rstudio_autocomplete_2.png) To actually load the module,
+just press enter:
+
+``` r
+module_load$`python/3.7.13`
+#> ✔ Successfully loaded python/3.7.13
+#> [1] TRUE
+```
 
 ## Linking Shared Libraries
 
@@ -120,9 +123,8 @@ on the `hdf5` library package. We don’t have `hdf5` loaded, so it will
 fail:
 
 ``` r
-install.packages("hdf5r", quiet=TRUE)
-#> Warning in install.packages :
-#>   installation of package 'hdf5r' had non-zero exit status
+utils::install.packages("hdf5r", quiet=TRUE)
+#> Warning in utils::install.packages("hdf5r", quiet = TRUE): installation of package 'hdf5r' had non-zero exit status
 ```
 
 Let’s see what happens if we load the appropriate module. Firstly, we
@@ -130,18 +132,8 @@ need to find out what the module is called:
 
 ``` r
 module_avail("hdf5")
+#> [1] "hdf5-mpich/1.10.5_3.3" "hdf5/1.10.5"           "hdf5/1.12.1"           "hdf5/1.12.2"           "hdf5/1.8.16"           "hdf5/1.8.20"           "hdf5/1.8.21"
 ```
-
-<head>
-</head>
-<pre>------------------- <span class="ansi ansi-bold ansi-color-4">/stornext/System/data/modulefiles/tools</span> --------------------
-<span class="ansi ansi-bold ansi-underline">hdf5</span>-mpich/1.10.5_3.3  
-
------------------ <span class="ansi ansi-bold ansi-color-4">/stornext/System/data/modulefiles/bioinf/its</span> -----------------
-<span class="ansi ansi-bold">hdf5</span>/1.8.16  <span class="ansi ansi-bold">hdf5</span>/1.8.20  <span class="ansi ansi-bold">hdf5</span>/1.8.21  <span class="ansi ansi-bold">hdf5</span>/1.10.5  <span class="ansi ansi-bold ansi-underline">hdf5</span>/1.12.1  <span class="ansi ansi-bold">hdf5</span>/1.12.2  
-
-Key:
-<span class="ansi ansi-bold ansi-color-4">modulepath</span>  <span class="ansi ansi-underline">default-version</span>  </pre>
 
 We can now load the module:
 
@@ -153,7 +145,7 @@ module_load("hdf5/1.12.2")
 Now let’s try again:
 
 ``` r
-install.packages("hdf5r", quiet=TRUE)
+utils::install.packages("hdf5r", quiet=TRUE)
 ```
 
 Finally, we can load the package itself… or can we?
@@ -177,7 +169,7 @@ that you won’t have to restart R, or even load the modules the next time
 you want to use the package:
 
 ``` r
-install.packages("hdf5r", quiet=TRUE) |> with_module_install()
+utils::install.packages("hdf5r", quiet=TRUE) |> with_module_install()
 ```
 
 ``` r

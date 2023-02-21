@@ -22,7 +22,8 @@ Suggests:
     rmarkdown,
     testthat (>= 3.0.0),
     pkgdown,
-    remotes
+    remotes,
+    rprojroot
 Config/testthat/edition: 3
 VignetteBuilder: knitr
 License: GPL (>= 3)

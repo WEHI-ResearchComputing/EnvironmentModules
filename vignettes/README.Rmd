@@ -12,17 +12,6 @@ vignette: >
 # rmarkdown::render("vignettes/README.Rmd", output_format = "github_document", output_dir = getwd())
 
 process_ansi_string = function(x, options) {
-  # Truncate the output if it's too long.
-  # Adapted from: https://bookdown.org/yihui/rmarkdown-cookbook/hook-truncate.html
-  if (!is.null(n <- options$out.lines)) {
-    attribs = attributes(x)
-    if (length(x) > n) {
-      x = c(head(x, n), "....\n")
-    }
-    x = paste(x, collapse = "\n")
-    attributes(x) = attribs
-  }
-  
   # Style it as HTML
   # Adapted from: https://cli.r-lib.org/reference/ansi_html.html#ref-examples
   hcode = paste(cli::ansi_html(x), collapse = "\n")
@@ -45,7 +34,22 @@ process_ansi_string = function(x, options) {
 knit_print.cliMessage = process_ansi_string
 knit_print.ansi_string = process_ansi_string
 
+knitr::opts_knit$set(root.dir = rprojroot::find_package_root_file())
 knitr::opts_chunk$set(collapse = TRUE, comment = "#>", eval = requireNamespace("pkgdown") && !pkgdown::in_pkgdown())
+hook_output <- knitr::knit_hooks$get("output")
+knitr::knit_hooks$set(output = function(x, options) {
+  # Truncate the output if it's too long.
+  # https://bookdown.org/yihui/rmarkdown-cookbook/hook-truncate.html
+  if (!is.null(n <- options$out.lines)) {
+    x <- xfun::split_lines(x)
+    if (length(x) > n) {
+      # truncate the output
+      x <- c(head(x, n), "....\n")
+    }
+    x <- paste(x, collapse = "\n")
+  }
+  hook_output(x, options)
+})
 options(
     repos=c(CRAN="https://cloud.r-project.org/")
 )
@@ -77,7 +81,7 @@ You can list the available modules:
 module_avail()
 ```
 
-You can filter to only modules starting with some prefix:
+You can also easily filter to only modules containing a substring:
 
 ```{r}
 module_avail("python")
@@ -111,6 +115,23 @@ module_load("python/3")
 module_list()
 ```
 
+## Autocomplete
+
+Both `module_load` and `module_unload` support a "magic" autocomplete that activates if you put a dollar sign after the function name.
+
+For example, you can type `module_load$` and the following will appear in RStudio:
+
+![](vignettes/rstudio_autocomplete.png)
+
+This autocomplete will adjust as to type, to let you quickly filter down all the available modules:
+
+![](vignettes/rstudio_autocomplete_2.png)
+To actually load the module, just press enter:
+
+```{r}
+module_load$`python/3.7.13`
+```
+
 ## Linking Shared Libraries
 
 Although `module_load()` will add a module's libraries to your `LD_LIBRARY_PATH`, which will allow you to compile packages against them, R will not necessarily be able to actually run packages that use these libraries.
@@ -118,7 +139,7 @@ Although `module_load()` will add a module's libraries to your `LD_LIBRARY_PATH`
 For example, let's say we want to use the `hdf5r` package, which depends on the `hdf5` library package. We don't have `hdf5` loaded, so it will fail:
 
 ```{r}
-install.packages("hdf5r", quiet=TRUE)
+utils::install.packages("hdf5r", quiet=TRUE)
 ```
 
 Let's see what happens if we load the appropriate module. Firstly, we need to find out what the module is called:
@@ -136,7 +157,7 @@ module_load("hdf5/1.12.2")
 Now let's try again:
 
 ```{r}
-install.packages("hdf5r", quiet=TRUE)
+utils::install.packages("hdf5r", quiet=TRUE)
 ```
 
 Finally, we can load the package itself... or can we?
@@ -153,7 +174,7 @@ This means that you won't have to restart R, or even load the modules the next t
 
 
 ```{r}
-install.packages("hdf5r", quiet=TRUE) |> with_module_install()
+utils::install.packages("hdf5r", quiet=TRUE) |> with_module_install()
 ```
 
 ```{r}

@@ -2,8 +2,7 @@
 % Please edit documentation in R/with.R
 \name{with_only_modules}
 \alias{with_only_modules}
-\title{Runs some R code with no modules loaded except for those that you provide,
-without affecting your current modules.}
+\title{Run some R code using a minimal set of modules}
 \usage{
 with_only_modules(new, code)
 }
@@ -16,8 +15,8 @@ with_only_modules(new, code)
 The result of evaluating \code{code}
 }
 \description{
-Runs some R code with no modules loaded except for those that you provide,
-without affecting your current modules.
+Runs some R code with no modules loaded except for those that
+you provide, without affecting your current modules.
 }
 \examples{
 system2("python3", "--version") |> with_only_modules("python", code=_)

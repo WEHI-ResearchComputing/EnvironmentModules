@@ -2,8 +2,7 @@
 % Please edit documentation in R/with.R
 \name{with_extra_modules}
 \alias{with_extra_modules}
-\title{Runs some R code with additional modules loaded (in addition to the
-currently loaded modules), without affecting your current modules.}
+\title{Run some R code using an additional set of modules}
 \usage{
 with_extra_modules(new, code)
 }
@@ -16,8 +15,8 @@ with_extra_modules(new, code)
 The result of evaluating \code{code}
 }
 \description{
-Runs some R code with additional modules loaded (in addition to the
-currently loaded modules), without affecting your current modules.
+Runs some R code with additional modules loaded, in addition to
+the currently loaded modules, without affecting your current modules.
 }
 \examples{
 system2("python3", "--version") |> with_extra_modules("python", code=_)

@@ -2,8 +2,7 @@
 % Please edit documentation in R/low_level.R
 \name{check_version}
 \alias{check_version}
-\title{Asserts that the current EnvironmentModules version is above a specified
-version. Raises an error if it is not.}
+\title{Ensures Environment Modules is above a certain version}
 \usage{
 check_version(
   against = MIN_SUPPORTED_VERSION,
@@ -15,14 +14,15 @@ check_version(
 version supported by this package.}
 
 \item{action}{A character scalar describing the action that is being
-attempted, in the infinitive conjugation (e.g. "to run X" or "for running Y")}
+attempted, in the infinitive conjugation (e.g. "to run X" or "for running
+Y")}
 }
 \value{
 An invisible value whose value may be changed in the future.
 }
 \description{
-Asserts that the current EnvironmentModules version is above a specified
-version. Raises an error if it is not.
+Asserts that the current Environment Modules version is above a
+specified version. Raises an error if it is not.
 }
 \examples{
 check_version()

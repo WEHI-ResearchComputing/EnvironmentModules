@@ -8,19 +8,22 @@
 #' @export
 #' @examples
 #' module_load("python")
-module_load = function(...){
-  modules = c(...)
-  code = c("load", modules) |> get_module_code()
+module_load = structure(
+  function(...){
+    modules = c(...)
+    code = c("load", modules) |> get_module_code()
 
-  if (length(code) == 0){
-    cli::cli_alert_info("Nothing to do. This module was probably already loaded. Use module_list() to verify.")
-  }
-  else {
-    eval(code)
-    cli::cli_alert_success("Successfully loaded {modules}")
-  }
-  invisible(TRUE)
-}
+    if (length(code) == 0){
+      cli::cli_alert_info("Nothing to do. This module was probably already loaded. Use module_list() to verify.")
+    }
+    else {
+      eval(code)
+      cli::cli_alert_success("Successfully loaded {modules}")
+    }
+    invisible(TRUE)
+  },
+  class = c("module_load", "dollar_function", "function")
+)
 
 #' Unloads one or more environment modules
 #' @param ... Any number of modules to unload as character vectors, which will
@@ -30,54 +33,51 @@ module_load = function(...){
 #' @export
 #' @examples
 #' module_unload("python")
-module_unload = function(...){
-  modules = c(...)
-  code = c("unload", modules) |> get_module_code()
+module_unload = structure(
+  function(...){
+    modules = c(...)
+    code = c("unload", modules) |> get_module_code()
 
-  if (length(code) == 0){
-    cli::cli_alert_info("Nothing to do. This module was probably not loaded. Use module_list() to verify.")
-  }
-  else {
-    eval(code)
-    cli::cli_alert_success("Successfully unloaded {modules}")
-  }
-  invisible(TRUE)
-}
+    if (length(code) == 0){
+      cli::cli_alert_info("Nothing to do. This module was probably not loaded. Use module_list() to verify.")
+    }
+    else {
+      eval(code)
+      cli::cli_alert_success("Successfully unloaded {modules}")
+    }
+    invisible(TRUE)
+  },
+  class = c("module_unload", "dollar_function", "function")
+)
 
 #' Lists all modules that are currently loaded
-#' @inherit get_module_output return
-#' @param starts_with An optional character scalar. If provided, only modules
-#' whose name starts with this character string will be returned.
-#' @param contains An optional character scalar. This parameter is only
-#' supported in Environment Modules 4.3+. If provided, it will filter modules
-#' to only those containing this substring.
+#' @return A character vector whose entries correspond to modules that are
+#'  currently loaded
+#' @param filter If provided, a character scalar will be used to filter the
+#'  results. Only modules containing `filter` as a substring will be returned.
 #' @keywords high_level
 #' @export
 #' @examples
 #' module_list()
-module_list = function(starts_with = NULL, contains = NULL){
-  args = c("list", starts_with)
-  if (!is.null(contains)){
-    check_version("4.3.0", "to use the contains argument")
-    args = c(args, "--contains", contains)
-  }
-  get_module_output(args)
+module_list = function(filter = ""){
+  modules = Sys.getenv("LOADEDMODULES") |> strsplit(":") |> unlist()
+  modules[grepl(filter, modules, fixed=TRUE)]
 }
 
 #' Lists all modules available to be loaded
 #' @inheritParams module_list
-#' @inherit get_module_output return
+#' @return A character vector whose entries correspond to available to be
+#'  loaded
 #' @keywords high_level
 #' @export
 #' @examples
 #' module_avail()
-module_avail = function(starts_with = NULL, contains = NULL){
-  args = c("avail", starts_with)
-  if (!is.null(contains)){
-    check_version("4.3.0", "to use the contains argument")
-    args = c(args, "--contains", contains)
-  }
-  get_module_output(args = args)
+module_avail = function(filter = ""){
+  modules = Sys.getenv("MODULEPATH") |>
+    strsplit(":") |>
+    unlist() |>
+    list.files(recursive=TRUE, include.dirs=FALSE)
+  modules[grepl(filter, modules, fixed=TRUE)]
 }
 
 #' Unloads all modules that are currently loaded

@@ -2,8 +2,7 @@
 % Please edit documentation in R/low_level.R
 \name{run_modulecmd}
 \alias{run_modulecmd}
-\title{Runs \code{modulecmd} with some arguments. The shell is harcoded as "r" because
-(surprise!) that's the language you are using right now.}
+\title{Runs \code{modulecmd} with some arguments}
 \usage{
 run_modulecmd(args, ...)
 }
@@ -18,11 +17,12 @@ could be converted to \code{run_modulecmd(c("load", "zeromq"))}}
 A character scalar containing the command's output
 }
 \description{
-Runs \code{modulecmd} with some arguments. The shell is harcoded as "r" because
-(surprise!) that's the language you are using right now.
+Runs \code{modulecmd} with some arguments
 }
 \details{
-This is a low-level unexported function because users are
-encouraged to use the higher level functions such as \code{\link[=module_load]{module_load()}}
+This is a low-level unexported function because users are encouraged
+to use the higher level functions such as \code{\link[=module_load]{module_load()}}
+The shell is harcoded as "r" because (surprise!) that's the
+language you are using right now
 }
 \keyword{low_level}

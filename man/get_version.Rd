@@ -2,8 +2,7 @@
 % Please edit documentation in R/low_level.R
 \name{get_version}
 \alias{get_version}
-\title{Returns the current Environment Modules version which can be used for
-feature testing}
+\title{Get the current Environment Modules version}
 \usage{
 get_version()
 }
@@ -12,8 +11,8 @@ The current Environment Modules version as a \link[base:numeric_version]{base::n
 object, or NULL if no version can be detected.
 }
 \description{
-Returns the current Environment Modules version which can be used for
-feature testing
+This can e.g. be used to enable/disable functionality based
+on whether the current version supports his.
 }
 \examples{
 version = check_version()
