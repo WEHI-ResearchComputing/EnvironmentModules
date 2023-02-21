@@ -73,15 +73,6 @@ test_that("module_load() adjusts the environment and module_unload() resets it",
   )
 })
 
-test_that("module_avail() produces output", {
-  module_avail() |> nzchar() |> any() |> expect_true()
-})
-
-test_that("module_list() produces output", {
-  check_wehi()
-  module_list() |> nzchar() |> any() |> expect_true()
-})
-
 test_that("module_swap() works", {
   check_wehi()
   initial_env = Sys.getenv("LD_LIBRARY_PATH")
@@ -101,12 +92,20 @@ test_that("module_swap() works", {
   )
 })
 
-test_that("get_loaded_modules() works", {
+test_that("module_list() works", {
+  check_wehi()
+
   module_purge()
   module_load("python", "bcftools")
-  loaded = get_loaded_modules()
+  loaded = module_list()
   expect_length(loaded, 2)
   grepl("python", loaded) |> any() |> expect_true()
   grepl("bcftools", loaded) |> any() |> expect_true()
   module_unload("python", "bcftools")
+})
+
+test_that("module_avail() works", {
+  check_wehi()
+
+  module_avail() |> length() |> expect_gt(500)
 })

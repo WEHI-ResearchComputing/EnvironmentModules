@@ -8,13 +8,13 @@ find_package_libs = function(package, ...){
 test_that("with_extra_modules() and with_only_modules() adjust modules as expected", {
   with_only_modules("python", {
     # Initially we should have only Python loaded
-    modules = get_loaded_modules()
+    modules = module_list()
     expect_length(modules, 1)
     grepl("python", modules) |> expect_true()
 
     with_extra_modules(new = "bcftools", code = {
       # If we load bcftools on top of that, we should now have two modules loaded
-      modules = get_loaded_modules()
+      modules = module_list()
       expect_length(modules, 2)
       grepl("python", modules) |> any() |> expect_true()
       grepl("bcftools", modules) |> any() |> expect_true()

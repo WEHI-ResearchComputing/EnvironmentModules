@@ -57,7 +57,7 @@ with_extra_modules = withr::with_(set = function(modules){
 #' @examples
 #' system2("python3", "--version") |> with_only_modules("python", code=_)
 with_only_modules = withr::with_(function(modules){
-  current_modules = get_loaded_modules()
+  current_modules = module_list()
   module_purge()
   if (length(modules) > 0) {
     # Only load modules if we have a non empty vector
