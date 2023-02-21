@@ -102,8 +102,9 @@ in RStudio:
 This autocomplete will adjust as to type, to let you quickly filter down
 all the available modules:
 
-![](vignettes/rstudio_autocomplete_2.png) To actually load the module,
-just press enter:
+![](vignettes/rstudio_autocomplete_2.png)
+
+To actually load the module, just press enter:
 
 ``` r
 module_load$`python/3.7.13`
