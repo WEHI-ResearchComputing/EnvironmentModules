@@ -102,6 +102,15 @@ in RStudio:
 This autocomplete will adjust as to type, to let you quickly filter down
 all the available modules:
 
+![](vignettes/rstudio_autocomplete_2.png) To actually load the module,
+just press enter:
+
+``` r
+module_load$`python/3.7.13`
+#> ✔ Successfully loaded python/3.7.13
+#> [1] TRUE
+```
+
 ## Linking Shared Libraries
 
 Although `module_load()` will add a module’s libraries to your
@@ -143,6 +152,9 @@ Finally, we can load the package itself… or can we?
 
 ``` r
 library(hdf5r)
+#> Error: package or namespace load failed for 'hdf5r' in dyn.load(file, DLLpath = DLLpath, ...):
+#>  unable to load shared object '/stornext/Home/data/allstaff/m/milton.m/R/x86_64-pc-linux-gnu-library/4.2/hdf5r/libs/hdf5r.so':
+#>   libhdf5_hl.so.200: cannot open shared object file: No such file or directory
 ```
 
 As alluded to above, R doesn’t actually load every new library that
