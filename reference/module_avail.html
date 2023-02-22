@@ -48,318 +48,757 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">module_avail</span><span class="op">(</span>starts_with <span class="op">=</span> <span class="cn">NULL</span>, contains <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">module_avail</span><span class="op">(</span>filter <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <dl><dt>starts_with</dt>
-<dd><p>An optional character scalar. If provided, only modules
-whose name starts with this character string will be returned.</p></dd>
-
-
-<dt>contains</dt>
-<dd><p>An optional character scalar. This parameter is only
-supported in Environment Modules 4.3+. If provided, it will filter modules
-to only those containing this substring.</p></dd>
+    <dl><dt>filter</dt>
+<dd><p>If provided, a character scalar will be used to filter the
+results. Only modules containing <code>filter</code> as a substring will be returned.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>A character vector with class "cli_ansi_string".</p>
+<p>A character vector whose entries correspond to available to be
+loaded</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">module_avail</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;cli_ansi_string&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] ------------------- <span style="color: #5555FF; font-weight: bold;">/stornext/System/data/modulefiles/tools</span> --------------------                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2] <span style="text-decoration: underline;">apptainer/1.0.0</span>              <span style="text-decoration: underline;">mpich-slurm/3.3.2</span>                   <span style="text-decoration: underline;">wine/6.9</span>        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3] apptainer/1.1.0              mpich-slurm/3.4.1                   wine/7.17                                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4] aspera/3.5.4                 mpich-slurm/3.4.2                   <span style="text-decoration: underline;">zeromq/4.3.4</span>                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [5] aspera/3.9.1                 <span style="text-decoration: underline;">mpich/3.3</span>                           <span style="text-decoration: underline;">zstd/1.5.0</span>                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [6] <span style="text-decoration: underline;">aspera/3.9.6</span>                 mpich/3.3.2                                                                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [7] awscli/1.16py2.7             <span style="text-decoration: underline;">ncftp/3.2.6</span>                                                                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [8] awscli/1.16py3.7             nextflow/22.04.5                                                                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [9] awscli/1.22.89               <span style="text-decoration: underline;">nextflow/22.10.4</span>                                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [10] awscli/2.1.25                <span style="text-decoration: underline;">ninja/1.10.0</span>                                                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [11] <span style="text-decoration: underline;">awscli/2.5.2</span>                 <span style="text-decoration: underline;">nmap-ncat/7.91</span>                                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [12] <span style="text-decoration: underline;">axel/2.17.10</span>                 nodejs/10.24.1                                                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [13] bazel/0.26.1                 nodejs/16.19.0                                                                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [14] <span style="text-decoration: underline;">bazel/1.2.1</span>                  <span style="text-decoration: underline;">nodejs/17.9.1</span>                                                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [15] binutils/2.35.2-gcc-4.8.5    <span style="text-decoration: underline;">ocl-icd/2.3.1</span>                                                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [16] binutils/2.35.2-gcc-9.1.0    <span style="text-decoration: underline;">octave/6.4.0-gcc11.1.0</span>                                                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [17] <span style="text-decoration: underline;">cluster-utils/18.08.1</span>        <span style="text-decoration: underline;">oneMKL/2022.1.0.223</span>                                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [18] <span style="text-decoration: underline;">cmake/3.25.1</span>                 <span style="text-decoration: underline;">openBLAS/0.3.6-gcc-9.1.0</span>                                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [19] <span style="text-decoration: underline;">CUnit/2.1-3</span>                  openBLAS/0.3.21-gcc-11.1.0                                                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [20] <span style="text-decoration: underline;">curl/7.65.0</span>                  openBLAS/0.3.21-gcc-11.1.0-skylake                                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [21] <span style="text-decoration: underline;">depot_tools/6c7b829</span>          openCV/2.4.13.6                                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [22] <span style="text-decoration: underline;">doublecmd/0.9.10.gtk2</span>        <span style="text-decoration: underline;">openCV/4.2.0</span>                                                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [23] <span style="text-decoration: underline;">dua-cli/2.17.8</span>               openjdk/1.8.0                                                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [24] dua-cli/2.19.0               openjdk/13.0.2                                                                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [25] elbencho/1.7-1cu10.1         openjdk/14.0.2                                                                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [26] <span style="text-decoration: underline;">evince/3.28.2</span>                openjdk/15.0.2                                                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [27] <span style="text-decoration: underline;">feh/3.6.3</span>                    openjdk/16.0.1                                                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [28] <span style="text-decoration: underline;">fftw/3.3.9</span>                   openjdk/17.0.2                                                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [29] fio/3.16                     <span style="text-decoration: underline;">openjdk/18.0.2</span>                                                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [30] <span style="text-decoration: underline;">fio/3.19</span>                     openMPI-slurm/4.1.0                                                            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [31] <span style="text-decoration: underline;">fluxbox/1.3.7</span>                <span style="text-decoration: underline;">openMPI-slurm/4.1.2</span>                                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [32] <span style="text-decoration: underline;">gdal/2.4.4</span>                   openmpi/2.1.0                                                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [33] gdal/3.6.2                   openmpi/2.1.1                                                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [34] <span style="text-decoration: underline;">git/2.37.1</span>                   openmpi/3.0.0                                                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [35] <span style="text-decoration: underline;">gnuplot/5.2.6</span>                <span style="text-decoration: underline;">openmpi/4.1.1</span>                                                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [36] <span style="text-decoration: underline;">go/1.19.4</span>                    openmpi/4.1.1-slurm                                                            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [37] <span style="text-decoration: underline;">groovy/4.0.0</span>                 <span style="text-decoration: underline;">openMPI/4.1.4</span>                                                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [38] <span style="text-decoration: underline;">gzip/1.10</span>                    openSSL/1.0.2r                                                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [39] <span style="text-decoration: underline;">hdf5-mpich/1.10.5_3.3</span>        openSSL/1.1.1b                                                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [40] <span style="text-decoration: underline;">hpl/2.3</span>                      openSSL/1.1.1g                                                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [41] <span style="text-decoration: underline;">icewm/2.8.0</span>                  openSSL/1.1.1k                                                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [42] <span style="text-decoration: underline;">iftop/1.0</span>                    <span style="text-decoration: underline;">openSSL/1.1.1n</span>                                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [43] ImageMagick/6.9.11-22        <span style="text-decoration: underline;">owncloud-client/2.3.3</span>                                                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [44] <span style="text-decoration: underline;">ImageMagick/7.0.9-5</span>          pandoc/2.14.2                                                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [45] <span style="text-decoration: underline;">intel-ipp/2019.5.281</span>         <span style="text-decoration: underline;">pandoc/2.19.2</span>                                                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [46] <span style="text-decoration: underline;">intel-mkl/2019.3.199</span>         <span style="text-decoration: underline;">pgsql/15.1</span>                                                       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [47] <span style="text-decoration: underline;">intel-mpi/2019.3.199</span>         <span style="text-decoration: underline;">pigz/2.6</span>                                                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [48] <span style="text-decoration: underline;">intel-tbb/2019.3.199</span>         pmix/2.2.5                                                                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [49] intel_mkl_2019/2019.5.075    <span style="text-decoration: underline;">pmix/3.2.3</span>                                                                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [50] intel_mpi_2019/2019.5.075    <span style="text-decoration: underline;">proj/4.9.3</span>                                                                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [51] <span style="text-decoration: underline;">ior-slurm/3.2.1mpich3.3</span>      proj/6.3.2                                                                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [52] ior-slurm/3.2.1openMPI4.0.2  proj/9.1.0                                                                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [53] <span style="text-decoration: underline;">ior/3.2.1mpio4.0.1</span>           <span style="text-decoration: underline;">qpdf/10.0.1</span>                                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [54] iozone/3.491                 <span style="text-decoration: underline;">quarto/1.1.189</span>                                                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [55] julia/0.6.4                  <span style="text-decoration: underline;">rclone/1.55.0</span>                                                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [56] julia/1.0.1                  <span style="text-decoration: underline;">rstudio_singularity/1.0.0</span>                                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [57] julia/1.5.3                  <span style="text-decoration: underline;">rust/1.63.0</span>                                                                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [58] <span style="text-decoration: underline;">julia/1.8.5</span>                  <span style="text-decoration: underline;">slurm-contribs/20.11.5</span>                                           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [59] <span style="text-decoration: underline;">libaio/0.3.111</span>               <span style="text-decoration: underline;">snakemake/7.12.0</span>                                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [60] <span style="text-decoration: underline;">libiconv/1.16</span>                sqlite/3.38.5                                                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [61] <span style="text-decoration: underline;">lz4/1.9.3</span>                    sqlite/3.40.0                                                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [62] <span style="text-decoration: underline;">mariadb-connector-c/3.1.11</span>   <span style="text-decoration: underline;">sqlite/3.40.1</span>                                                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [63] <span style="text-decoration: underline;">maven/3.3.9</span>                  <span style="text-decoration: underline;">stubl/0.0.10</span>                                                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [64] mediaflux-data-mover/1.0.8   <span style="text-decoration: underline;">tar/1.34</span>                                                                       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [65] mediaflux-data-mover/1.0.11  <span style="text-decoration: underline;">tcpdump/4.9.2</span>                                                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [66] <span style="text-decoration: underline;">mediaflux-data-mover/1.0.12</span>  <span style="text-decoration: underline;">trickle/1.07</span>                                                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [67] mediaflux-data-mover/1.1.15  <span style="text-decoration: underline;">v8/3.14.5.10</span>                                                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [68] <span style="text-decoration: underline;">mpfr/4.1.0</span>                   <span style="text-decoration: underline;">websockify/0.9.0</span>                                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [69]                                                                                                                           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [70] ----------------- <span style="color: #5555FF; font-weight: bold;">/stornext/System/data/modulefiles/bioinf/its</span> -----------------                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [71] <span style="text-decoration: underline;">7zip/15.14.1</span>                 hdf5/1.8.20                R/3.6.0                                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [72] anaconda3/4.0.0              hdf5/1.8.21                R/3.6.0m                                                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [73] anaconda3/4.3.1              hdf5/1.10.5                R/3.6.1                                                           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [74] <span style="text-decoration: underline;">anaconda3/2019.03</span>            <span style="text-decoration: underline;">hdf5/1.12.1</span>                R/3.6.1m                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [75] anaconda3/2020.07            hdf5/1.12.2                R/3.6.2                                                           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [76] anaconda3/latest             <span style="text-decoration: underline;">hdfview/2.11.0</span>             R/3.6.3                                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [77] <span style="text-decoration: underline;">annovar/2015-12-14</span>           <span style="text-decoration: underline;">HiC-Pro/2.11.4</span>             R/4.0.0                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [78] <span style="text-decoration: underline;">apache-ant/1.9.7</span>             hisat2/2.0.3               R/4.0.1                                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [79] <span style="text-decoration: underline;">bamtools/2.4.1</span>               <span style="text-decoration: underline;">hisat2/2.0.5</span>               R/4.0.2                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [80] <span style="text-decoration: underline;">bamUtil/1.0.14</span>               hmmer/2.3.2                R/4.0.3                                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [81] bcftools/1.3.1               hmmer/3.1b2                R/4.0.4                                                           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [82] bcftools/1.6                 hmmer/3.1b2-mpi            R/4.0.5                                                           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [83] bcftools/1.7                 hmmer/3.2.1                R/4.1.0                                                           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [84] bcftools/1.9                 <span style="text-decoration: underline;">hmmer/3.3.2</span>                R/4.1.1                                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [85] bcftools/1.12                <span style="text-decoration: underline;">homer/4.11</span>                 R/4.1.2                                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [86] bcftools/1.13                <span style="text-decoration: underline;">htop/2.0.2</span>                 R/4.1.3                                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [87] bcftools/1.14                htslib/1.3.1               R/4.2.0                                                           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [88] bcftools/1.15                htslib/1.3.2               R/4.2.1                                                           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [89] <span style="text-decoration: underline;">bcftools/1.16</span>                htslib/1.4.1               <span style="text-decoration: underline;">R/MKL/4.2.1</span>                           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [90] bcl-convert/3.9.3            htslib/1.5                 R/openBLAS/3.6.2                                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [91] <span style="text-decoration: underline;">bcl-convert/3.10.5</span>           htslib/1.6                 <span style="text-decoration: underline;">R/openBLAS/4.2.1</span>                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [92] <span style="text-decoration: underline;">bcl2fastq/2.19.1</span>             htslib/1.7                 <span style="text-decoration: underline;">rc-tools/1.0</span>                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [93] bcl2fastq/2.20.0             htslib/1.9                 <span style="text-decoration: underline;">RepeatMaker/4.1.2</span>                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [94] <span style="text-decoration: underline;">beast/1.8.3</span>                  htslib/1.10.2              <span style="text-decoration: underline;">rmblast/2.11.0</span>                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [95] <span style="text-decoration: underline;">beast2/2.4.0</span>                 htslib/1.12                <span style="text-decoration: underline;">rnammer/1.2</span>                           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [96] <span style="text-decoration: underline;">bedops/2.4.26</span>                htslib/1.13                <span style="text-decoration: underline;">root/6.10.00</span>                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [97] bedtools/2.25.0              htslib/1.14                rsem/1.3.0                                                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [98] <span style="text-decoration: underline;">bedtools/2.26.0</span>              <span style="text-decoration: underline;">htslib/1.15</span>                <span style="text-decoration: underline;">rsem/1.3.1</span>              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [99] <span style="text-decoration: underline;">biobambam2/2.0.182-gcc9.1.0</span>  IGV/2.5.2                  <span style="text-decoration: underline;">ruby/2.3.1</span>                            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [100] bismark/0.16.1               <span style="text-decoration: underline;">IGV/2.10.3</span>                 salmon/0.9.1                                       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [101] bismark/0.19.0               <span style="text-decoration: underline;">imp/2.5.0</span>                  salmon/0.11.2                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [102] bismark/0.19.1               <span style="text-decoration: underline;">IRFinder/1.2.0</span>             salmon/0.14.1                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [103] <span style="text-decoration: underline;">bismark/0.20.0</span>               JAGS/4.0.0                 salmon/1.1.0                                       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [104] boost/1.55.0                 <span style="text-decoration: underline;">JAGS/4.3.0</span>                 salmon/1.5.2                                       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [105] boost/1.58.0                 java/1.7.0_79              <span style="text-decoration: underline;">salmon/1.9.0</span>                                       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [106] <span style="text-decoration: underline;">boost/1.60.0</span>                 java/1.8.0_92              <span style="text-decoration: underline;">salmonTE/0.3</span>                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [107] boost/1.66.0                 java/1.8.0_131             <span style="text-decoration: underline;">sambamba/0.6.6</span>                                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [108] <span style="text-decoration: underline;">bowtie/1.1.2</span>                 java/1.8.0_151             <span style="text-decoration: underline;">samblaster/0.1.23</span>                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [109] bowtie2/2.2.9                <span style="text-decoration: underline;">java/1.8.0_211</span>             samtools/0.1.18                                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [110] bowtie2/2.3.2                <span style="text-decoration: underline;">jbrowse-desktop/2.3.2</span>      samtools/0.1.19                                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [111] bowtie2/2.3.4.1              jellyfish/1.1.11           samtools/1.3.1                                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [112] <span style="text-decoration: underline;">bowtie2/2.4.4</span>                <span style="text-decoration: underline;">jellyfish/2.2.10</span>           samtools/1.4.1                       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [113] <span style="text-decoration: underline;">bpipe/0.9.9.2</span>                <span style="text-decoration: underline;">joe/4.6</span>                    samtools/1.5                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [114] breakdancer/1.1.2            <span style="text-decoration: underline;">juncBASE/1.2-beta</span>          samtools/1.6                                       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [115] <span style="text-decoration: underline;">breakdancer/1.4.5</span>            <span style="text-decoration: underline;">jupyter-config/1.0</span>         samtools/1.7                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [116] bwa/0.7.13                   kallisto/0.44.0            samtools/1.9                                                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [117] bwa/0.7.15                   <span style="text-decoration: underline;">kallisto/0.46.0</span>            samtools/1.10                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [118] <span style="text-decoration: underline;">bwa/0.7.17</span>                   <span style="text-decoration: underline;">kraken/2.1.1</span>               samtools/1.12                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [119] <span style="text-decoration: underline;">bwtool/1.0</span>                   <span style="text-decoration: underline;">lapack/3.8.0</span>               samtools/1.13                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [120] <span style="text-decoration: underline;">bzip2/1.0.6</span>                  <span style="text-decoration: underline;">last/864</span>                   samtools/1.14                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [121] <span style="text-decoration: underline;">caffe2/0.8.1</span>                 <span style="text-decoration: underline;">libmaus2/2.0.798-gcc9.1.0</span>  samtools/1.15                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [122] <span style="text-decoration: underline;">canu/1.3</span>                     <span style="text-decoration: underline;">lighttpd/1.4.45</span>            <span style="text-decoration: underline;">samtools/1.16.1</span>        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [123] canu/1.5                     <span style="text-decoration: underline;">lxrandr/0.3.1</span>              <span style="text-decoration: underline;">scala/2.12.2</span>                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [124] cellprofiler/4.2.1           <span style="text-decoration: underline;">macs2/2.2.7.1</span>              seqmonk/1.45.1                                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [125] <span style="text-decoration: underline;">cellprofiler/4.2.4</span>           <span style="text-decoration: underline;">mageck/0.5.9.4</span>             seqmonk/1.46                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [126] <span style="text-decoration: underline;">cellranger-arc/1.0.1</span>         <span style="text-decoration: underline;">maven/3.5.0</span>                seqmonk/1.47.0                       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [127] cellranger-arc/2.0.2         MaxQuant/1.6.17.0          seqmonk/1.47.1                                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [128] <span style="text-decoration: underline;">cellranger-atac/1.0.0</span>        <span style="text-decoration: underline;">MaxQuant/2.0.2.0</span>           seqmonk/1.47.2                       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [129] cellranger-atac/1.2.0        <span style="text-decoration: underline;">mbuffer/20171011</span>           seqmonk/1.48.0                                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [130] cellranger-atac/2.1.0        <span style="text-decoration: underline;">mcl/14-137</span>                 <span style="text-decoration: underline;">seqmonk/1.48.1</span>                       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [131] cellranger/2.2.0             meme/4.12.0                <span style="text-decoration: underline;">signalp/4.1</span>                                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [132] cellranger/3.0.1             <span style="text-decoration: underline;">meme/5.0.5</span>                 singularity/2.5.1                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [133] cellranger/3.0.2             meme/openmpi-4.12.0        singularity/3.0.3                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [134] cellranger/3.1.0             meme/openmpi-5.0.5         singularity/3.1.1                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [135] cellranger/4.0.0             <span style="text-decoration: underline;">mercurial/4.8</span>              singularity/3.3.0                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [136] <span style="text-decoration: underline;">cellranger/5.0.0</span>             <span style="text-decoration: underline;">miniconda2/4.5.12</span>          singularity/3.5.0                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [137] cellranger/6.0.0             <span style="text-decoration: underline;">miniconda3-alt/4.10.3</span>      singularity/3.5.2                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [138] cellranger/6.1.2             <span style="text-decoration: underline;">miniconda3/4.10.3</span>          singularity/3.6.2                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [139] cellranger/7.0.0             minimap2/2.4               <span style="text-decoration: underline;">singularity/3.7.4</span>                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [140] <span style="text-decoration: underline;">cellsnp-lite/1.2.0</span>           <span style="text-decoration: underline;">minimap2/2.17</span>              singularity/3.8.2                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [141] circos/0.69                  <span style="text-decoration: underline;">molgenis-compute/17.08.1</span>   singularity/3.8.4                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [142] <span style="text-decoration: underline;">circos/0.69-9</span>                mono/6.10.0.104            snpEff/4.3i                                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [143] <span style="text-decoration: underline;">clover/2015-08-28</span>            <span style="text-decoration: underline;">mono/6.12.0.90</span>             <span style="text-decoration: underline;">snpEff/4.3t</span>            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [144] <span style="text-decoration: underline;">cnvnator/0.3.3</span>               <span style="text-decoration: underline;">MultiQC/1.10.1</span>             <span style="text-decoration: underline;">SNPsplit/0.2.0</span>         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [145] <span style="text-decoration: underline;">computecpp/1.0.5</span>             <span style="text-decoration: underline;">multiSNV/2.3-10-g06102a5</span>   <span style="text-decoration: underline;">soapdenovo-trans/1.03</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [146] cutadapt/2.9                 <span style="text-decoration: underline;">muscle/3.8.31</span>              <span style="text-decoration: underline;">soapdenovo2/2.04</span>                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [147] cutadapt/3.4                 <span style="text-decoration: underline;">mutect/1.1.7</span>               spaceranger/1.2.2                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [148] <span style="text-decoration: underline;">cutadapt/3.7</span>                 <span style="text-decoration: underline;">nanonet-openBLAS/2.0.0</span>     spaceranger/1.3.0                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [149] <span style="text-decoration: underline;">deeptools/3.5.1</span>              <span style="text-decoration: underline;">nanonet/2.0.0</span>              <span style="text-decoration: underline;">spaceranger/2.0.0</span>      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [150] <span style="text-decoration: underline;">dotnet/2.1.809</span>               nanopolish/0.5.0           <span style="text-decoration: underline;">spades/3.11.0</span>                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [151] dotnet/3.1.412               nanopolish/0.6.2           <span style="text-decoration: underline;">spawn-fcgi/1.6.5</span>                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [152] <span style="text-decoration: underline;">duck/6.9.3</span>                   nanopolish/0.7.1           <span style="text-decoration: underline;">spp/1.14</span>                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [153] <span style="text-decoration: underline;">edirect/15.0</span>                 nanopolish/0.8.1           sra-toolkit/2.8.2-1                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [154] <span style="text-decoration: underline;">egaclient/2.2.2</span>              <span style="text-decoration: underline;">nanopolish/0.8.5</span>           sra-toolkit/2.9.6-1                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [155] ensembl-vep/89.0             <span style="text-decoration: underline;">nanopore/1.0</span>               sra-toolkit/2.10.9                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [156] ensembl-vep/89.8             ncbi-blast/2.6.0+          <span style="text-decoration: underline;">sra-toolkit/3.0.0</span>                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [157] <span style="text-decoration: underline;">ensembl-vep/98.3</span>             ncbi-blast/2.7.1+          <span style="text-decoration: underline;">sshpass/1.05</span>                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [158] fastqc/0.11.5                ncbi-blast/2.9.0           stack/1.5.1                                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [159] <span style="text-decoration: underline;">fastqc/0.11.8</span>                ncbi-blast/2.9.0a          <span style="text-decoration: underline;">stack/1.7.1</span>                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [160] <span style="text-decoration: underline;">fastx-toolkit/0.0.13</span>         ncbi-blast/2.10.1+         STAR/2.6.1c                                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [161] <span style="text-decoration: underline;">ffmpeg/3.4</span>                   <span style="text-decoration: underline;">ncbi-blast/2.11.0+</span>         STAR/2.7.0a                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [162] <span style="text-decoration: underline;">flash/1.2.11</span>                 <span style="text-decoration: underline;">nedit/5.5</span>                  STAR/2.7.1a                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [163] freebayes/1.1.0              <span style="text-decoration: underline;">netcdf/4.4.1.1</span>             <span style="text-decoration: underline;">STAR/2.7.3a</span>                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [164] <span style="text-decoration: underline;">freebayes/1.2.0</span>              <span style="text-decoration: underline;">nix/fix</span>                    STAR/2.7.9a                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [165] gatk/4.2.4.1                 node/6.11.0                <span style="text-decoration: underline;">stornext/1.0</span>                                       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [166] <span style="text-decoration: underline;">gatk/4.2.5.0</span>                 <span style="text-decoration: underline;">node/8.11.2</span>                subread/1.5.0-p2                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [167] gcc/6.3.0                    node/9.9.0                 subread/1.5.1                                                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [168] gcc/7.1.0                    <span style="text-decoration: underline;">novoalign/3.04.04</span>          subread/1.5.2                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [169] gcc/7.3.0                    <span style="text-decoration: underline;">novocraft/3.08.02</span>          <span style="text-decoration: underline;">subread/1.6.3</span>                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [170] gcc/8.1.0                    <span style="text-decoration: underline;">oases/0.2.09</span>               <span style="text-decoration: underline;">tadbit/0.2</span>                           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [171] gcc/8.2.0                    pandoc/1.17.0.3            texlive/3.14159265                                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [172] gcc/8.3.0                    pandoc/2.0.0.1             <span style="text-decoration: underline;">texlive/20171130</span>                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [173] <span style="text-decoration: underline;">gcc/9.1.0</span>                    <span style="text-decoration: underline;">pandoc/2.3.1</span>               <span style="text-decoration: underline;">tmhmm/2.0c</span>             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [174] gcc/10.3.0                   <span style="text-decoration: underline;">parallel/20190722</span>          <span style="text-decoration: underline;">tophat/2.1.1</span>                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [175] gcc/11.1.0                   <span style="text-decoration: underline;">pbs-drmaa/1.0.19</span>           <span style="text-decoration: underline;">transdecoder/4.0.0</span>                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [176] gcc/11.2.0                   <span style="text-decoration: underline;">pbstop/1.0</span>                 <span style="text-decoration: underline;">TRF/4.09.1</span>                           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [177] <span style="text-decoration: underline;">gem/3.0</span>                      <span style="text-decoration: underline;">pcre2/10.34-gcc-9.1.0</span>      trimgalore/0.4.2                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [178] <span style="text-decoration: underline;">gemini/0.20.1</span>                pcre2/10.36-gcc-11.1.0     trimgalore/0.4.4                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [179] <span style="text-decoration: underline;">gencore/0.17.2</span>               <span style="text-decoration: underline;">peakseq/1.31</span>               <span style="text-decoration: underline;">trimgalore/0.6.7</span>       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [180] <span style="text-decoration: underline;">genetorrent/3.8.7</span>            <span style="text-decoration: underline;">pear/0.9.10</span>                <span style="text-decoration: underline;">trimmomatic/0.36</span>       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [181] <span style="text-decoration: underline;">genozip/12.0.11</span>              pear/0.9.11                trinityrnaseq/2.2.0                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [182] <span style="text-decoration: underline;">geos/3.7.0</span>                   <span style="text-decoration: underline;">perl/5.22.2</span>                trinityrnaseq/2.4.0                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [183] <span style="text-decoration: underline;">germline/1.5.1</span>               perl/5.26.3                <span style="text-decoration: underline;">trinityrnaseq/2.8.4</span>                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [184] gh-cli/2.0                   perl/5.30.1                trinotate/3.0.1                                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [185] <span style="text-decoration: underline;">glib/1.2.10</span>                  <span style="text-decoration: underline;">php/5.6.21</span>                 <span style="text-decoration: underline;">trinotate/3.0.2</span>        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [186] gmap-gsnap/2017-05-08        <span style="text-decoration: underline;">picard-tools/2.26.11</span>       <span style="text-decoration: underline;">turbovnc/3.0.1</span>                       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [187] <span style="text-decoration: underline;">gmap-gsnap/2017-06-16</span>        <span style="text-decoration: underline;">pindel/0.2.5b9</span>             <span style="text-decoration: underline;">ucsc-tools/331</span>         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [188] <span style="text-decoration: underline;">google-cloud-sdk/194.0.0</span>     <span style="text-decoration: underline;">pixz/1.0.6</span>                 <span style="text-decoration: underline;">ultraplex/1.2.5</span>        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [189] google-cloud-sdk/348.0.0     <span style="text-decoration: underline;">platypus/0.8.1</span>             <span style="text-decoration: underline;">umi_tools/1.0.1</span>                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [190] <span style="text-decoration: underline;">gradle/4.3</span>                   <span style="text-decoration: underline;">plink/1.9</span>                  usearch/7.0.1090                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [191] graphmap/0.3.1               <span style="text-decoration: underline;">poretools/0.6.0</span>            usearch/8.1.1861                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [192] graphmap/0.5.1               python/2.7.18              <span style="text-decoration: underline;">usearch/9.2.64</span>                                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [193] <span style="text-decoration: underline;">graphmap/0.5.2</span>               python/3.5.1               <span style="text-decoration: underline;">vardict/1.5.1</span>                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [194] <span style="text-decoration: underline;">gridss/2.11.1</span>                python/3.5.3               <span style="text-decoration: underline;">varscan/2.3.9</span>                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [195] gsl/2.4                      python/3.6.5-intel         <span style="text-decoration: underline;">vcflib/1.0.0-rc1</span>                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [196] <span style="text-decoration: underline;">gsl/2.6</span>                      python/3.7.0               <span style="text-decoration: underline;">vcftools/0.1.13</span>                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [197] guppy-cpu/2.3.7              python/3.7.13              <span style="text-decoration: underline;">velvet/1.2.10</span>                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [198] guppy-cpu/3.1.5              python/3.8.3               <span style="text-decoration: underline;">vireoSNP/0.5.6</span>                                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [199] guppy-cpu/3.2.1              <span style="text-decoration: underline;">python/3.8.8</span>               <span style="text-decoration: underline;">vsearch/2.4.3</span>                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [200] guppy-cpu/3.2.2              python/3.9.5               <span style="text-decoration: underline;">wehi-stornext/1.0</span>                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [201] guppy-cpu/3.2.4              python/3.10.4              <span style="text-decoration: underline;">xenomapper/1.0.1</span>                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [202] guppy-cpu/3.3.0              <span style="text-decoration: underline;">qiime2/2019.7</span>              <span style="text-decoration: underline;">Xvfb/1.19.5</span>                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [203] guppy-cpu/3.6.1              qiime2/2020.8              <span style="text-decoration: underline;">xz/5.2.2</span>                                           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [204] <span style="text-decoration: underline;">guppy-cpu/4.0.15</span>             R/3.3.3                    zlib/1.2.8                                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [205] <span style="text-decoration: underline;">haplopainter/1.043</span>           R/3.4.4                    <span style="text-decoration: underline;">zlib/1.2.11</span>                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [206] <span style="text-decoration: underline;">hdf4/4.2.11</span>                  <span style="text-decoration: underline;">R/3.5.2</span>                                                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [207] hdf5/1.8.16                  R/3.5.3                                                                                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [208]                                                                                                                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [209] ------------------- <span style="color: #5555FF; font-weight: bold;">/stornext/System/data/modulefiles/nvidia</span> -------------------                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [210] <span style="text-decoration: underline;">clara-parabricks/4.0.1-1</span>   <span style="text-decoration: underline;">guppy-gpu/6.2.1</span>                topaz/0.2.3                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [211] crYOLO/1.7.5cpu            <span style="text-decoration: underline;">libglvnd/1.1.1</span>                 <span style="text-decoration: underline;">topaz/0.2.4</span>                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [212] <span style="text-decoration: underline;">crYOLO/1.7.5gpu</span>            <span style="text-decoration: underline;">libtorch-gpu/1.12.1</span>                                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [213] crYOLO/1.8.0gpu            <span style="text-decoration: underline;">magma-gpu/2.7.0-11.3.1</span>                                                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [214] ctffind/4.1.5              <span style="text-decoration: underline;">ModelAngelo/0.0.1</span>                                                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [215] ctffind/4.1.13             motioncor2/1.2.1cu8.0                                                                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [216] <span style="text-decoration: underline;">ctffind/4.1.14</span>             motioncor2/1.2.1cu9.2                                                           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [217] cuda/8.0                   motioncor2/1.2.2cu8.0                                                                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [218] cuda/9.2                   motioncor2/1.2.2cu9.2                                                                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [219] <span style="text-decoration: underline;">cuda/10.0</span>                  motioncor2/1.2.2cu10.0                                                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [220] cuda/10.1                  motioncor2/1.2.6cu8.0                                                                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [221] cuda/10.2                  motioncor2/1.2.6cu9.2                                                                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [222] cuda/11.0                  motioncor2/1.2.6cu10.1                                                                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [223] cuda/11.1                  motioncor2/1.3.1cu9.2                                                                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [224] cuda/11.2                  motioncor2/1.3.1cu10.1                                                                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [225] cuda/11.3.1                motioncor2/1.4.0cu9.2                                                                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [226] cuda/11.4                  motioncor2/1.4.0cu10.0                                                                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [227] cuda/11.5.1                motioncor2/1.4.0cu10.1                                                                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [228] cuda/11.6.2                motioncor2/1.4.0cu10.2                                                                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [229] cuda/11.7.1                motioncor2/1.4.0cu11.0                                                                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [230] <span style="text-decoration: underline;">CUDA8/caffe2/0.8.1</span>         motioncor2/1.4.4cu10.0                                                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [231] <span style="text-decoration: underline;">CUDA8/tensorflow/1.1.0</span>     motioncor2/1.4.4cu10.1                                                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [232] CUDA8/tensorflow/1.3.0rc0  motioncor2/1.4.4cu10.2                                                                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [233] cudnn/10.1-7.6.5           motioncor2/1.4.4cu11.1                                                                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [234] cudnn/11.2-8.1.1.33        motioncor2/1.4.4cu11.2                                                                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [235] cudnn/11.3.1-8.4.0         motioncor2/1.4.4cu11.3.1                                                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [236] <span style="text-decoration: underline;">cudnn/11.3.1-8.6.0.162</span>     motioncor2/1.5.0cu10.1                                                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [237] <span style="text-decoration: underline;">darknet/61c9d02cu10.0</span>      motioncor2/1.5.0cu10.2                                                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [238] <span style="text-decoration: underline;">deepEMhancer/0.15</span>          motioncor2/1.5.0cu11.1                                                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [239] <span style="text-decoration: underline;">dorado/0.1.1-gcc-9.1.0</span>     motioncor2/1.5.0cu11.2                                                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [240] <span style="text-decoration: underline;">EMAN/2.3</span>                   motioncor2/1.5.0cu11.3                                                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [241] <span style="text-decoration: underline;">EMAN2/2.9</span>                  motioncor2/1.5.0cu11.4                                                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [242] gautomatch/0.56cu8.0       <span style="text-decoration: underline;">motioncorr/2.1</span>                                                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [243] <span style="text-decoration: underline;">gautomatch/0.56cu10.1</span>      NAMD/2.12                                                                       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [244] Gctf/1.06                  <span style="text-decoration: underline;">NAMD/2.13nb</span>                                                                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [245] Gctf/1.18cu7.5             <span style="text-decoration: underline;">openmpi-CUDA8/3.0.0</span>                                                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [246] Gctf/1.18cu8.0             <span style="text-decoration: underline;">relion/3.1.3-cu11.2</span>                                                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [247] <span style="text-decoration: underline;">Gctf/1.18cu9.2</span>             relion/3.1.3-gcc11.1.0-cu11.4                                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [248] Gctf/1.18cu10.1            relion/4.0-beta-1-cu10.1                                                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [249] guppy-gpu/2.3.1            relion/4.0-beta-1-cu11.2                                                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [250] guppy-gpu/2.3.7            scipion/2.0                                                                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [251] guppy-gpu/3.1.5            <span style="text-decoration: underline;">scipion/3.0</span>                                                                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [252] guppy-gpu/3.2.1            tensorflow-gpu/10.0-1.15.2                                                                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [253] guppy-gpu/3.2.2            <span style="text-decoration: underline;">tensorflow-gpu/10.1-2.1.0</span>                                                       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [254] guppy-gpu/3.2.4            tensorflow-gpu/11.2-2.11.0                                                                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [255] guppy-gpu/3.3.0            tensorRT/10.0-6.0.1.5                                                                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [256] guppy-gpu/3.6.1            <span style="text-decoration: underline;">tensorRT/10.1-6.0.1.5</span>                                                           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [257] guppy-gpu/4.0.15           tensorRT/11.2-7.2.3.4                                                                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [258]                                                                                                                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [259] --------------- <span style="color: #5555FF; font-weight: bold;">/stornext/System/data/modulefiles/structbio/its</span> ----------------                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [260] <span style="text-decoration: underline;">adxv/1.9.12</span>        coot/0.8.8                <span style="text-decoration: underline;">phenix-rosetta/1.11.1-2575</span>                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [261] <span style="text-decoration: underline;">alphafold/2.0.0</span>    <span style="text-decoration: underline;">coot/0.8.9</span>                phenix/1.15-3459                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [262] alphafold/2.0.1    coot/0.8.9.1              phenix/1.17-3644                                                            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [263] alphafold/2.0.2    <span style="text-decoration: underline;">cryoEF/1.1.0</span>              phenix/1.18.2-3874                                            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [264] alphafold/2.1.1.0  <span style="text-decoration: underline;">dalilite/5.1</span>              <span style="text-decoration: underline;">phenix/1.20.1-4487</span>                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [265] alphafold/2.1.2.0  dials/3.10.0              <span style="text-decoration: underline;">pyem/0.5</span>                                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [266] alphafold/2.2.0.0  <span style="text-decoration: underline;">dials/3.12.0</span>              pymol/1.7.4.0                                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [267] autoPROC/20211020  <span style="text-decoration: underline;">eiger2cbf/160415</span>          <span style="text-decoration: underline;">pymol/2.5.0</span>                                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [268] <span style="text-decoration: underline;">autoPROC/20220608</span>  <span style="text-decoration: underline;">EMBuilder/1.0</span>             relion-cpu/3.1b-icc                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [269] <span style="text-decoration: underline;">autoSHARP/2.8</span>      <span style="text-decoration: underline;">EPU_group_AFIS/0.3</span>        <span style="text-decoration: underline;">relion-cpu/3.1beta-icc</span>            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [270] <span style="text-decoration: underline;">bsoft/2.1.0</span>        <span style="text-decoration: underline;">glew/1.9.0</span>                schrodinger/2022-1                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [271] buster/20211020    <span style="text-decoration: underline;">gromacs/4.5.5_cryo_fit</span>    schrodinger/2022-2                                            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [272] <span style="text-decoration: underline;">buster/20220608</span>    gromacs/2021.2            <span style="text-decoration: underline;">schrodinger/2022-3</span>                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [273] <span style="text-decoration: underline;">ccp4/7.1</span>           <span style="text-decoration: underline;">H5toXDS/1.1.0</span>             <span style="text-decoration: underline;">sidesplitter/1.2</span>                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [274] ccp4/8.0           <span style="text-decoration: underline;">IMOD/4.11.5</span>               <span style="text-decoration: underline;">SPHIRE/1.1</span>                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [275] <span style="text-decoration: underline;">ccpem/1.5.0</span>        <span style="text-decoration: underline;">mrcz/0.1.3</span>                SPHIRE/1.3                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [276] <span style="text-decoration: underline;">chimera/1.11</span>       <span style="text-decoration: underline;">NAMD-mpich/2.12</span>           <span style="text-decoration: underline;">summovie/1.0.2</span>                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [277] chimerax/0.8       NAMD-mpich/2.14           <span style="text-decoration: underline;">tvips/0.0.3</span>                                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [278] chimerax/0.9       NAMD-multicore-gpu/2.14   <span style="text-decoration: underline;">unblur/1.0.2</span>                                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [279] chimerax/0.93      <span style="text-decoration: underline;">NAMD-multicore/2.12</span>       <span style="text-decoration: underline;">xds/20220110</span>                                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [280] <span style="text-decoration: underline;">chimerax/1.1</span>       NAMD-multicore/2.14       <span style="text-decoration: underline;">xdsgui/2017-01-25</span>                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [281] chimerax/1.3       <span style="text-decoration: underline;">NAMD-openmpi/2.12</span>         xdsgui/2020-12-02                                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [282] <span style="text-decoration: underline;">cistem/1.0.0-beta</span>  <span style="text-decoration: underline;">phenix-nightly/1.15-3459</span>                                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [283]                                                                                                                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [284] Key:                                                                                                                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [285] <span style="color: #5555FF; font-weight: bold;">modulepath</span>  <span style="text-decoration: underline;">default-version</span>                                                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [1] "7zip/15.14.1"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [2] "CUDA8/caffe2/0.8.1"                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [3] "CUDA8/tensorflow/1.1.0"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [4] "CUDA8/tensorflow/1.3.0rc0"              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [5] "CUnit/2.1-3"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [6] "EMAN/2.3"                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [7] "EMAN2/2.9"                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [8] "EMBuilder/1.0"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [9] "EPU_group_AFIS/0.3"                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [10] "Gctf/1.06"                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [11] "Gctf/1.18cu10.1"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [12] "Gctf/1.18cu7.5"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [13] "Gctf/1.18cu8.0"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [14] "Gctf/1.18cu9.2"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [15] "H5toXDS/1.1.0"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [16] "HiC-Pro/2.11.4"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [17] "IGV/2.10.3"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [18] "IGV/2.5.2"                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [19] "IMOD/4.11.5"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [20] "IRFinder/1.2.0"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [21] "ImageMagick/6.9.11-22"                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [22] "ImageMagick/7.0.9-5"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [23] "JAGS/4.0.0"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [24] "JAGS/4.3.0"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [25] "MaxQuant/1.6.17.0"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [26] "MaxQuant/2.0.2.0"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [27] "ModelAngelo/0.0.1"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [28] "MultiQC/1.10.1"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [29] "MultiQC/gmon.out"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [30] "NAMD-mpich/2.12"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [31] "NAMD-mpich/2.14"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [32] "NAMD-multicore-gpu/2.14"                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [33] "NAMD-multicore/2.12"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [34] "NAMD-multicore/2.14"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [35] "NAMD-openmpi/2.12"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [36] "NAMD/2.12"                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [37] "NAMD/2.13nb"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [38] "R/3.3.3"                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [39] "R/3.4.4"                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [40] "R/3.5.2"                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [41] "R/3.5.3"                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [42] "R/3.6.0"                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [43] "R/3.6.0m"                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [44] "R/3.6.1"                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [45] "R/3.6.1m"                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [46] "R/3.6.2"                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [47] "R/3.6.3"                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [48] "R/4.0.0"                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [49] "R/4.0.1"                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [50] "R/4.0.2"                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [51] "R/4.0.3"                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [52] "R/4.0.4"                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [53] "R/4.0.5"                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [54] "R/4.1.0"                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [55] "R/4.1.1"                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [56] "R/4.1.2"                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [57] "R/4.1.3"                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [58] "R/4.2.0"                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [59] "R/4.2.1"                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [60] "R/MKL/4.2.1"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [61] "R/openBLAS/3.6.2"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [62] "R/openBLAS/4.2.1"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [63] "RepeatMaker/4.1.2"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [64] "SNPsplit/0.2.0"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [65] "SPHIRE/1.1"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [66] "SPHIRE/1.3"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [67] "STAR/2.6.1c"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [68] "STAR/2.7.0a"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [69] "STAR/2.7.1a"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [70] "STAR/2.7.3a"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [71] "STAR/2.7.9a"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [72] "TRF/4.09.1"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [73] "Xvfb/1.19.5"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [74] "adxv/1.9.12"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [75] "alphafold/2.0.0"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [76] "alphafold/2.0.1"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [77] "alphafold/2.0.2"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [78] "alphafold/2.1.1.0"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [79] "alphafold/2.1.2.0"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [80] "alphafold/2.2.0.0"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [81] "anaconda3/2019.03"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [82] "anaconda3/2020.07"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [83] "anaconda3/4.0.0"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [84] "anaconda3/4.3.1"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [85] "anaconda3/latest"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [86] "annovar/2015-12-14"                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [87] "apache-ant/1.9.7"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [88] "apptainer/1.0.0"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [89] "apptainer/1.1.0"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [90] "aspera/3.5.4"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [91] "aspera/3.9.1"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [92] "aspera/3.9.6"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [93] "autoPROC/20211020"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [94] "autoPROC/20220608"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [95] "autoPROC/20230217"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [96] "autoSHARP/2.8"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [97] "awscli/1.16py2.7"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [98] "awscli/1.16py3.7"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [99] "awscli/1.22.89"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [100] "awscli/2.1.25"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [101] "awscli/2.5.2"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [102] "axel/2.17.10"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [103] "bamUtil/1.0.14"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [104] "bamtools/2.4.1"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [105] "bazel/0.26.1"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [106] "bazel/1.2.1"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [107] "bcftools/1.12"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [108] "bcftools/1.13"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [109] "bcftools/1.14"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [110] "bcftools/1.15"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [111] "bcftools/1.16"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [112] "bcftools/1.17"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [113] "bcftools/1.3.1"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [114] "bcftools/1.6"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [115] "bcftools/1.7"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [116] "bcftools/1.9"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [117] "bcl-convert/3.10.5"                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [118] "bcl-convert/3.9.3"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [119] "bcl2fastq/2.19.1"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [120] "bcl2fastq/2.20.0"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [121] "beast/1.8.3"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [122] "beast2/2.4.0"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [123] "bedops/2.4.26"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [124] "bedtools/2.25.0"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [125] "bedtools/2.26.0"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [126] "binutils/2.35.2-gcc-4.8.5"              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [127] "binutils/2.35.2-gcc-9.1.0"              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [128] "biobambam2/2.0.182-gcc9.1.0"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [129] "bismark/0.16.1"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [130] "bismark/0.19.0"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [131] "bismark/0.19.1"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [132] "bismark/0.20.0"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [133] "boost/1.55.0"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [134] "boost/1.58.0"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [135] "boost/1.60.0"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [136] "boost/1.66.0"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [137] "bowtie/1.1.2"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [138] "bowtie2/2.2.9"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [139] "bowtie2/2.3.2"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [140] "bowtie2/2.3.4.1"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [141] "bowtie2/2.4.4"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [142] "bpipe/0.9.9.2"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [143] "breakdancer/1.1.2"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [144] "breakdancer/1.4.5"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [145] "bsoft/2.1.0"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [146] "buster/20211020"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [147] "buster/20220608"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [148] "bwa/0.7.13"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [149] "bwa/0.7.15"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [150] "bwa/0.7.17"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [151] "bwtool/1.0"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [152] "bzip2/1.0.6"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [153] "caffe2/0.8.1"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [154] "canu/1.3"                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [155] "canu/1.5"                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [156] "ccp4/7.1"                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [157] "ccp4/8.0"                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [158] "ccpem/1.5.0"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [159] "cellprofiler/4.2.1"                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [160] "cellprofiler/4.2.4"                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [161] "cellranger-arc/1.0.1"                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [162] "cellranger-arc/2.0.2"                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [163] "cellranger-atac/1.0.0"                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [164] "cellranger-atac/1.2.0"                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [165] "cellranger-atac/2.1.0"                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [166] "cellranger/2.2.0"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [167] "cellranger/3.0.1"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [168] "cellranger/3.0.2"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [169] "cellranger/3.1.0"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [170] "cellranger/4.0.0"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [171] "cellranger/5.0.0"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [172] "cellranger/6.0.0"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [173] "cellranger/6.1.2"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [174] "cellranger/7.0.0"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [175] "cellsnp-lite/1.2.0"                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [176] "chimera/1.11"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [177] "chimerax/0.8"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [178] "chimerax/0.9"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [179] "chimerax/0.93"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [180] "chimerax/1.1"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [181] "chimerax/1.3"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [182] "circos/0.69"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [183] "circos/0.69-9"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [184] "cistem/1.0.0-beta"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [185] "clara-parabricks/4.0.1-1"               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [186] "clover/2015-08-28"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [187] "cluster-utils/18.08.1"                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [188] "cmake/3.25.1"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [189] "cnvnator/0.3.3"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [190] "computecpp/1.0.5"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [191] "coot/0.8.8"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [192] "coot/0.8.9"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [193] "coot/0.8.9.1"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [194] "crYOLO/1.7.5cpu"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [195] "crYOLO/1.7.5gpu"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [196] "crYOLO/1.8.0gpu"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [197] "crYOLO/1.9.0"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [198] "cryoEF/1.1.0"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [199] "ctffind/4.1.13"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [200] "ctffind/4.1.14"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [201] "ctffind/4.1.5"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [202] "cuda/10.0"                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [203] "cuda/10.1"                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [204] "cuda/10.2"                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [205] "cuda/11.0"                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [206] "cuda/11.1"                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [207] "cuda/11.2"                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [208] "cuda/11.3.1"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [209] "cuda/11.4"                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [210] "cuda/11.5.1"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [211] "cuda/11.6.2"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [212] "cuda/11.7.1"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [213] "cuda/8.0"                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [214] "cuda/9.2"                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [215] "cudnn/10.1-7.6.5"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [216] "cudnn/11.2-8.1.1.33"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [217] "cudnn/11.3.1-8.4.0"                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [218] "cudnn/11.3.1-8.6.0.162"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [219] "curl/7.65.0"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [220] "cutadapt/2.9"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [221] "cutadapt/3.4"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [222] "cutadapt/3.7"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [223] "dalilite/5.1"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [224] "darknet/61c9d02cu10.0"                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [225] "deepEMhancer/0.15"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [226] "deeptools/3.5.1"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [227] "depot_tools/6c7b829"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [228] "dials/3.10.0"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [229] "dials/3.12.0"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [230] "dorado/0.1.1-gcc-9.1.0"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [231] "dotnet/2.1.809"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [232] "dotnet/3.1.412"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [233] "doublecmd/0.9.10.gtk2"                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [234] "dua-cli/2.17.8"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [235] "dua-cli/2.19.0"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [236] "duck/6.9.3"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [237] "duckdb/0.6.1"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [238] "edirect/15.0"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [239] "egaclient/2.2.2"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [240] "eiger2cbf/160415"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [241] "elbencho/1.7-1cu10.1"                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [242] "ensembl-vep/89.0"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [243] "ensembl-vep/89.8"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [244] "ensembl-vep/98.3"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [245] "evince/3.28.2"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [246] "fastqc/0.11.5"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [247] "fastqc/0.11.8"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [248] "fastx-toolkit/0.0.13"                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [249] "feh/3.6.3"                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [250] "ffmpeg/3.4"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [251] "fftw/3.3.9"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [252] "fio/3.16"                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [253] "fio/3.19"                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [254] "flash/1.2.11"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [255] "fluxbox/1.3.7"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [256] "freebayes/1.1.0"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [257] "freebayes/1.2.0"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [258] "gatk/4.2.4.1"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [259] "gatk/4.2.5.0"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [260] "gautomatch/0.56cu10.1"                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [261] "gautomatch/0.56cu8.0"                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [262] "gcc/10.3.0"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [263] "gcc/11.1.0"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [264] "gcc/11.2.0"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [265] "gcc/6.3.0"                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [266] "gcc/7.1.0"                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [267] "gcc/7.3.0"                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [268] "gcc/8.1.0"                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [269] "gcc/8.2.0"                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [270] "gcc/8.3.0"                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [271] "gcc/9.1.0"                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [272] "gdal/2.4.4"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [273] "gdal/3.6.2"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [274] "gem/3.0"                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [275] "gemini/0.20.1"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [276] "gencore/0.17.2"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [277] "genetorrent/3.8.7"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [278] "genozip/12.0.11"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [279] "geos/3.7.0"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [280] "germline/1.5.1"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [281] "gh-cli/2.0"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [282] "git/2.37.1"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [283] "glew/1.9.0"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [284] "glib/1.2.10"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [285] "gmap-gsnap/2017-05-08"                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [286] "gmap-gsnap/2017-06-16"                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [287] "gnuplot/5.2.6"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [288] "go/1.19.4"                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [289] "google-cloud-sdk/194.0.0"               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [290] "google-cloud-sdk/348.0.0"               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [291] "gradle/4.3"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [292] "graphmap/0.3.1"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [293] "graphmap/0.5.1"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [294] "graphmap/0.5.2"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [295] "gridss/2.11.1"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [296] "gromacs/2021.2"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [297] "gromacs/4.5.5_cryo_fit"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [298] "groovy/4.0.0"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [299] "gsl/2.4"                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [300] "gsl/2.6"                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [301] "guppy-cpu/2.3.7"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [302] "guppy-cpu/3.1.5"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [303] "guppy-cpu/3.2.1"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [304] "guppy-cpu/3.2.2"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [305] "guppy-cpu/3.2.4"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [306] "guppy-cpu/3.3.0"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [307] "guppy-cpu/3.6.1"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [308] "guppy-cpu/4.0.15"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [309] "guppy-gpu/2.3.1"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [310] "guppy-gpu/2.3.7"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [311] "guppy-gpu/3.1.5"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [312] "guppy-gpu/3.2.1"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [313] "guppy-gpu/3.2.2"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [314] "guppy-gpu/3.2.4"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [315] "guppy-gpu/3.3.0"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [316] "guppy-gpu/3.6.1"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [317] "guppy-gpu/4.0.15"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [318] "guppy-gpu/6.2.1"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [319] "gzip/1.10"                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [320] "haplopainter/1.043"                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [321] "hdf4/4.2.11"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [322] "hdf5-mpich/1.10.5_3.3"                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [323] "hdf5/1.10.5"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [324] "hdf5/1.12.1"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [325] "hdf5/1.12.2"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [326] "hdf5/1.8.16"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [327] "hdf5/1.8.20"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [328] "hdf5/1.8.21"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [329] "hdfview/2.11.0"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [330] "hisat2/2.0.3"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [331] "hisat2/2.0.5"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [332] "hmmer/2.3.2"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [333] "hmmer/3.1b2"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [334] "hmmer/3.1b2-mpi"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [335] "hmmer/3.2.1"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [336] "hmmer/3.3.2"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [337] "homer/4.11"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [338] "hpl/2.3"                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [339] "htop/2.0.2"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [340] "htslib/1.10.2"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [341] "htslib/1.12"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [342] "htslib/1.13"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [343] "htslib/1.14"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [344] "htslib/1.15"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [345] "htslib/1.17"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [346] "htslib/1.3.1"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [347] "htslib/1.3.2"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [348] "htslib/1.4.1"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [349] "htslib/1.5"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [350] "htslib/1.6"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [351] "htslib/1.7"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [352] "htslib/1.9"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [353] "icewm/2.8.0"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [354] "iftop/1.0"                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [355] "imp/2.5.0"                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [356] "intel-ipp/2019.5.281"                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [357] "intel-mkl/2019.3.199"                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [358] "intel-mpi/2019.3.199"                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [359] "intel-tbb/2019.3.199"                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [360] "intel_mkl_2019/2019.5.075"              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [361] "intel_mpi_2019/2019.5.075"              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [362] "intel_mpi_2019/default_pipeline.star"   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [363] "ior-slurm/3.2.1mpich3.3"                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [364] "ior-slurm/3.2.1openMPI4.0.2"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [365] "ior/3.2.1mpio4.0.1"                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [366] "iozone/3.491"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [367] "java/1.7.0_79"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [368] "java/1.8.0_131"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [369] "java/1.8.0_151"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [370] "java/1.8.0_211"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [371] "java/1.8.0_92"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [372] "jbrowse-desktop/2.3.2"                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [373] "jellyfish/1.1.11"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [374] "jellyfish/2.2.10"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [375] "joe/4.6"                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [376] "joe/n"                                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [377] "julia/0.6.4"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [378] "julia/1.0.1"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [379] "julia/1.5.3"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [380] "julia/1.8.5"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [381] "juncBASE/1.2-beta"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [382] "jupyter-config/1.0"                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [383] "kallisto/0.44.0"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [384] "kallisto/0.46.0"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [385] "kraken/2.1.1"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [386] "lapack/3.8.0"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [387] "last/864"                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [388] "libaio/0.3.111"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [389] "libglvnd/1.1.1"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [390] "libiconv/1.16"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [391] "libmaus2/2.0.798-gcc9.1.0"              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [392] "libtorch-gpu/1.12.1"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [393] "lighttpd/1.4.45"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [394] "lxrandr/0.3.1"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [395] "lz4/1.9.3"                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [396] "macs2/2.2.7.1"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [397] "mageck/0.5.9.4"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [398] "magma-gpu/2.7.0-11.3.1"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [399] "mariadb-client/10.11.2"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [400] "mariadb-connector-c/3.1.11"             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [401] "mariadb-connector-c/3.3.4"              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [402] "maven/3.3.9"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [403] "maven/3.5.0"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [404] "mbuffer/20171011"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [405] "mcl/14-137"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [406] "mediaflux-data-mover/1.0.11"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [407] "mediaflux-data-mover/1.0.12"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [408] "mediaflux-data-mover/1.0.8"             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [409] "mediaflux-data-mover/1.1.15"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [410] "meme/4.12.0"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [411] "meme/5.0.5"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [412] "meme/openmpi-4.12.0"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [413] "meme/openmpi-5.0.5"                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [414] "mercurial/4.8"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [415] "miniconda2/4.5.12"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [416] "miniconda3-alt/4.10.3"                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [417] "miniconda3/4.10.3"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [418] "minimap2/2.17"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [419] "minimap2/2.4"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [420] "molgenis-compute/17.08.1"               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [421] "mono/6.10.0.104"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [422] "mono/6.12.0.90"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [423] "motioncor2/1.2.1cu8.0"                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [424] "motioncor2/1.2.1cu9.2"                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [425] "motioncor2/1.2.2cu10.0"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [426] "motioncor2/1.2.2cu8.0"                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [427] "motioncor2/1.2.2cu9.2"                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [428] "motioncor2/1.2.6cu10.1"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [429] "motioncor2/1.2.6cu8.0"                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [430] "motioncor2/1.2.6cu9.2"                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [431] "motioncor2/1.3.1cu10.1"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [432] "motioncor2/1.3.1cu9.2"                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [433] "motioncor2/1.4.0cu10.0"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [434] "motioncor2/1.4.0cu10.1"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [435] "motioncor2/1.4.0cu10.2"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [436] "motioncor2/1.4.0cu11.0"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [437] "motioncor2/1.4.0cu9.2"                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [438] "motioncor2/1.4.4cu10.0"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [439] "motioncor2/1.4.4cu10.1"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [440] "motioncor2/1.4.4cu10.2"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [441] "motioncor2/1.4.4cu11.1"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [442] "motioncor2/1.4.4cu11.2"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [443] "motioncor2/1.4.4cu11.3.1"               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [444] "motioncor2/1.5.0cu10.1"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [445] "motioncor2/1.5.0cu10.2"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [446] "motioncor2/1.5.0cu11.1"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [447] "motioncor2/1.5.0cu11.2"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [448] "motioncor2/1.5.0cu11.4"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [449] "motioncor2/11.5.0cu11.3.1"              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [450] "motioncorr/2.1"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [451] "mpfr/4.1.0"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [452] "mpich-slurm/3.3.2"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [453] "mpich-slurm/3.4.1"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [454] "mpich-slurm/3.4.2"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [455] "mpich/3.3"                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [456] "mpich/3.3.2"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [457] "mrcz/0.1.3"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [458] "multiSNV/2.3-10-g06102a5"               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [459] "muscle/3.8.31"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [460] "mutect/1.1.7"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [461] "nanonet-openBLAS/2.0.0"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [462] "nanonet/2.0.0"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [463] "nanopolish/0.5.0"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [464] "nanopolish/0.6.2"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [465] "nanopolish/0.7.1"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [466] "nanopolish/0.8.1"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [467] "nanopolish/0.8.5"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [468] "nanopore/1.0"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [469] "ncbi-blast/2.10.1+"                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [470] "ncbi-blast/2.11.0+"                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [471] "ncbi-blast/2.6.0+"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [472] "ncbi-blast/2.7.1+"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [473] "ncbi-blast/2.9.0"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [474] "ncbi-blast/2.9.0a"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [475] "ncftp/3.2.6"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [476] "nedit/5.5"                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [477] "netcdf/4.4.1.1"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [478] "nextflow/22.04.5"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [479] "nextflow/22.10.4"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [480] "nf-core/2.7.2"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [481] "ninja/1.10.0"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [482] "nix/fix"                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [483] "nmap-ncat/7.91"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [484] "node/6.11.0"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [485] "node/8.11.2"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [486] "node/9.9.0"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [487] "nodejs/10.24.1"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [488] "nodejs/16.19.0"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [489] "nodejs/17.9.1"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [490] "novoalign/3.04.04"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [491] "novocraft/3.08.02"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [492] "oases/0.2.09"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [493] "ocl-icd/2.3.1"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [494] "octave/6.4.0-gcc11.1.0"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [495] "oneMKL/2022.1.0.223"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [496] "openBLAS/0.3.21-gcc-11.1.0"             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [497] "openBLAS/0.3.21-gcc-11.1.0-skylake"     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [498] "openBLAS/0.3.6-gcc-9.1.0"               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [499] "openCV/2.4.13.6"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [500] "openCV/4.2.0"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [501] "openMPI-slurm/4.1.0"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [502] "openMPI-slurm/4.1.2"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [503] "openMPI/4.1.4"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [504] "openSSL/1.0.2r"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [505] "openSSL/1.1.1b"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [506] "openSSL/1.1.1g"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [507] "openSSL/1.1.1k"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [508] "openSSL/1.1.1n"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [509] "openjdk/1.8.0"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [510] "openjdk/13.0.2"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [511] "openjdk/14.0.2"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [512] "openjdk/15.0.2"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [513] "openjdk/16.0.1"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [514] "openjdk/17.0.2"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [515] "openjdk/18.0.2"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [516] "openmpi-CUDA8/3.0.0"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [517] "openmpi/2.1.0"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [518] "openmpi/2.1.1"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [519] "openmpi/3.0.0"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [520] "openmpi/4.1.1"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [521] "openmpi/4.1.1-slurm"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [522] "owncloud-client/2.3.3"                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [523] "pandoc/1.17.0.3"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [524] "pandoc/2.0.0.1"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [525] "pandoc/2.14.2"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [526] "pandoc/2.19.2"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [527] "pandoc/2.3.1"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [528] "parallel/20190722"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [529] "pbs-drmaa/1.0.19"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [530] "pbstop/1.0"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [531] "pcre2/10.34-gcc-9.1.0"                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [532] "pcre2/10.36-gcc-11.1.0"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [533] "peakseq/1.31"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [534] "pear/0.9.10"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [535] "pear/0.9.11"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [536] "perl/5.22.2"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [537] "perl/5.26.3"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [538] "perl/5.30.1"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [539] "pgsql/15.1"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [540] "phenix-nightly/1.15-3459"               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [541] "phenix-rosetta/1.11.1-2575"             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [542] "phenix/1.15-3459"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [543] "phenix/1.17-3644"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [544] "phenix/1.18.2-3874"                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [545] "phenix/1.20.1-4487"                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [546] "php/5.6.21"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [547] "picard-tools/2.26.11"                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [548] "pigz/2.6"                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [549] "pindel/0.2.5b9"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [550] "pixz/1.0.6"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [551] "platypus/0.8.1"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [552] "plink/1.9"                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [553] "pmix/2.2.5"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [554] "pmix/3.2.3"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [555] "poretools/0.6.0"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [556] "proj/4.9.3"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [557] "proj/6.3.2"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [558] "proj/9.1.0"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [559] "pyega3/pyega3-3.4.0/bin/pyega3"         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [560] "pyega3/pyega3-3.4.0/pyega3-3.4.0.sif"   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [561] "pyem/0.5"                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [562] "pymol/1.7.4.0"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [563] "pymol/2.5.0"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [564] "python/2.7.18"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [565] "python/3.10.4"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [566] "python/3.5.1"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [567] "python/3.5.3"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [568] "python/3.6.5-intel"                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [569] "python/3.7.0"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [570] "python/3.7.13"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [571] "python/3.8.3"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [572] "python/3.8.8"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [573] "python/3.9.5"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [574] "qiime2/2019.7"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [575] "qiime2/2020.8"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [576] "qpdf/10.0.1"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [577] "quarto/1.1.189"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [578] "rc-tools/1.0"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [579] "rclone/1.55.0"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [580] "relion-cpu/3.1b-icc"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [581] "relion-cpu/3.1beta-icc"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [582] "relion/3.1.3-cu11.2"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [583] "relion/3.1.3-gcc11.1.0-cu11.4"          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [584] "relion/4.0-beta-1-cu10.1"               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [585] "relion/4.0-beta-1-cu11.2"               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [586] "relion/4.0-cu11.3.1"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [587] "rmblast/2.11.0"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [588] "rnammer/1.2"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [589] "root/6.10.00"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [590] "rsem/1.3.0"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [591] "rsem/1.3.1"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [592] "rstudio_singularity/1.0.0"              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [593] "ruby/2.3.1"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [594] "rust/1.63.0"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [595] "salmon/0.11.2"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [596] "salmon/0.14.1"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [597] "salmon/0.9.1"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [598] "salmon/1.1.0"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [599] "salmon/1.5.2"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [600] "salmon/1.9.0"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [601] "salmonTE/0.3"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [602] "sambamba/0.6.6"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [603] "samblaster/0.1.23"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [604] "samtools/0.1.18"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [605] "samtools/0.1.19"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [606] "samtools/1.10"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [607] "samtools/1.12"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [608] "samtools/1.13"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [609] "samtools/1.14"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [610] "samtools/1.15"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [611] "samtools/1.16.1"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [612] "samtools/1.17"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [613] "samtools/1.3.1"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [614] "samtools/1.4.1"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [615] "samtools/1.5"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [616] "samtools/1.6"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [617] "samtools/1.7"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [618] "samtools/1.9"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [619] "scala/2.12.2"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [620] "schrodinger/2022-1"                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [621] "schrodinger/2022-2"                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [622] "schrodinger/2022-3"                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [623] "scipion/2.0"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [624] "scipion/3.0"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [625] "seqmonk/1.45.1"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [626] "seqmonk/1.46"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [627] "seqmonk/1.47.0"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [628] "seqmonk/1.47.1"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [629] "seqmonk/1.47.2"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [630] "seqmonk/1.48.0"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [631] "seqmonk/1.48.1"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [632] "sidesplitter/1.2"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [633] "signalp/4.1"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [634] "singularity/2.5.1"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [635] "singularity/3.0.3"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [636] "singularity/3.1.1"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [637] "singularity/3.3.0"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [638] "singularity/3.5.0"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [639] "singularity/3.5.2"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [640] "singularity/3.6.2"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [641] "singularity/3.7.4"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [642] "singularity/3.8.2"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [643] "singularity/3.8.4"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [644] "slurm-contribs/20.11.5"                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [645] "snakemake/7.12.0"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [646] "snpEff/4.3i"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [647] "snpEff/4.3t"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [648] "soapdenovo-trans/1.03"                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [649] "soapdenovo2/2.04"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [650] "spaceranger/1.2.2"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [651] "spaceranger/1.3.0"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [652] "spaceranger/2.0.0"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [653] "spades/3.11.0"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [654] "spawn-fcgi/1.6.5"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [655] "spp/1.14"                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [656] "sqlite/3.38.5"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [657] "sqlite/3.40.0"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [658] "sqlite/3.40.1"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [659] "sra-toolkit/2.10.9"                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [660] "sra-toolkit/2.8.2-1"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [661] "sra-toolkit/2.9.6-1"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [662] "sra-toolkit/3.0.0"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [663] "sshpass/1.05"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [664] "stack/1.5.1"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [665] "stack/1.7.1"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [666] "stornext/1.0"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [667] "stubl/0.0.10"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [668] "subread/1.5.0-p2"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [669] "subread/1.5.1"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [670] "subread/1.5.2"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [671] "subread/1.6.3"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [672] "summovie/1.0.2"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [673] "sxgui_settings/gui_settings_project.txt"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [674] "tadbit/0.2"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [675] "tadbit/gmon.out"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [676] "tar/1.34"                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [677] "tcpdump/4.9.2"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [678] "tensorRT/10.0-6.0.1.5"                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [679] "tensorRT/10.1-6.0.1.5"                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [680] "tensorRT/11.2-7.2.3.4"                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [681] "tensorflow-gpu/10.0-1.15.2"             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [682] "tensorflow-gpu/10.1-2.1.0"              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [683] "tensorflow-gpu/11.2-2.11.0"             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [684] "texlive/20171130"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [685] "texlive/3.14159265"                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [686] "tmhmm/2.0c"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [687] "topaz/0.2.3"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [688] "topaz/0.2.4"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [689] "tophat/2.1.1"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [690] "transdecoder/4.0.0"                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [691] "trickle/1.07"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [692] "trimgalore/0.4.2"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [693] "trimgalore/0.4.4"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [694] "trimgalore/0.6.7"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [695] "trimmomatic/0.36"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [696] "trinityrnaseq/2.2.0"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [697] "trinityrnaseq/2.4.0"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [698] "trinityrnaseq/2.8.4"                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [699] "trinotate/3.0.1"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [700] "trinotate/3.0.2"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [701] "turbovnc/3.0.1"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [702] "tvips/0.0.3"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [703] "ucsc-tools/331"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [704] "ultraplex/1.2.5"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [705] "umi_tools/1.0.1"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [706] "unblur/1.0.2"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [707] "usearch/7.0.1090"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [708] "usearch/8.1.1861"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [709] "usearch/9.2.64"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [710] "v8/3.14.5.10"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [711] "vardict/1.5.1"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [712] "varscan/2.3.9"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [713] "vcflib/1.0.0-rc1"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [714] "vcftools/0.1.13"                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [715] "velvet/1.2.10"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [716] "vireoSNP/0.5.6"                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [717] "vsearch/2.4.3"                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [718] "websockify/0.9.0"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [719] "wehi-stornext/1.0"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [720] "wine/6.9"                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [721] "wine/7.17"                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [722] "xds/20220110"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [723] "xdsgui/2017-01-25"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [724] "xdsgui/2020-12-02"                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [725] "xenomapper/1.0.1"                       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [726] "xz/5.2.2"                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [727] "zeromq/4.3.4"                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [728] "zlib/1.2.11"                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [729] "zlib/1.2.8"                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [730] "zstd/1.5.0"                             </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

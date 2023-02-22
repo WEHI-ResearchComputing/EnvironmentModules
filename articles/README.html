@@ -91,7 +91,8 @@ have to install it as follows:</p>
 <p>You can list the available modules:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/module_avail.html">module_avail</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p>You can filter to only modules starting with some prefix:</p>
+<p>You can also easily filter to only modules containing a
+substring:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/module_avail.html">module_avail</a></span><span class="op">(</span><span class="st">"python"</span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -119,6 +120,20 @@ have to install it as follows:</p>
 <span><span class="fu"><a href="../reference/module_list.html">module_list</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
+<h2 id="autocomplete">Autocomplete<a class="anchor" aria-label="anchor" href="#autocomplete"></a>
+</h2>
+<p>Both <code>module_load</code> and <code>module_unload</code> support
+a “magic” autocomplete that activates if you put a dollar sign after the
+function name.</p>
+<p>For example, you can type <code>module_load$</code> and the following
+will appear in RStudio:</p>
+<p>This autocomplete will adjust as to type, to let you quickly filter
+down all the available modules:</p>
+<p>To actually load the module, just press enter:</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">module_load</span><span class="op">$</span><span class="va">`python/3.7.13`</span></span></code></pre></div>
+</div>
+<div class="section level2">
 <h2 id="linking-shared-libraries">Linking Shared Libraries<a class="anchor" aria-label="anchor" href="#linking-shared-libraries"></a>
 </h2>
 <p>Although <code><a href="../reference/module_load.html">module_load()</a></code> will add a module’s libraries to
@@ -128,20 +143,20 @@ packages that use these libraries.</p>
 <p>For example, let’s say we want to use the <code>hdf5r</code> package,
 which depends on the <code>hdf5</code> library package. We don’t have
 <code>hdf5</code> loaded, so it will fail:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"hdf5r"</span>, quiet<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"hdf5r"</span>, quiet<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p>Let’s see what happens if we load the appropriate module. Firstly, we
 need to find out what the module is called:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/module_avail.html">module_avail</a></span><span class="op">(</span><span class="st">"hdf5"</span><span class="op">)</span></span></code></pre></div>
 <p>We can now load the module:</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/module_load.html">module_load</a></span><span class="op">(</span><span class="st">"hdf5/1.12.2"</span><span class="op">)</span></span></code></pre></div>
 <p>Now let’s try again:</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"hdf5r"</span>, quiet<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p>Finally, we can load the package itself… or can we?</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"hdf5r"</span>, quiet<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<p>Finally, we can load the package itself… or can we?</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://hhoeflin.github.io/hdf5r/" class="external-link">hdf5r</a></span><span class="op">)</span></span></code></pre></div>
 <p>As alluded to above, R doesn’t actually load every new library that
 becomes available in the environment. Rather it uses “load-time
@@ -152,9 +167,9 @@ the module, and then restarting R, but this can be quite annoying.</p>
 way that hints to the package where to find the modules it needs. This
 means that you won’t have to restart R, or even load the modules the
 next time you want to use the package:</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"hdf5r"</span>, quiet<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/with_module_install.html">with_module_install</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"hdf5r"</span>, quiet<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/with_module_install.html">with_module_install</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://hhoeflin.github.io/hdf5r/" class="external-link">hdf5r</a></span><span class="op">)</span></span></code></pre></div>
 <p>It worked!</p>
 <p>If you are interested in the theory underlying what is happening
@@ -169,10 +184,10 @@ dependency resolution.</p>
 <p>This package also supports the following.</p>
 <p><code><a href="../reference/module_swap.html">module_swap()</a></code> unloads the first module and loads the
 second:</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/module_swap.html">module_swap</a></span><span class="op">(</span><span class="st">"hdf5/1.12.2"</span>, <span class="st">"hdf5/1.10.5"</span><span class="op">)</span></span></code></pre></div>
 <p><code><a href="../reference/module_purge.html">module_purge()</a></code> unloads all modules:</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/module_purge.html">module_purge</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
@@ -183,11 +198,11 @@ second:</p>
 <code>get_module_code</code> or <code>get_module_output</code>.</p>
 <p>If you want to run a command that doesn’t edit the modules, but only
 shows output, run <code>get_module_output</code></p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/get_module_output.html">get_module_output</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"show"</span>, <span class="st">"hdf5"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>If the module does edit the modules, use
 <code><a href="../reference/get_module_code.html">get_module_code()</a></code>, and evaluate the result:</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/get_module_code.html">get_module_code</a></span><span class="op">(</span><span class="st">"reload"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/eval.html" class="external-link">eval</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">

@@ -22,10 +22,16 @@
     <loc>/index.html</loc>
   </url>
   <url>
+    <loc>/reference/cash-.dollar_function.html</loc>
+  </url>
+  <url>
     <loc>/reference/check_version.html</loc>
   </url>
   <url>
-    <loc>/reference/get_loaded_modules.html</loc>
+    <loc>/reference/dot-DollarNames.module_load.html</loc>
+  </url>
+  <url>
+    <loc>/reference/dot-DollarNames.module_unload.html</loc>
   </url>
   <url>
     <loc>/reference/get_module_code.html</loc>
