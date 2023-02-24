@@ -29,4 +29,4 @@ jobs:
       - uses: r-lib/actions/check-r-package@v2
         with:
           build_args: '"--no-build-vignettes"'
-          args: 'c("--no-examples", "--no-vignettes", "--no-tests", "--no-manual")'
+          args: 'c("--no-examples", "--no-vignettes", "--no-tests", "--no-manual", "--ignore-vignettes")'
