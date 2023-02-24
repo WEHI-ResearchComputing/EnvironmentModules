@@ -113,5 +113,5 @@ test_that("module_avail() works", {
 test_that("module_load() throws an error on failure", {
   check_wehi()
 
-  module_load("NOT_A_REAL_MODULE") |> expect_error()
+  module_load("NOT_A_REAL_MODULE") |> expect_error("Failed to load")
 })

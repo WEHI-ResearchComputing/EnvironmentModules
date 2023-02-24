@@ -1,5 +1,8 @@
 # High level, user-friendly functions
 
+# Used to silence R CMD check
+mlstatus <- NULL
+
 #' Loads one or more environment modules
 #' @param ... Any number of modules to load as character vectors, which will
 #' all be concatenated together.
@@ -22,7 +25,7 @@ module_load = structure(
         cli::cli_alert_success("Successfully loaded {modules}")
       }
       else {
-        cli::abort("Failed to load {modules}")
+        cli::cli_abort("Failed to load {modules}")
       }
     }
     invisible(NULL)
@@ -52,7 +55,7 @@ module_unload = structure(
         cli::cli_alert_success("Successfully unloaded {modules}")
       }
       else {
-        cli::abort("Failed to unload {modules}")
+        cli::cli_abort("Failed to unload {modules}")
       }
     }
     invisible(TRUE)
@@ -108,7 +111,7 @@ module_purge = function(){
       cli::cli_alert_success("Successfully purged modules")
     }
     else {
-      cli::abort("Failed to purge modules")
+      cli::cli_abort("Failed to purge modules")
     }
   }
   invisible(NULL)
