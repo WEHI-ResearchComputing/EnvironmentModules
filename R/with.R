@@ -10,8 +10,11 @@
 #' the LDFLAGS environment variable in your Makevars file. It will not work
 #' if the R package is not set up to correctly use LDFLAGS, but all
 #' correctly configured R packages will automatically do so.
-#' Also, it is recommended that you have only the minimal number of modules
+#' It is recommended that you have only the minimal number of modules
 #' needed to install this package loaded when you run this.
+#' It is also recommended that you use [utils::install.packages()] with the
+#' `utils` namespace qualifier, because RStudio patches this function in an
+#' incompatible way.
 #' @param expr Any R code you want to run that installs packages. Most of the
 #' time this will just be a call to [install.packages]()
 #' @return The result of evaluating `expr`
@@ -20,7 +23,7 @@
 #' @examples
 #' options(repos=c(CRAN="https://cloud.r-project.org/"))
 #' module_load("hdf5")
-#' install.packages("hdf5r") |> with_module_install()
+#' utils::install.packages("hdf5r") |> with_module_install()
 with_module_install = function(expr){
   withr::with_makevars(
     c(LDFLAGS=paste0("-Wl,-rpath,", Sys.getenv("LD_LIBRARY_PATH"))),

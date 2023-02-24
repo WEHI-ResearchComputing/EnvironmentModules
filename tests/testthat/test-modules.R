@@ -109,3 +109,9 @@ test_that("module_avail() works", {
 
   module_avail() |> length() |> expect_gt(500)
 })
+
+test_that("module_load() throws an error on failure", {
+  check_wehi()
+
+  module_load("NOT_A_REAL_MODULE") |> expect_error()
+})

@@ -18,9 +18,14 @@ module_load = structure(
     }
     else {
       eval(code)
-      cli::cli_alert_success("Successfully loaded {modules}")
+      if (mlstatus){
+        cli::cli_alert_success("Successfully loaded {modules}")
+      }
+      else {
+        cli::abort("Failed to load {modules}")
+      }
     }
-    invisible(TRUE)
+    invisible(NULL)
   },
   class = c("module_load", "dollar_function", "function")
 )
@@ -43,7 +48,12 @@ module_unload = structure(
     }
     else {
       eval(code)
-      cli::cli_alert_success("Successfully unloaded {modules}")
+      if (mlstatus){
+        cli::cli_alert_success("Successfully unloaded {modules}")
+      }
+      else {
+        cli::abort("Failed to unload {modules}")
+      }
     }
     invisible(TRUE)
   },
@@ -87,8 +97,21 @@ module_avail = function(filter = ""){
 #' @examples
 #' module_purge()
 module_purge = function(){
-  get_module_code("purge") |> eval()
-  invisible(TRUE)
+  code = get_module_code("purge")
+
+  if (length(code) == 0){
+    cli::cli_alert_info("Nothing to do. Most likely no modules were loaded.")
+  }
+  else {
+    eval(code)
+    if (mlstatus){
+      cli::cli_alert_success("Successfully purged modules")
+    }
+    else {
+      cli::abort("Failed to purge modules")
+    }
+  }
+  invisible(NULL)
 }
 
 #' Unloads one module, and loads a second module.
