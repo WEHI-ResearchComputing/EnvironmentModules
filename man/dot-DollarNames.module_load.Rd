@@ -17,3 +17,4 @@ A character vector of available modules
 \description{
 Get autocompletions for \code{\link[=module_load]{module_load()}}
 }
+\keyword{autocomplete}

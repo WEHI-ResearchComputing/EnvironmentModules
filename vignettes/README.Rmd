@@ -34,7 +34,7 @@ process_ansi_string = function(x, options) {
 knit_print.cliMessage = process_ansi_string
 knit_print.ansi_string = process_ansi_string
 
-knitr::opts_knit$set(root.dir = rprojroot::find_package_root_file())
+knitr::opts_knit$set(root.dir = xfun::proj_root())
 knitr::opts_chunk$set(collapse = TRUE, comment = "#>", eval = requireNamespace("pkgdown") && !pkgdown::in_pkgdown())
 hook_output <- knitr::knit_hooks$get("output")
 knitr::knit_hooks$set(output = function(x, options) {
@@ -121,11 +121,17 @@ Both `module_load` and `module_unload` support a "magic" autocomplete that activ
 
 For example, you can type `module_load$` and the following will appear in RStudio:
 
-![](vignettes/rstudio_autocomplete.png)
+```{r, echo=FALSE}
+xfun::from_root("vignettes", "rstudio_autocomplete.png") |>
+  knitr::include_graphics()
+```
 
 This autocomplete will adjust as to type, to let you quickly filter down all the available modules:
 
-![](vignettes/rstudio_autocomplete_2.png)
+```{r, echo=FALSE}
+xfun::from_root("vignettes", "rstudio_autocomplete_2.png") |>
+  knitr::include_graphics()
+```
 
 To actually load the module, just press enter:
 
