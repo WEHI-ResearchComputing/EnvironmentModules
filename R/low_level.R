@@ -60,6 +60,15 @@ check_version = function(against=MIN_SUPPORTED_VERSION, action="for the function
   invisible()
 }
 
+#' Throws an error if the current installation can't support JSON flags
+#' @noRd
+check_json = function(){
+  check_version("4.5")
+  if (!requireNamespace("jsonlite")){
+    cli::cli_abort("You need to install the jsonlite package to use this command")
+  }
+}
+
 #' Gets the file path to the `modulescmd` executable
 #' @keywords low_level
 #' @export

@@ -55,29 +55,53 @@ module_unload = structure(
 #'  currently loaded
 #' @param filter If provided, a character scalar will be used to filter the
 #'  results. Only modules containing `filter` as a substring will be returned.
+#' @param detailed An optional boolean scalar. If true, returns a list of
+#'  metadata about each module.
 #' @keywords high_level
 #' @export
 #' @examples
 #' module_list()
-module_list = function(filter = ""){
+module_list = function(filter = "", detailed = FALSE){
   modules = Sys.getenv("LOADEDMODULES") |> strsplit(":") |> unlist()
   modules[grepl(filter, modules, fixed=TRUE)]
 }
 
 #' Lists all modules available to be loaded
 #' @inheritParams module_list
+#'
 #' @return A character vector whose entries correspond to available to be
 #'  loaded
 #' @keywords high_level
 #' @export
 #' @examples
 #' module_avail()
-module_avail = function(filter = ""){
-  modules = Sys.getenv("MODULEPATH") |>
-    strsplit(":") |>
-    unlist() |>
-    list.files(recursive=TRUE, include.dirs=FALSE)
-  modules[grepl(filter, modules, fixed=TRUE)]
+module_avail = function(filter = "", detailed = FALSE){
+  if (detailed){
+    check_json()
+    modules = get_module_output(c("avail", "--json")) |>
+      jsonlite::fromJSON(simplifyVector=FALSE) |>
+      do.call(c, args=_)
+    modules[grepl(filter, x=names(modules), fixed=TRUE)] |>
+      unname() |>
+      lapply(\(row){
+        lapply(row, \(cell){
+          if (is.list(cell)){
+            list(cell)
+          }
+          else {
+            cell
+          }
+        }) |> list2DF()
+      }) |>
+      do.call(rbind, args=_)
+  }
+  else {
+    modules = Sys.getenv("MODULEPATH") |>
+      strsplit(":") |>
+      unlist() |>
+      list.files(recursive=TRUE, include.dirs=FALSE)
+    modules[grepl(filter, modules, fixed=TRUE)]
+  }
 }
 
 #' Unloads all modules that are currently loaded
