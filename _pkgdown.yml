@@ -12,6 +12,10 @@ reference:
   desc: "withr-style functions that run R code in a certain module environment"
   contents:
   - has_keyword("with")
+- title: "Autocomplete"
+  desc: 'Machinery that powers the "magic autocomplete"'
+  contents:
+  - has_keyword("autocomplete")
 - title: "Advanced Functions"
   desc: "Powerful, but more complex functions you are less likely to need"
   contents:

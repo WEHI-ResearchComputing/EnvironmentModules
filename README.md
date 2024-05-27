@@ -25,26 +25,26 @@ You can list the available modules:
 
 ``` r
 module_avail()
-#>   [1] "7zip/15.14.1"                            "adxv/1.9.12"                             "alphafold/2.0.0"                         "alphafold/2.0.1"                         "alphafold/2.0.2"                        
-#>   [6] "alphafold/2.1.1.0"                       "alphafold/2.1.2.0"                       "alphafold/2.2.0.0"                       "anaconda3/2019.03"                       "anaconda3/2020.07"                      
-#>  [11] "anaconda3/4.0.0"                         "anaconda3/4.3.1"                         "anaconda3/latest"                        "annovar/2015-12-14"                      "apache-ant/1.9.7"                       
-#>  [16] "apptainer/1.0.0"                         "apptainer/1.1.0"                         "aspera/3.5.4"                            "aspera/3.9.1"                            "aspera/3.9.6"                           
-#>  [21] "autoPROC/20211020"                       "autoPROC/20220608"                       "autoPROC/20230217"                       "autoSHARP/2.8"                           "awscli/1.16py2.7"                       
-#>  [26] "awscli/1.16py3.7"                        "awscli/1.22.89"                          "awscli/2.1.25"                           "awscli/2.5.2"                            "axel/2.17.10"                           
-#>  [31] "bamtools/2.4.1"                          "bamUtil/1.0.14"                          "bazel/0.26.1"                            "bazel/1.2.1"                             "bcftools/1.12"                          
-#>  [36] "bcftools/1.13"                           "bcftools/1.14"                           "bcftools/1.15"                           "bcftools/1.16"                           "bcftools/1.3.1"                         
-#>  [41] "bcftools/1.6"                            "bcftools/1.7"                            "bcftools/1.9"                            "bcl-convert/3.10.5"                      "bcl-convert/3.9.3"                      
-#>  [46] "bcl2fastq/2.19.1"                        "bcl2fastq/2.20.0"                        "beast/1.8.3"                             "beast2/2.4.0"                            "bedops/2.4.26"                          
-#>  [51] "bedtools/2.25.0"                         "bedtools/2.26.0"                         "binutils/2.35.2-gcc-4.8.5"               "binutils/2.35.2-gcc-9.1.0"               "biobambam2/2.0.182-gcc9.1.0"            
-#>  [56] "bismark/0.16.1"                          "bismark/0.19.0"                          "bismark/0.19.1"                          "bismark/0.20.0"                          "boost/1.55.0"                           
-#>  [61] "boost/1.58.0"                            "boost/1.60.0"                            "boost/1.66.0"                            "bowtie/1.1.2"                            "bowtie2/2.2.9"                          
-#>  [66] "bowtie2/2.3.2"                           "bowtie2/2.3.4.1"                         "bowtie2/2.4.4"                           "bpipe/0.9.9.2"                           "breakdancer/1.1.2"                      
-#>  [71] "breakdancer/1.4.5"                       "bsoft/2.1.0"                             "buster/20211020"                         "buster/20220608"                         "bwa/0.7.13"                             
-#>  [76] "bwa/0.7.15"                              "bwa/0.7.17"                              "bwtool/1.0"                              "bzip2/1.0.6"                             "caffe2/0.8.1"                           
-#>  [81] "canu/1.3"                                "canu/1.5"                                "ccp4/7.1"                                "ccp4/8.0"                                "ccpem/1.5.0"                            
-#>  [86] "cellprofiler/4.2.1"                      "cellprofiler/4.2.4"                      "cellranger-arc/1.0.1"                    "cellranger-arc/2.0.2"                    "cellranger-atac/1.0.0"                  
-#>  [91] "cellranger-atac/1.2.0"                   "cellranger-atac/2.1.0"                   "cellranger/2.2.0"                        "cellranger/3.0.1"                        "cellranger/3.0.2"                       
-#>  [96] "cellranger/3.1.0"                        "cellranger/4.0.0"                        "cellranger/5.0.0"                        "cellranger/6.0.0"                        "cellranger/6.1.2"                       
+#>   [1] "7zip/15.14.1"                            "adxv/1.9.12"                             "alphafold/2.0.0"                        
+#>   [4] "alphafold/2.0.1"                         "alphafold/2.0.2"                         "alphafold/2.1.1.0"                      
+#>   [7] "alphafold/2.1.2.0"                       "alphafold/2.2.0.0"                       "anaconda3/2019.03"                      
+#>  [10] "anaconda3/2020.07"                       "anaconda3/4.0.0"                         "anaconda3/4.3.1"                        
+#>  [13] "anaconda3/latest"                        "annovar/2015-12-14"                      "apache-ant/1.9.7"                       
+#>  [16] "apptainer/1.0.0"                         "apptainer/1.1.0"                         "aspera/3.5.4"                           
+#>  [19] "aspera/3.9.1"                            "aspera/3.9.6"                            "autoPROC/20211020"                      
+#>  [22] "autoPROC/20220608"                       "autoPROC/20230222"                       "autoSHARP/2.8"                          
+#>  [25] "awscli/1.16py2.7"                        "awscli/1.16py3.7"                        "awscli/1.22.89"                         
+#>  [28] "awscli/2.1.25"                           "awscli/2.5.2"                            "axel/2.17.10"                           
+#>  [31] "bamtools/2.4.1"                          "bamUtil/1.0.14"                          "bazel/0.26.1"                           
+#>  [34] "bazel/1.2.1"                             "bcftools/1.12"                           "bcftools/1.13"                          
+#>  [37] "bcftools/1.14"                           "bcftools/1.15"                           "bcftools/1.16"                          
+#>  [40] "bcftools/1.17"                           "bcftools/1.3.1"                          "bcftools/1.6"                           
+#>  [43] "bcftools/1.7"                            "bcftools/1.9"                            "bcl-convert/3.10.5"                     
+#>  [46] "bcl-convert/3.9.3"                       "bcl2fastq/2.19.1"                        "bcl2fastq/2.20.0"                       
+#>  [49] "beast/1.8.3"                             "beast2/2.4.0"                            "bedops/2.4.26"                          
+#>  [52] "bedtools/2.25.0"                         "bedtools/2.26.0"                         "binutils/2.35.2-gcc-4.8.5"              
+#>  [55] "binutils/2.35.2-gcc-9.1.0"               "biobambam2/2.0.182-gcc9.1.0"             "bismark/0.16.1"                         
+#>  [58] "bismark/0.19.0"                          "bismark/0.19.1"                          "bismark/0.20.0"                         
 ....
 ```
 
@@ -52,7 +52,8 @@ You can also easily filter to only modules containing a substring:
 
 ``` r
 module_avail("python")
-#>  [1] "python/2.7.18"      "python/3.10.4"      "python/3.5.1"       "python/3.5.3"       "python/3.6.5-intel" "python/3.7.0"       "python/3.7.13"      "python/3.8.3"       "python/3.8.8"       "python/3.9.5"
+#>  [1] "python/2.7.18"      "python/3.10.4"      "python/3.5.1"       "python/3.5.3"       "python/3.6.5-intel" "python/3.7.0"       "python/3.7.13"     
+#>  [8] "python/3.8.3"       "python/3.8.8"       "python/3.9.5"
 ```
 
 ## Loading and Unloading Modules
@@ -97,12 +98,12 @@ that activates if you put a dollar sign after the function name.
 For example, you can type `module_load$` and the following will appear
 in RStudio:
 
-![](vignettes/rstudio_autocomplete.png)
+![](vignettes/rstudio_autocomplete.png)<!-- -->
 
 This autocomplete will adjust as to type, to let you quickly filter down
 all the available modules:
 
-![](vignettes/rstudio_autocomplete_2.png)
+![](vignettes/rstudio_autocomplete_2.png)<!-- -->
 
 To actually load the module, just press enter:
 
@@ -133,7 +134,8 @@ need to find out what the module is called:
 
 ``` r
 module_avail("hdf5")
-#> [1] "hdf5-mpich/1.10.5_3.3" "hdf5/1.10.5"           "hdf5/1.12.1"           "hdf5/1.12.2"           "hdf5/1.8.16"           "hdf5/1.8.20"           "hdf5/1.8.21"
+#> [1] "hdf5-mpich/1.10.5_3.3" "hdf5/1.10.5"           "hdf5/1.12.1"           "hdf5/1.12.2"           "hdf5/1.8.16"           "hdf5/1.8.20"          
+#> [7] "hdf5/1.8.21"
 ```
 
 We can now load the module:

@@ -17,3 +17,4 @@ The return value of \code{x}
 \description{
 Calls a function using the name used after the dollar sign
 }
+\keyword{autocomplete}

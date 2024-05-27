@@ -17,3 +17,4 @@ A character vector of currently-loaded modules
 \description{
 Get autocompletions for \code{\link[=module_unload]{module_unload()}}
 }
+\keyword{autocomplete}
