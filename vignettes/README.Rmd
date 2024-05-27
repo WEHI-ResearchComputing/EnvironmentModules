@@ -5,6 +5,9 @@ vignette: >
   %\VignetteIndexEntry{readme}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+resource_files:
+- rstudio_autocomplete.png
+- rstudio_autocomplete_2.png
 ---
 
 ```{r, include = FALSE}
@@ -121,16 +124,16 @@ Both `module_load` and `module_unload` support a "magic" autocomplete that activ
 
 For example, you can type `module_load$` and the following will appear in RStudio:
 
-![](vignettes/rstudio_autocomplete.png)
+![](rstudio_autocomplete.png)
 
 This autocomplete will adjust as to type, to let you quickly filter down all the available modules:
 
-![](vignettes/rstudio_autocomplete_2.png)
+![](rstudio_autocomplete_2.png)
 
 To actually load the module, just press enter:
 
 ```{r}
-module_load$`python/3.7.13`
+module_load$`python/3.7.17`
 ```
 
 ## Linking Shared Libraries
